@@ -1,0 +1,42 @@
+[
+    {
+        "year": 2016,
+        "type": "Garantie à première demande",
+        "beneficiaire": "BEI",
+        "montant": 19,
+        "devise": "M€",
+        "description": "Garantie souveraine pour prêt environnemental"
+    },
+    {
+        "year": 2016,
+        "type": "Garantie à première demande",
+        "beneficiaire": "AFD",
+        "montant": 45,
+        "devise": "M€",
+        "description": "Garantie souveraine pour mise à niveau"
+    },
+    {
+        "year": 2021,
+        "type": "Garantie à première demande",
+        "beneficiaire": "ITFC",
+        "montant": 50,
+        "devise": "M$",
+        "description": "Garantie pour accord de Mourabaha"
+    },
+    {
+        "year": 2022,
+        "type": "Reconnaissance de bénéficiaire",
+        "beneficiaire": "État Tunisien",
+        "montant": null,
+        "devise": null,
+        "description": "GCT listé parmi les entreprises publiques bénéficiaires"
+    },
+    {
+        "year": 2023,
+        "type": "Reconnaissance de bénéficiaire",
+        "beneficiaire": "État Tunisien",
+        "montant": null,
+        "devise": null,
+        "description": "GCT listé parmi les entreprises publiques bénéficiaires"
+    }
+]

@@ -1,0 +1,73 @@
+{
+    "periode": "2016-2028",
+    "totaux": {
+        "euros": {
+            "montant": 64,
+            "unite": "M€",
+            "detail": "BEI (19M€) + AFD (45M€)"
+        },
+        "dollars": {
+            "montant": 160,
+            "unite": "M$",
+            "detail": "ITFC (50M$) + BAD (110M$)"
+        },
+        "dinars": {
+            "montant": 120,
+            "unite": "MD",
+            "detail": "Ligne de trésorerie gouvernementale"
+        }
+    },
+    "dons_subventions": [
+        {
+            "annee": 2016,
+            "source": "Commission Européenne",
+            "montant": 10,
+            "devise": "M€",
+            "objectif": "Appui au projet de mise à niveau environnementale"
+        },
+        {
+            "annee": 2018,
+            "source": "AFD",
+            "montant": 300000,
+            "devise": "€",
+            "objectif": "Appui technique RSE"
+        },
+        {
+            "annee": 2023,
+            "source": "SFI / Banque Mondiale",
+            "montant": 7,
+            "devise": "MD",
+            "objectif": "Étude transport hydraulique du phosphate"
+        }
+    ],
+    "engagements_indirects": [
+        {
+            "annee": 2025,
+            "projet": "Modernisation ferroviaire SNCFT",
+            "source": "Fonds Koweïtien",
+            "montant": 10,
+            "devise": "MD Koweïtiens",
+            "montant_dt": 103,
+            "objectif": "50 km de voie ferrée Metlaoui-Ghannouch"
+        },
+        {
+            "annee": null,
+            "projet": "Soutien extraction CPG",
+            "source": "BERD",
+            "montant": 233,
+            "devise": "MD",
+            "objectif": "Renouvellement flotte d'extraction CPG"
+        }
+    ],
+    "contexte_financier": {
+        "creances_etat": {
+            "montant": 160,
+            "unite": "MD",
+            "description": "Dividendes décidés en 2010 non versés"
+        },
+        "dettes_croisees": {
+            "pourcentage": 41,
+            "description": "Dettes envers établissements publics (CPG, STEG, SNDP)"
+        }
+    }
+}

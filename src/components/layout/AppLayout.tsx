@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, TrendingUp, PieChart, Users, FileText } from 'lucide-react';
+import { LayoutDashboard, TrendingUp, PieChart, Users, FileText, Clock } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -10,6 +10,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         { path: '/evolution', label: 'Évolution (TimeSeries)', icon: TrendingUp },
         { path: '/structure', label: 'Structure & Dettes', icon: PieChart },
         { path: '/sources', label: 'Sources de Financement', icon: Users },
+        { path: '/historical', label: 'Approche Historique', icon: Clock },
         { path: '/report', label: 'Rapport Complet', icon: FileText },
     ];
 

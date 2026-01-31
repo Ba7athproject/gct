@@ -5,6 +5,7 @@ import Evolution from './pages/Evolution';
 import Structure from './pages/Structure';
 import Sources from './pages/Sources';
 import FullReport from './pages/FullReport';
+import HistoricalApproach from './pages/HistoricalApproach';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/evolution" element={<Evolution />} />
           <Route path="/structure" element={<Structure />} />
           <Route path="/sources" element={<Sources />} />
+          <Route path="/historical" element={<HistoricalApproach />} />
           <Route path="/report" element={<FullReport />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
