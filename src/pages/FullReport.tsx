@@ -19,7 +19,7 @@ export default function FullReport() {
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a
-                        href="/gct/rapport_complet.pdf"
+                        href="https://drive.google.com/uc?export=download&id=1yOgRl_Ohx7ZVPJ9aYeg5jdlXJn3ZNuJZ"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-lg hover:bg-slate-800 transition-colors"
