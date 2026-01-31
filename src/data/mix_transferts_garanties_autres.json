@@ -1,0 +1,58 @@
+[
+    {
+        "year": 2020,
+        "transferts": 2931,
+        "garanties": 5739,
+        "autres": 1226,
+        "unit": "MDT",
+        "source": "Annexe 8 LF2020"
+    },
+    {
+        "year": 2021,
+        "transferts": 2273,
+        "garanties": 7325,
+        "autres": 1175,
+        "unit": "MDT",
+        "source": "Annexe 8 LF2021"
+    },
+    {
+        "year": 2022,
+        "transferts": 2522,
+        "garanties": 13398,
+        "autres": 1159,
+        "unit": "MDT",
+        "source": "Annexe 8 LF2022"
+    },
+    {
+        "year": 2023,
+        "transferts": 2890,
+        "garanties": 10330,
+        "autres": 1295,
+        "unit": "MDT",
+        "source": "Annexe 8 LF2023"
+    },
+    {
+        "year": 2024,
+        "transferts": 3100,
+        "garanties": 11300,
+        "autres": 1000,
+        "unit": "MDT",
+        "source": "Estimations"
+    },
+    {
+        "year": 2025,
+        "transferts": 3200,
+        "garanties": 11500,
+        "autres": 1300,
+        "unit": "MDT",
+        "source": "Prévisions"
+    },
+    {
+        "year": 2026,
+        "transferts": 3000,
+        "garanties": 11500,
+        "autres": 1300,
+        "unit": "MDT",
+        "source": "Prévisions"
+    }
+]

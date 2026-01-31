@@ -1,0 +1,58 @@
+[
+    {
+        "year": 2020,
+        "montant": 9896,
+        "unit": "MDT",
+        "type": "Réel",
+        "source": "Annexe 8 LF2021",
+        "growth": 0
+    },
+    {
+        "year": 2021,
+        "montant": 10773,
+        "unit": "MDT",
+        "type": "Réel",
+        "source": "Annexe 8 LF2021",
+        "growth": 8.9
+    },
+    {
+        "year": 2022,
+        "montant": 17079,
+        "unit": "MDT",
+        "type": "Réel",
+        "source": "Annexe 8 LF2021",
+        "growth": 58.5
+    },
+    {
+        "year": 2023,
+        "montant": 14514,
+        "unit": "MDT",
+        "type": "Réel",
+        "source": "Annexe 8 LF2021",
+        "growth": -15.0
+    },
+    {
+        "year": 2024,
+        "montant": 15400,
+        "unit": "MDT",
+        "type": "Estimé",
+        "source": "Extrapolation / Budget",
+        "growth": 6.1
+    },
+    {
+        "year": 2025,
+        "montant": 15900,
+        "unit": "MDT",
+        "type": "Prévision",
+        "source": "Extrapolation",
+        "growth": 3.3
+    },
+    {
+        "year": 2026,
+        "montant": 15800,
+        "unit": "MDT",
+        "type": "Prévision",
+        "source": "Extrapolation",
+        "growth": -0.6
+    }
+]

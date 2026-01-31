@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "title": "Rapport Financier GCT 2020-2026",
+    "unit": "MDT (Millions de Dinars Tunisiens)",
+    "lastUpdated": "2026-01-31"
+  },
+  "summary": {
+    "totalAmount7Years": 99362,
+    "averageAnnual": 14194,
+    "peakYear": 2022,
+    "peakAmount": 17079,
+    "growthTotal": 59.6
+  },
+  "phases": [
+    {
+      "id": "phase1",
+      "years": "2020-2021",
+      "name": "Stabilité",
+      "description": "Croissance modérée (+8.9%) avec un financement diversifié et stable.",
+      "trend": "stable",
+      "color": "blue"
+    },
+    {
+      "id": "phase2",
+      "years": "2022",
+      "name": "Expansion (Boom)",
+      "description": "Explosion du financement (+58.5%) due à une augmentation massive des garanties et l'entrée de banques locales.",
+      "trend": "up",
+      "color": "green"
+    },
+    {
+      "id": "phase3",
+      "years": "2023",
+      "name": "Contraction (Krach)",
+      "description": "Correction sévère (-15.0%) suite à la réduction des garanties, retour à des niveaux pré-pic.",
+      "trend": "down",
+      "color": "red"
+    },
+    {
+      "id": "phase4",
+      "years": "2024-2026",
+      "name": "Stabilisation",
+      "description": "Trajectoire plus calme (+2.6% cumulé) avec un budget sécurisé et prévisible.",
+      "trend": "flat",
+      "color": "orange"
+    }
+  ],
+  "yearlyData": [
+    {
+      "year": 2020,
+      "total": 9896,
+      "growth": 0,
+      "type": "Réel",
+      "categories": {
+        "transferts": 2931,
+        "garanties": 5739,
+        "autres": 1226
+      },
+      "funding": {
+        "bh_bank": 2873,
+        "itfc": 393,
+        "be_eib": 0,
+        "berd": 146,
+        "autres_locales": 500,
+        "autres_intl": 782,
+        "autofinancement": 5202
+      }
+    },
+    {
+      "year": 2021,
+      "total": 10773,
+      "growth": 8.9,
+      "type": "Réel",
+      "categories": {
+        "transferts": 2273,
+        "garanties": 7325,
+        "autres": 1175
+      },
+      "funding": {
+        "bh_bank": 2488,
+        "itfc": 429,
+        "be_eib": 79,
+        "berd": 1114,
+        "autres_locales": 500,
+        "autres_intl": 163,
+        "autofinancement": 6000
+      }
+    },
+    {
+      "year": 2022,
+      "total": 17079,
+      "growth": 58.5,
+      "type": "Réel",
+      "categories": {
+        "transferts": 2522,
+        "garanties": 13398,
+        "autres": 1159
+      },
+      "funding": {
+        "bh_bank": 2559,
+        "itfc": 0,
+        "be_eib": 0,
+        "berd": 1045,
+        "autres_locales": 800,
+        "autres_intl": 94,
+        "autofinancement": 12581
+      }
+    },
+    {
+      "year": 2023,
+      "total": 14514,
+      "growth": -15.0,
+      "type": "Réel",
+      "categories": {
+        "transferts": 2890,
+        "garanties": 10330,
+        "autres": 1295
+      },
+      "funding": {
+        "bh_bank": 4153,
+        "itfc": 1820,
+        "be_eib": 611,
+        "berd": 0,
+        "autres_locales": 1000,
+        "autres_intl": 1130,
+        "autofinancement": 5800
+      }
+    },
+    {
+      "year": 2024,
+      "total": 15400,
+      "growth": 6.1,
+      "type": "Estimé",
+      "categories": {
+        "transferts": 3100,
+        "garanties": 11300,
+        "autres": 1000
+      },
+      "funding": {
+        "bh_bank": 4800,
+        "itfc": 2200,
+        "be_eib": 1200,
+        "berd": 800,
+        "autres_locales": 1400,
+        "autres_intl": 1000,
+        "autofinancement": 4000
+      }
+    },
+    {
+      "year": 2025,
+      "total": 15900,
+      "growth": 3.3,
+      "type": "Prévision",
+      "categories": {
+        "transferts": 3200,
+        "garanties": 11500,
+        "autres": 1300
+      },
+      "funding": {
+        "bh_bank": 4500,
+        "itfc": 2500,
+        "be_eib": 1500,
+        "berd": 1000,
+        "autres_locales": 1800,
+        "autres_intl": 1400,
+        "autofinancement": 3200
+      }
+    },
+    {
+      "year": 2026,
+      "total": 15800,
+      "growth": -0.6,
+      "type": "Prévision",
+      "categories": {
+        "transferts": 3000,
+        "garanties": 11500,
+        "autres": 1300
+      },
+      "funding": {
+        "bh_bank": 4200,
+        "itfc": 2300,
+        "be_eib": 1400,
+        "berd": 900,
+        "autres_locales": 1600,
+        "autres_intl": 1100,
+        "autofinancement": 2900
+      }
+    }
+  ]
+}

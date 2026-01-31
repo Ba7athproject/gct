@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #2563eb;
+  --color-brand-secondary: #059669;
+}
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  @apply bg-slate-50 text-slate-900;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg rounded-xl;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-slate-100 p-6 transition-all hover:shadow-md;
+}
+
+/* Recharts overrides if needed */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #e2e8f0;
+}
