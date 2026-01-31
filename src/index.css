@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
-@theme {
+:root {
+  /* Brand colors - Tailwind compatible */
   --color-brand-primary: #2563eb;
   --color-brand-secondary: #059669;
-}
 
-:root {
+  /* Font settings */
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -20,16 +20,32 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  @apply bg-slate-50 text-slate-900;
+  background-color: #f8fafc;
+  color: #0f172a;
 }
 
 /* Glassmorphism utilities */
 .glass-panel {
-  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg rounded-xl;
+  background-color: rgb(255 255 255 / 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(255 255 255 / 0.2);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border-radius: 0.75rem;
 }
 
 .card {
-  @apply bg-white rounded-xl shadow-sm border border-slate-100 p-6 transition-all hover:shadow-md;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  border: 1px solid #f1f5f9;
+  padding: 1.5rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 /* Recharts overrides if needed */

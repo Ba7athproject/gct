@@ -19,8 +19,7 @@ export default function FullReport() {
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a
-                        href={`${import.meta.env.BASE_URL}rapport_complet.pdf`}
-                        download
+                        href="/gct/rapport_complet.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-lg hover:bg-slate-800 transition-colors"
@@ -28,6 +27,7 @@ export default function FullReport() {
                         <FileDown size={20} />
                         Télécharger le PDF
                     </a>
+
                 </div>
             </div>
 
