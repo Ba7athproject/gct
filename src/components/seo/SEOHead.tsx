@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface SEOHeadProps {
@@ -24,22 +23,27 @@ const ROUTE_TITLES: Record<string, string> = {
 export default function SEOHead({ title, description = DEFAULT_DESCRIPTION }: SEOHeadProps) {
     const location = useLocation();
 
-    useEffect(() => {
-        const routeTitle = ROUTE_TITLES[location.pathname] || '';
-        const pageTitle = title || routeTitle;
+    const routeTitle = ROUTE_TITLES[location.pathname] || '';
+    const pageTitle = title || routeTitle;
+    const finalTitle = pageTitle ? `${pageTitle} | ${SITE_TITLE}` : SITE_TITLE;
 
-        document.title = pageTitle ? `${pageTitle} | ${SITE_TITLE}` : SITE_TITLE;
+    const GA_ID = 'G-3DFTYVBYJC';
 
-        // Update meta description
-        let metaDescription = document.querySelector('meta[name="description"]');
-        if (!metaDescription) {
-            metaDescription = document.createElement('meta');
-            metaDescription.setAttribute('name', 'description');
-            document.head.appendChild(metaDescription);
-        }
-        metaDescription.setAttribute('content', description);
+    return (
+        <>
+            <title>{finalTitle}</title>
+            <meta name="description" content={description} />
 
-    }, [location, title, description]);
-
-    return null;
+            {/* Google Analytics V4 */}
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+            <script dangerouslySetInnerHTML={{
+                __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${GA_ID}');
+                `
+            }} />
+        </>
+    );
 }
