@@ -51,8 +51,8 @@ export default function Evolution() {
                             </div>
                         </div>
 
-                        <div className="h-[400px] w-full min-w-0">
-                            <ResponsiveContainer width="100%" height="100%">
+                        <div className="h-[400px] w-full min-w-0 overflow-hidden">
+                            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                                 <LineChart data={financementData} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
                                     <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#ffffff08" />
                                     <XAxis

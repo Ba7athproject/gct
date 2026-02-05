@@ -59,11 +59,11 @@ export default function TimeSeriesChart({
     gradientId = 'chartGradient'
 }: TimeSeriesChartProps) {
     return (
-        <div style={{ height: height, width: '100%', minWidth: 0 }} className="relative leading-normal">
+        <div style={{ height: height, width: '100%', minWidth: 0 }} className="relative leading-normal overflow-hidden">
             {/* Subtle glow effect behind the chart */}
             <div className="absolute inset-0 bg-blue-500/2 blur-[60px] rounded-full pointer-events-none" />
 
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                 <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                     <defs>
                         <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">

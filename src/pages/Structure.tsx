@@ -39,8 +39,8 @@ export default function Structure() {
                             <div className="w-1.5 h-1.5 rounded-full bg-blue-500/60" />
                             Évolution du Mix de Financement
                         </h3>
-                        <div className="h-[400px] w-full min-w-0">
-                            <ResponsiveContainer width="100%" height="100%">
+                        <div className="h-[400px] w-full min-w-0 overflow-hidden">
+                            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                                 <BarChart data={mixData} margin={{ top: 10, right: 30, left: 0, bottom: 24 }}>
                                     <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#ffffff08" />
                                     <XAxis
