@@ -41,7 +41,7 @@ export default function Sources() {
     return (
         <div className="space-y-8">
             <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
-                <h2 className="text-2xl font-bold text-slate-800 mb-2">Sources de Financement</h2>
+                <h2 className="text-2xl font-bold text-slate-800 mb-2">Sources de Financement et de Crédits</h2>
                 <p className="text-slate-700 text-sm leading-relaxed">
                     <strong>Note importante :</strong> Dans ce site, le terme "financement" désigne principalement les <strong>prêts et crédits</strong> accordés au Groupe Chimique Tunisien, souvent avec la garantie de l'État.
                     Ces montants correspondent donc à des <strong>dettes</strong> que l'entreprise devra rembourser, avec des conditions spécifiques selon chaque bailleur (banques locales, institutions internationales, etc.).

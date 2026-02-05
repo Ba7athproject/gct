@@ -14,6 +14,10 @@ export default function Evolution() {
             <div>
                 <h2 className="text-2xl font-bold text-slate-800">Évolution Temporelle (2020-2026)</h2>
                 <p className="text-slate-500">Analyse des 4 phases majeures du cycle de financement et des Créances.</p>
+                <p className="text-slate-700 text-sm leading-relaxed">
+                    <strong>Note importante :</strong> Dans ce site, le terme "financement" désigne principalement les <strong>prêts et crédits</strong> accordés au Groupe Chimique Tunisien, souvent avec la garantie de l'État.
+                    Ces montants correspondent donc à des <strong>dettes</strong> que l'entreprise devra rembourser, avec des conditions spécifiques selon chaque bailleur (banques locales, institutions internationales, etc.).
+                </p>
             </div>
 
             <div className="card">

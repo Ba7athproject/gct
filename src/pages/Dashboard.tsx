@@ -48,6 +48,10 @@ export default function Dashboard() {
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800">Tableau de Bord</h2>
                     <p className="text-slate-500">Synthèse Financière et Créances GCT (2020-2026)</p>
+                    <p className="text-slate-700 text-sm leading-relaxed">
+                        <strong>Note importante :</strong> Dans ce site, le terme "financement" désigne principalement les <strong>prêts et crédits</strong> accordés au Groupe Chimique Tunisien, souvent avec la garantie de l'État.
+                        Ces montants correspondent donc à des <strong>dettes</strong> que l'entreprise devra rembourser, avec des conditions spécifiques selon chaque bailleur (banques locales, institutions internationales, etc.).
+                    </p>
                 </div>
                 <div className="bg-amber-50 text-amber-800 px-4 py-2 rounded-lg text-sm border border-amber-200">
                     ⚠️ Données 2024-2026 sont des estimations/prévisions.
