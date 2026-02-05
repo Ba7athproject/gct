@@ -24,7 +24,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                         <img src="/gct/logo_ba7ath.jpg" alt="Ba7ath Lab Logo" className="w-24 h-24 rounded-full object-cover" />
                     </div>
                     <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-                        GCT Data Report
+                        GCT Data Reports
                     </h1>
                     <p className="text-xs text-slate-400 mt-1">Analyse Financière 2020-2026</p>
                 </div>
