@@ -1,11 +1,12 @@
 export const theme = {
     colors: {
         primary: {
-            50: '#eff6ff',
-            100: '#dbeafe',
-            500: '#3b82f6',
-            600: '#2563eb',
-            700: '#1d4ed8',
+            50: '#f0f9ff',
+            100: '#e0f2fe',
+            500: '#0ea5e9',
+            600: '#0284c7',
+            700: '#0369a1',
+            DEFAULT: '#0ea5e9',
         },
         slate: {
             50: '#f8fafc',
@@ -16,29 +17,40 @@ export const theme = {
             500: '#64748b',
             600: '#475569',
             700: '#334155',
-            800: '#1e293b',
-            900: '#0f172a',
+            800: '#1f2937',
+            900: '#111827',
+            950: '#020617',
+            1000: '#111827',
+            card: '#1f2937',
         },
-        emerald: {
-            500: '#10b981',
-            600: '#059669',
+        accent: {
+            blue: '#3b82f6',
+            emerald: '#10b981',
+            amber: '#f59e0b',
+            rose: '#f43f5e',
+            indigo: '#6366f1',
+            cyan: '#06b6d4',
+            lime: '#84cc16',
         },
-        rose: {
-            500: '#f43f5e',
-            600: '#e11d48',
-        },
-        amber: {
-            50: '#fffbeb',
-            200: '#fde68a',
-            800: '#92400e',
+        status: {
+            info: '#0ea5e9',
+            success: '#10b981',
+            warning: '#f59e0b',
+            danger: '#f43f5e',
+            critical: '#e11d48',
         }
     },
     borderRadius: {
-        lg: '0.5rem',
-        xl: '0.75rem',
+        none: '0',
+        sm: '0px',
+        md: '2px',
+        lg: '4px',
+        xl: '8px',
+        '2xl': '12px',
+        '3xl': '16px',
     },
     spacing: {
-        cardPadding: '1.5rem',
-        sectionGap: '2rem',
+        cardPadding: '1.25rem',
+        sectionGap: '2.5rem',
     }
 };

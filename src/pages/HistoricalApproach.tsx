@@ -1,57 +1,42 @@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, Area, AreaChart } from 'recharts';
-import { Euro, DollarSign, Coins, TrendingUp, Shield, Building2, Clock, BarChart3, PieChart as PieChartIcon } from 'lucide-react';
+import { Link as LinkIcon, ExternalLink, ShieldCheck, Euro, DollarSign, Coins } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import historicalLoans from '../data/historical_loans_2016_2028.json';
 import historicalGuarantees from '../data/historical_guarantees.json';
 import historicalSummary from '../data/historical_summary.json';
-
-const KPICard = ({ title, value, subtext, icon: Icon, color = 'blue' }: any) => {
-    const colorClasses = {
-        blue: 'bg-blue-50 text-blue-600',
-        emerald: 'bg-emerald-50 text-emerald-600',
-        amber: 'bg-amber-50 text-amber-600',
-        purple: 'bg-purple-50 text-purple-600'
-    };
-
-    return (
-        <div className="card flex items-start justify-between hover:shadow-lg transition-shadow">
-            <div>
-                <p className="text-sm font-medium text-slate-500">{title}</p>
-                <h3 className="text-2xl font-bold mt-1 text-slate-900">{value}</h3>
-                <p className="text-xs mt-1 text-slate-500">{subtext}</p>
-            </div>
-            <div className={`p-3 ${colorClasses[color as keyof typeof colorClasses]} rounded-lg`}>
-                <Icon size={20} />
-            </div>
-        </div>
-    );
-};
+import ContextBlock from '../components/ui/ContextBlock';
+import KpiCard from '../components/ui/KpiCard';
+import AnalyticalPanel from '../components/layout/right-panel/AnalyticalPanel';
+import AnalyticalGates from '../components/layout/right-panel/AnalyticalGates';
+import AuditGlossary from '../components/layout/right-panel/AuditGlossary';
+import QuickNotes from '../components/layout/right-panel/QuickNotes';
 
 const TimelineItem = ({ loan }: any) => {
     const deviseColors: any = {
-        'M€': 'border-blue-500 bg-blue-50',
-        'M$': 'border-emerald-500 bg-emerald-50',
-        'MD': 'border-amber-500 bg-amber-50'
+        'M€': 'border-blue-500 bg-blue-500/10',
+        'M$': 'border-emerald-500 bg-emerald-500/10',
+        'MD': 'border-amber-500 bg-amber-500/10'
     };
 
     return (
-        <div className="relative pl-8 pb-8 border-l-2 border-slate-200 last:border-0">
-            <div className={`absolute -left-3 top-0 w-6 h-6 rounded-full border-4 ${deviseColors[loan.devise] || 'border-slate-300 bg-slate-50'}`}></div>
-            <div className="card hover:shadow-lg transition-all hover:scale-[1.02]">
-                <div className="flex items-start justify-between mb-2">
+        <div className="relative pl-8 pb-10 border-l-2 border-slate-900 last:border-0">
+            <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-none border-2 ${deviseColors[loan.devise] || 'border-slate-800 bg-slate-800/80'}`}></div>
+            <div className="card hover:shadow-2xl transition-all p-5 bg-slate-1000/40 backdrop-blur-md border border-slate-900 rounded-none group hover:border-blue-500/50">
+                <div className="flex items-start justify-between mb-4 border-b border-slate-900 pb-3">
                     <div>
-                        <h4 className="font-bold text-slate-800">{loan.bailleur_full}</h4>
-                        <p className="text-sm text-slate-500">{loan.date}</p>
+                        <h4 className="text-sm font-black text-white uppercase tracking-wider">{loan.bailleur_full}</h4>
+                        <p className="text-[10px] uppercase font-black text-slate-600 tracking-[0.2em]">{loan.date}</p>
                     </div>
                     <div className="text-right">
-                        <p className="text-2xl font-bold text-slate-900">{loan.montant} {loan.devise}</p>
-                        {loan.montant_dt && <p className="text-sm text-slate-500">≈ {loan.montant_dt} MD</p>}
+                        <p className="text-base font-black text-white">{loan.montant} {loan.devise}</p>
+                        {loan.montant_dt && <p className="text-[10px] text-blue-500 font-black tracking-widest mt-1">≈ {loan.montant_dt} MDT</p>}
                     </div>
                 </div>
-                <p className="text-sm text-slate-600 mb-3">{loan.objectif}</p>
-                <div className="flex flex-wrap gap-2 text-xs">
-                    {loan.taux && <span className="px-2 py-1 bg-slate-100 rounded">Taux: {loan.taux}</span>}
-                    {loan.duree && <span className="px-2 py-1 bg-slate-100 rounded">Durée: {loan.duree}</span>}
-                    {loan.grace && <span className="px-2 py-1 bg-slate-100 rounded">Grâce: {loan.grace}</span>}
+                <p className="text-xs text-slate-500 mb-5 leading-relaxed uppercase tracking-tight font-medium underline decoration-slate-900/50">{loan.objectif}</p>
+                <div className="flex flex-wrap gap-2">
+                    {loan.taux && <span className="px-2 py-1 bg-slate-800/80 text-[10px] font-black text-slate-400 border border-slate-900 tracking-tighter uppercase">T_RATE: {loan.taux}</span>}
+                    {loan.duree && <span className="px-2 py-1 bg-slate-800/80 text-[10px] font-black text-slate-400 border border-slate-900 tracking-tighter uppercase">TERM: {loan.duree}</span>}
+                    {loan.grace && <span className="px-2 py-1 bg-slate-800/80 text-[10px] font-black text-slate-400 border border-slate-900 tracking-tighter uppercase">GRACE: {loan.grace}</span>}
                 </div>
             </div>
         </div>
@@ -59,7 +44,6 @@ const TimelineItem = ({ loan }: any) => {
 };
 
 export default function HistoricalApproach() {
-    // Préparer les données pour le graphique en barres (en dinars pour comparaison)
     const loansChartData = historicalLoans.map(loan => ({
         name: loan.bailleur,
         year: loan.year,
@@ -68,14 +52,12 @@ export default function HistoricalApproach() {
         devise: loan.devise
     }));
 
-    // Données pour le graphique circulaire des devises
     const currencyData = [
-        { name: 'Euros', value: historicalSummary.totaux.euros.montant, color: '#2563eb' },
+        { name: 'Euros', value: historicalSummary.totaux.euros.montant, color: '#3b82f6' },
         { name: 'Dollars', value: historicalSummary.totaux.dollars.montant, color: '#10b981' },
         { name: 'Dinars', value: historicalSummary.totaux.dinars.montant, color: '#f59e0b' }
     ];
 
-    // Données pour l'évolution temporelle
     const timelineData = historicalLoans.map(loan => ({
         year: loan.year,
         montant_dt: loan.montant_dt || 0,
@@ -84,305 +66,217 @@ export default function HistoricalApproach() {
 
     return (
         <div className="space-y-6">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-900 pb-4">
                 <div>
-                    <div className="flex items-center gap-2 mb-2">
-                        <Clock className="text-blue-600" size={28} />
-                        <h2 className="text-2xl font-bold text-slate-800">Approche Historique</h2>
-                    </div>
-                    <p className="text-slate-500">Analyse des Prêts, Crédits et Garanties GCT (2016-2028)</p>
-                </div>
-                <div className="bg-blue-50 text-blue-800 px-4 py-2 rounded-lg text-sm border border-blue-200">
-                    📊 Période étendue: 12 ans de financement
+                    <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Perspective Historique</h2>
+                    <p className="text-slate-500 text-sm font-semibold uppercase tracking-widest mt-1">Rétrospective décennale des engagements et garanties (2016-2028)</p>
                 </div>
             </div>
 
-            {/* KPIs - Totaux par Devise */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <KPICard
-                    title="Total Euros"
-                    value={`${historicalSummary.totaux.euros.montant} M€`}
-                    subtext={historicalSummary.totaux.euros.detail}
-                    icon={Euro}
-                    color="blue"
-                />
-                <KPICard
-                    title="Total Dollars"
-                    value={`${historicalSummary.totaux.dollars.montant} M$`}
-                    subtext={historicalSummary.totaux.dollars.detail}
-                    icon={DollarSign}
-                    color="emerald"
-                />
-                <KPICard
-                    title="Total Dinars"
-                    value={`${historicalSummary.totaux.dinars.montant} MD`}
-                    subtext={historicalSummary.totaux.dinars.detail}
-                    icon={Coins}
-                    color="amber"
-                />
-            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
+                {/* Main Content */}
+                <div className="lg:col-span-9 space-y-6">
+                    <ContextBlock type="info" title="Note sur la Période d'Analyse">
+                        <p className="text-sm uppercase tracking-tighter font-bold">
+                            Cette vue couvre 12 ans de données consolidées, incluant les décrets de garantie souveraine et les accords de prêts bilatéraux/multilatéraux.
+                            <strong> MDT = Million Dinars Tunisiens</strong>
+                        </p>
+                    </ContextBlock>
 
-            {/* Graphiques Dynamiques */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Graphique en Barres - Prêts par Bailleur */}
-                <div className="card">
-                    <div className="flex items-center gap-2 mb-6">
-                        <BarChart3 className="text-blue-600" size={24} />
-                        <h3 className="text-lg font-semibold">Prêts par Bailleur (en MD)</h3>
+                    {/* KPIs - Currency Totals */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <KpiCard
+                            title="Volume Euros"
+                            value={`${historicalSummary.totaux.euros.montant} M€`}
+                            subtext={historicalSummary.totaux.euros.detail}
+                            icon={Euro}
+                            className="p-4"
+                        />
+                        <KpiCard
+                            title="Volume Dollars"
+                            value={`${historicalSummary.totaux.dollars.montant} M$`}
+                            subtext={historicalSummary.totaux.dollars.detail}
+                            icon={DollarSign}
+                            className="p-4"
+                        />
+                        <KpiCard
+                            title="Volume Dinars"
+                            value={`${historicalSummary.totaux.dinars.montant} MD`}
+                            subtext={historicalSummary.totaux.dinars.detail}
+                            icon={Coins}
+                            className="p-4"
+                        />
                     </div>
-                    <div className="h-[300px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={loansChartData} margin={{ top: 10, right: 30, left: 0, bottom: 80 }}>
-                                <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                                <XAxis
-                                    dataKey="name"
-                                    angle={-45}
-                                    textAnchor="end"
-                                    height={80}
-                                    interval={0}
-                                />
-                                <YAxis label={{ value: 'Montant (MD)', angle: -90, position: 'insideLeft' }} />
-                                <Tooltip
-                                    content={({ active, payload }) => {
-                                        if (active && payload && payload.length) {
-                                            const data = payload[0].payload;
-                                            return (
-                                                <div className="bg-white p-4 rounded-lg shadow-xl border border-slate-200">
-                                                    <p className="font-bold text-slate-800 mb-2">{data.name}</p>
-                                                    <div className="space-y-1">
-                                                        <p className="text-sm text-slate-600">
-                                                            <span className="font-semibold">Montant original:</span> {data.montantOriginal} {data.devise}
-                                                        </p>
-                                                        <p className="text-sm text-blue-600 font-semibold">
-                                                            ≈ {data.montant_dt} MD
-                                                        </p>
-                                                        <p className="text-xs text-slate-500 mt-2">Année: {data.year}</p>
-                                                    </div>
-                                                </div>
-                                            );
-                                        }
-                                        return null;
-                                    }}
-                                />
-                                <Bar
-                                    dataKey="montant_dt"
-                                    fill="#2563eb"
-                                    name="Montant"
-                                    radius={[8, 8, 0, 0]}
-                                />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                    <p className="text-xs text-slate-500 mt-2 text-center">
-                        * Montants convertis en dinars tunisiens pour comparaison
-                    </p>
-                </div>
 
-                {/* Graphique Circulaire - Répartition par Devise */}
-                <div className="card">
-                    <div className="flex items-center gap-2 mb-6">
-                        <PieChartIcon className="text-emerald-600" size={24} />
-                        <h3 className="text-lg font-semibold">Répartition par Devise</h3>
-                    </div>
-                    <div className="h-[300px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <PieChart>
-                                <Pie
-                                    data={currencyData}
-                                    cx="50%"
-                                    cy="50%"
-                                    labelLine={false}
-                                    label={({ name, value }) => `${name}: ${value}`}
-                                    outerRadius={80}
-                                    fill="#8884d8"
-                                    dataKey="value"
-                                >
-                                    {currencyData.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={entry.color} />
-                                    ))}
-                                </Pie>
-                                <Tooltip
-                                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                                />
-                                <Legend />
-                            </PieChart>
-                        </ResponsiveContainer>
-                    </div>
-                </div>
-            </div>
-
-            {/* Graphique d'Évolution Temporelle */}
-            <div className="card">
-                <div className="flex items-center gap-2 mb-6">
-                    <TrendingUp className="text-purple-600" size={24} />
-                    <h3 className="text-lg font-semibold">Évolution des Financements (en MD)</h3>
-                </div>
-                <div className="h-[350px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={timelineData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                            <defs>
-                                <linearGradient id="colorMontant" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8} />
-                                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
-                                </linearGradient>
-                            </defs>
-                            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                            <XAxis dataKey="year" />
-                            <YAxis />
-                            <Tooltip
-                                content={({ active, payload }) => {
-                                    if (active && payload && payload.length) {
-                                        const data = payload[0].payload;
-                                        return (
-                                            <div className="bg-white p-4 rounded-lg shadow-xl border border-slate-200">
-                                                <p className="font-bold text-slate-800 mb-2">Année {data.year}</p>
-                                                <div className="space-y-1">
-                                                    <p className="text-sm text-slate-600">
-                                                        <span className="font-semibold">Bailleur:</span> {data.bailleur}
-                                                    </p>
-                                                    <p className="text-lg font-semibold text-purple-600">
-                                                        {data.montant_dt} MD
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        );
-                                    }
-                                    return null;
-                                }}
-                            />
-                            <Area
-                                type="monotone"
-                                dataKey="montant_dt"
-                                stroke="#8b5cf6"
-                                fillOpacity={1}
-                                fill="url(#colorMontant)"
-                            />
-                        </AreaChart>
-                    </ResponsiveContainer>
-                </div>
-            </div>
-
-            {/* Timeline des Prêts */}
-            <div className="card">
-                <div className="flex items-center gap-2 mb-6">
-                    <Clock className="text-blue-600" size={24} />
-                    <h3 className="text-lg font-semibold">Timeline Détaillée des Prêts</h3>
-                </div>
-                <div className="space-y-0">
-                    {historicalLoans.map((loan) => (
-                        <TimelineItem key={loan.id} loan={loan} />
-                    ))}
-                </div>
-            </div>
-
-            {/* Garanties de l'État avec Graphique */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="card">
-                    <div className="flex items-center gap-2 mb-6">
-                        <Shield className="text-emerald-600" size={24} />
-                        <h3 className="text-lg font-semibold">Garanties de l'État Tunisien</h3>
-                    </div>
-                    <div className="space-y-4">
-                        {historicalGuarantees.map((guarantee, idx) => (
-                            <div key={idx} className="p-4 bg-slate-50 rounded-lg border border-slate-200 hover:shadow-md transition-shadow">
-                                <div className="flex justify-between items-start mb-2">
-                                    <div>
-                                        <p className="font-semibold text-slate-800">{guarantee.type}</p>
-                                        <p className="text-sm text-slate-500">{guarantee.beneficiaire}</p>
-                                    </div>
-                                    <span className="text-xs px-2 py-1 bg-slate-200 rounded">{guarantee.year}</span>
-                                </div>
-                                {guarantee.montant && (
-                                    <p className="text-lg font-bold text-emerald-600">{guarantee.montant} {guarantee.devise}</p>
-                                )}
-                                <p className="text-sm text-slate-600 mt-2">{guarantee.description}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="card bg-slate-800/80 backdrop-blur-xl p-4 rounded-none border border-slate-700 shadow-md leading-normal">
+                            <h3 className="text-sm font-semibold text-slate-200 mb-6 px-2 pt-2 flex items-center gap-3 uppercase tracking-widest">
+                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500/60" />
+                                Prêts par Bailleur (Normalisé MDT)
+                            </h3>
+                            <div className="h-[300px] w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={loansChartData} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
+                                        <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#ffffff08" />
+                                        <XAxis dataKey="name" hide />
+                                        <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 13, fontWeight: 500 }} />
+                                        <Tooltip
+                                            contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', fontSize: '13px' }}
+                                            itemStyle={{ color: '#fff', fontWeight: '600' }}
+                                            formatter={(_v: any, _n: any, props: any) => [`${props.payload.montantOriginal} ${props.payload.devise} (≈ ${props.payload.montant_dt} MDT)`, 'Engagement']}
+                                        />
+                                        <Bar dataKey="montant_dt" fill="#3b82f6" radius={[2, 2, 0, 0]} barSize={28} />
+                                    </BarChart>
+                                </ResponsiveContainer>
                             </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Dons et Subventions */}
-                <div className="card">
-                    <div className="flex items-center gap-2 mb-6">
-                        <Building2 className="text-purple-600" size={24} />
-                        <h3 className="text-lg font-semibold">Dons et Subventions</h3>
-                    </div>
-                    <div className="space-y-4">
-                        {historicalSummary.dons_subventions.map((don, idx) => (
-                            <div key={idx} className="p-4 bg-purple-50 rounded-lg border border-purple-200 hover:shadow-md transition-shadow">
-                                <div className="flex justify-between items-start mb-2">
-                                    <div>
-                                        <p className="font-semibold text-slate-800">{don.source}</p>
-                                        <p className="text-sm text-slate-500">{don.annee}</p>
-                                    </div>
-                                    <p className="text-lg font-bold text-purple-600">
-                                        {don.montant} {don.devise}
-                                    </p>
-                                </div>
-                                <p className="text-sm text-slate-600">{don.objectif}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* Engagements Indirects */}
-            <div className="card bg-gradient-to-br from-slate-800 to-slate-900 text-white">
-                <h3 className="text-lg font-semibold mb-4 text-white">Engagements Indirects (Chaîne Phosphate)</h3>
-                <p className="text-sm text-slate-300 mb-6">
-                    Financements accordés à d'autres entités mais bénéficiant directement à l'activité du GCT
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {historicalSummary.engagements_indirects.map((eng, idx) => (
-                        <div key={idx} className="p-4 bg-white/10 rounded-lg border border-white/20 hover:bg-white/20 transition-all">
-                            <p className="font-semibold text-white mb-1">{eng.projet}</p>
-                            <p className="text-sm text-slate-300 mb-2">{eng.source}</p>
-                            <p className="text-xl font-bold text-emerald-400">
-                                {eng.montant} {eng.devise}
-                            </p>
-                            {eng.montant_dt && <p className="text-sm text-slate-400">≈ {eng.montant_dt} MD</p>}
-                            <p className="text-xs text-slate-400 mt-2">{eng.objectif}</p>
                         </div>
-                    ))}
-                </div>
-            </div>
 
-            {/* Contexte Financier */}
-            <div className="card border-l-4 border-amber-500">
-                <h3 className="text-lg font-semibold mb-4 text-slate-800">⚠️ Contexte Financier Important</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-4 bg-amber-50 rounded-lg">
-                        <p className="text-sm font-medium text-slate-600 mb-2">Créances de l'État</p>
-                        <p className="text-3xl font-bold text-amber-600 mb-2">
-                            {historicalSummary.contexte_financier.creances_etat.montant} MD
-                        </p>
-                        <p className="text-sm text-slate-600">
-                            {historicalSummary.contexte_financier.creances_etat.description}
-                        </p>
+                        <div className="card bg-slate-800/80 backdrop-blur-xl p-4 rounded-none border border-slate-700 shadow-md leading-normal">
+                            <h3 className="text-sm font-semibold text-slate-200 mb-6 px-2 pt-2 flex items-center gap-3 uppercase tracking-widest">
+                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60" />
+                                Exposition par Devise
+                            </h3>
+                            <div className="h-[250px] w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart>
+                                        <Pie
+                                            data={currencyData}
+                                            cx="50%"
+                                            cy="50%"
+                                            innerRadius={70}
+                                            outerRadius={100}
+                                            paddingAngle={1}
+                                            dataKey="value"
+                                            stroke="#111827"
+                                            strokeWidth={1}
+                                        >
+                                            {currencyData.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={entry.color} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip
+                                            contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', fontSize: '13px' }}
+                                            itemStyle={{ color: '#fff', fontWeight: '600' }}
+                                        />
+                                        <Legend
+                                            verticalAlign="bottom"
+                                            height={36}
+                                            iconType="rect"
+                                            iconSize={10}
+                                            formatter={(value) => <span className="text-sm font-semibold text-slate-500 uppercase tracking-wider">{value}</span>}
+                                        />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
                     </div>
-                    <div className="p-4 bg-rose-50 rounded-lg">
-                        <p className="text-sm font-medium text-slate-600 mb-2">Dettes Croisées</p>
-                        <p className="text-3xl font-bold text-rose-600 mb-2">
-                            {historicalSummary.contexte_financier.dettes_croisees.pourcentage}%
-                        </p>
-                        <p className="text-sm text-slate-600">
-                            {historicalSummary.contexte_financier.dettes_croisees.description}
-                        </p>
+
+                    <div className="card bg-slate-800/80 backdrop-blur-xl p-4 rounded-none border border-slate-700 shadow-md leading-normal">
+                        <h3 className="text-sm font-semibold text-slate-200 mb-6 px-2 pt-2 flex items-center gap-3 uppercase tracking-widest">
+                            <div className="w-1.5 h-1.5 rounded-full bg-purple-500/60" />
+                            Évolution Temporelle des Flux (MDT)
+                        </h3>
+                        <div className="h-[300px] w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <AreaChart data={timelineData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                                    <defs>
+                                        <linearGradient id="colorMontant" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.2} />
+                                            <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
+                                        </linearGradient>
+                                    </defs>
+                                    <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#ffffff08" />
+                                    <XAxis
+                                        dataKey="year"
+                                        axisLine={false}
+                                        tickLine={false}
+                                        tick={{ fill: '#64748b', fontSize: 13, fontWeight: 500 }}
+                                        dy={8}
+                                    />
+                                    <YAxis hide />
+                                    <Tooltip
+                                        contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', fontSize: '13px' }}
+                                        itemStyle={{ color: '#fff', fontWeight: '600' }}
+                                    />
+                                    <Area type="monotone" dataKey="montant_dt" stroke="#8b5cf6" fillOpacity={1} fill="url(#colorMontant)" strokeWidth={2} />
+                                </AreaChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
+
+                    {/* Timeline */}
+                    <div className="card bg-slate-1000/40 backdrop-blur-md p-6 rounded-none border border-slate-900 shadow-2xl">
+                        <h3 className="text-xs font-black text-slate-400 mb-10 flex items-center gap-3 uppercase tracking-[0.2em]">
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+                            Timeline Détaillée des Engagements
+                        </h3>
+                        <div className="space-y-0">
+                            {historicalLoans.map((loan) => (
+                                <TimelineItem key={loan.id} loan={loan} />
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Note Méthodologique */}
-            <div className="card bg-slate-50 border border-slate-200">
-                <h4 className="font-semibold text-slate-800 mb-2">📋 Note Méthodologique</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                    Cette section présente une analyse historique étendue des financements du GCT sur la période 2016-2028,
-                    incluant les prêts directs, les garanties de l'État, les dons et subventions, ainsi que les engagements
-                    indirects via la chaîne phosphate. Les données sont issues de décrets présidentiels, communiqués officiels
-                    et rapports budgétaires. Les montants en devises étrangères sont présentés dans leur devise d'origine,
-                    avec conversion indicative en dinars tunisiens lorsque disponible.
-                </p>
+                {/* Right Analytical Panel */}
+                <div className="lg:col-span-3">
+                    <AnalyticalPanel>
+                        <AnalyticalGates>
+                            <div>
+                                <label className="text-xs font-black text-slate-600 uppercase tracking-widest">Nature du fond</label>
+                                <select className="mt-1 block w-full text-xs font-black border-slate-700 rounded-none bg-slate-800 text-slate-300 p-2" disabled>
+                                    <option>Tous les types</option>
+                                    <option>Prêts Projets</option>
+                                    <option>Crédits Commerciaux</option>
+                                </select>
+                            </div>
+                        </AnalyticalGates>
+
+                        <AuditGlossary
+                            items={[
+                                { term: 'Dette Souveraine', definition: 'Dette dont le remboursement est garanti par l\'État Tunisien.' },
+                                { term: 'Effet de Change', definition: 'Risque lié à la dévaluation du Dinar face à l\'Euro/Dollar sur la dette extérieure.' }
+                            ]}
+                        />
+
+                        <QuickNotes />
+
+                        <div className="card bg-slate-900/80 backdrop-blur-xl p-5 rounded-none border border-blue-500/30 shadow-lg transition-all duration-300">
+                            <h3 className="text-xs font-black text-white mb-4 flex items-center gap-2 uppercase tracking-wider">
+                                <ShieldCheck size={14} className="text-emerald-400" />
+                                Garanties État
+                            </h3>
+                            <div className="space-y-4">
+                                {historicalGuarantees.slice(0, 3).map((g, i) => (
+                                    <div key={i} className="border-b border-white/5 pb-3 last:border-0">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <span className="text-[10px] font-black text-slate-500 uppercase">{g.year}</span>
+                                            <span className="text-[10px] font-black text-emerald-400">{g.montant} {g.devise}</span>
+                                        </div>
+                                        <p className="text-[10px] text-slate-400 uppercase tracking-tighter line-clamp-2">{g.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="card bg-slate-800/80 p-5 rounded-none border border-slate-700/50 shadow-sm transition-all duration-300">
+                            <h3 className="text-xs font-black text-slate-400 mb-4 flex items-center gap-2 uppercase tracking-wider">
+                                <LinkIcon size={14} className="text-slate-600" />
+                                Liens_Contexte
+                            </h3>
+                            <div className="space-y-2">
+                                <Link to="/finance" className="flex items-center justify-between p-2 rounded-none hover:bg-slate-900 transition-colors group">
+                                    <span className="text-xs text-slate-500 font-bold uppercase">Dashboard Principal</span>
+                                    <ExternalLink size={12} className="text-slate-700 group-hover:text-blue-500" />
+                                </Link>
+                                <Link to="/finance/report" className="flex items-center justify-between p-2 rounded-none hover:bg-slate-900 transition-colors group">
+                                    <span className="text-xs text-slate-500 font-bold uppercase">Rapport Full</span>
+                                    <ExternalLink size={12} className="text-slate-700 group-hover:text-blue-500" />
+                                </Link>
+                            </div>
+                        </div>
+                    </AnalyticalPanel>
+                </div>
             </div>
         </div>
     );

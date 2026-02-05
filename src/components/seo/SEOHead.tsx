@@ -6,17 +6,19 @@ interface SEOHeadProps {
     description?: string;
 }
 
-const SITE_TITLE = 'GCT Data Reports';
-const DEFAULT_DESCRIPTION = 'Analyse financière détaillée du Groupe Chimique Tunisien (2020-2026). Données ouvertes et visualisations interactives.';
+const SITE_TITLE = 'GCT Investigation Suite';
+const DEFAULT_DESCRIPTION = 'Plateforme d\'investigation de données sur le Groupe Chimique Tunisien. Données financières, environnementales et gouvernance.';
 
 const ROUTE_TITLES: Record<string, string> = {
-    '/': 'Dashboard - Synthèse Financière',
-    '/evolution': 'Évolution - Analyse Temporelle',
-    '/structure': 'Structure - Dettes & Garanties',
-    '/sources': 'Sources - Bailleurs de Fonds',
-    '/historical': 'Historique - Rétrospective',
-    '/report': 'Rapport Complet',
-    '/methodology': 'Méthodologie & Sources'
+    '/finance': 'Synthèse Financière | Finances',
+    '/finance/evolution': 'Analyse Temporelle | Finances',
+    '/finance/structure': 'Dettes & Garanties | Finances',
+    '/finance/sources': 'Cartographie Bailleurs | Finances',
+    '/finance/historical': 'Rétrospective Historique | Finances',
+    '/finance/report': 'Corpus Documentaire | Finances',
+    '/finance/methodology': 'Audit Méthodologique | Finances',
+    '/ecology': 'Indicateurs Environnementaux | Écologie',
+    '/governance': 'Structure de Décision | Gouvernance'
 };
 
 export default function SEOHead({ title, description = DEFAULT_DESCRIPTION }: SEOHeadProps) {
