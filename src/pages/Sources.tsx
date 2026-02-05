@@ -80,7 +80,7 @@ export default function Sources() {
                                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500/60" />
                                 Mix des Bailleurs ({selectedYear})
                             </h3>
-                            <div className="h-[350px] w-full">
+                            <div className="h-[350px] w-full min-w-0">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <PieChart>
                                         <Pie
@@ -129,7 +129,7 @@ export default function Sources() {
                                     <BarChart3 size={16} className="text-blue-400" />
                                     Focus BH BANK (Local)
                                 </h3>
-                                <div className="h-[140px]">
+                                <div className="h-[140px] w-full min-w-0">
                                     <ResponsiveContainer width="100%" height="100%">
                                         <BarChart data={bhBankTrend}>
                                             <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#ffffff08" />
@@ -154,7 +154,7 @@ export default function Sources() {
                                     <BarChart3 size={16} className="text-emerald-400" />
                                     Focus ITFC (Import)
                                 </h3>
-                                <div className="h-[140px]">
+                                <div className="h-[140px] w-full min-w-0">
                                     <ResponsiveContainer width="100%" height="100%">
                                         <BarChart data={itfcTrend}>
                                             <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#ffffff08" />

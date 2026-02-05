@@ -59,7 +59,7 @@ export default function TimeSeriesChart({
     gradientId = 'chartGradient'
 }: TimeSeriesChartProps) {
     return (
-        <div style={{ height: height, width: '100%' }} className="relative leading-normal">
+        <div style={{ height: height, width: '100%', minWidth: 0 }} className="relative leading-normal">
             {/* Subtle glow effect behind the chart */}
             <div className="absolute inset-0 bg-blue-500/2 blur-[60px] rounded-full pointer-events-none" />
 

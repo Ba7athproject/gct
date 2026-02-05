@@ -114,7 +114,7 @@ export default function HistoricalApproach() {
                                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500/60" />
                                 Prêts par Bailleur (Normalisé MDT)
                             </h3>
-                            <div className="h-[300px] w-full">
+                            <div className="h-[300px] w-full min-w-0">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <BarChart data={loansChartData} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
                                         <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#ffffff08" />
@@ -136,7 +136,7 @@ export default function HistoricalApproach() {
                                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60" />
                                 Exposition par Devise
                             </h3>
-                            <div className="h-[250px] w-full">
+                            <div className="h-[250px] w-full min-w-0">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <PieChart>
                                         <Pie
@@ -176,7 +176,7 @@ export default function HistoricalApproach() {
                             <div className="w-1.5 h-1.5 rounded-full bg-purple-500/60" />
                             Évolution Temporelle des Flux (MDT)
                         </h3>
-                        <div className="h-[300px] w-full">
+                        <div className="h-[300px] w-full min-w-0">
                             <ResponsiveContainer width="100%" height="100%">
                                 <AreaChart data={timelineData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                                     <defs>
