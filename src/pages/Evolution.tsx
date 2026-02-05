@@ -13,7 +13,7 @@ export default function Evolution() {
         <div className="space-y-8">
             <div>
                 <h2 className="text-2xl font-bold text-slate-800">Évolution Temporelle (2020-2026)</h2>
-                <p className="text-slate-500">Analyse des 4 phases majeures du cycle de financement.</p>
+                <p className="text-slate-500">Analyse des 4 phases majeures du cycle de financement et des Créances.</p>
             </div>
 
             <div className="card">

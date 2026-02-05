@@ -47,7 +47,7 @@ export default function Dashboard() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800">Tableau de Bord</h2>
-                    <p className="text-slate-500">Synthèse Financière GCT (2020-2026)</p>
+                    <p className="text-slate-500">Synthèse Financière et Créances GCT (2020-2026)</p>
                 </div>
                 <div className="bg-amber-50 text-amber-800 px-4 py-2 rounded-lg text-sm border border-amber-200">
                     ⚠️ Données 2024-2026 sont des estimations/prévisions.
@@ -57,7 +57,7 @@ export default function Dashboard() {
             {/* KPIs */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <KPICard
-                    title="Total Financement (7 ans)"
+                    title="Total Créances (7 ans)"
                     value={stats.total}
                     subtext="Volume cumulé 2020-2026"
                     icon={Wallet}
