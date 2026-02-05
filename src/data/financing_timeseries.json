@@ -1,0 +1,37 @@
+[
+    {
+        "year": 2020,
+        "amount": 1729,
+        "phase": "Stabilité"
+    },
+    {
+        "year": 2021,
+        "amount": 4030,
+        "phase": "Boom"
+    },
+    {
+        "year": 2022,
+        "amount": 13348,
+        "phase": "Krach"
+    },
+    {
+        "year": 2023,
+        "amount": 6378,
+        "phase": "Stabilisation"
+    },
+    {
+        "year": 2024,
+        "amount": 6608,
+        "note": "Estimé"
+    },
+    {
+        "year": 2025,
+        "amount": 6780,
+        "note": "Estimé"
+    },
+    {
+        "year": 2026,
+        "amount": 6946,
+        "note": "Estimé"
+    }
+]

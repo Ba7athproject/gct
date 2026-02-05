@@ -1,0 +1,30 @@
+{
+    "total_creances_7ans": {
+        "value": 29819,
+        "unit": "MDT",
+        "label": "Total Créances (7 ans)",
+        "subtext": "Volume cumulé 2020-2026",
+        "trend": "up"
+    },
+    "pic_annuel": {
+        "value": 13348,
+        "unit": "MDT",
+        "label": "Pic Annuel",
+        "subtext": "Année record (2022)",
+        "trend": "down",
+        "year": 2022
+    },
+    "moyenne_annuelle": {
+        "value": 4260,
+        "unit": "MDT",
+        "label": "Moyenne Annuelle",
+        "subtext": "Besoin structurel moyen"
+    },
+    "part_budget_ep_2026": {
+        "value": 55,
+        "unit": "%",
+        "label": "Part Budget EP (2026)",
+        "subtext": "du budget total des entreprises publiques",
+        "trend": "up"
+    }
+}
