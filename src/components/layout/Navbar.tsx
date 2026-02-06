@@ -75,8 +75,10 @@ export default function Navbar() {
                         <img
                             src={`${import.meta.env.BASE_URL}logo_gct.png`}
                             alt="Ba7ath – GCT Data Reports"
-                            className="w-9 h-9 rounded-none border border-slate-800 transition-all group-hover:border-blue-500 grayscale brightness-125 contrast-125"
+                            className="w-8 h-8 md:w-10 md:h-10 rounded-none border border-slate-800 transition-all group-hover:border-blue-500 grayscale brightness-125 contrast-125 object-contain"
+                            loading="lazy"
                         />
+
                         <div className="flex flex-col">
                             <span className="font-black text-base text-white border-b-2 border-blue-500 leading-none pb-1 tracking-tighter uppercase whitespace-nowrap">
                                 Lab d'Investigation
