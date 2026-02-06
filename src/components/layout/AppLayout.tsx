@@ -39,7 +39,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                         <div className="space-y-4">
                             <div className="flex items-center gap-3">
                                 <img
-                                    src={`${import.meta.env.BASE_URL}logo_ba7ath.jpg`}
+                                    src={`${import.meta.env.BASE_URL}logo_gct.png`}
                                     alt="Logo Ba7ath"
                                     className="w-9 h-9 rounded-none grayscale brightness-125 contrast-125"
                                 />
