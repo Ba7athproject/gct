@@ -1,0 +1,177 @@
+{
+    "id": "env_sols",
+    "title": "Sols et végétation – Littoral de Gabès",
+    "description": "Contamination des sols et des plantes par le fluor et les métaux lourds autour des usines de phosphates du Golfe de Gabès.",
+    "indicators": [
+        {
+            "id": "soil_fluoride_industrial",
+            "label": "Fluor dans les sols (zone industrielle)",
+            "value": "≈1430",
+            "unit": "mg/kg",
+            "period": "site Gabès",
+            "note": "Teneur moyenne en fluor dans les sols proches des usines de superphosphate à Gabès, contre ~35 mg/kg dans un site témoin (Semara).",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ]
+        },
+        {
+            "id": "soil_fluoride_reference",
+            "label": "Fluor dans les sols (site témoin)",
+            "value": "≈35",
+            "unit": "mg/kg",
+            "period": "site de référence Semara",
+            "note": "Teneur moyenne en fluor dans un site éloigné présentant des conditions géologiques et climatiques comparables.",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ]
+        },
+        {
+            "id": "plant_fluoride_max",
+            "label": "Fluor dans les plantes locales",
+            "value": "jusqu'à 355",
+            "unit": "mg/kg (MS)",
+            "period": "plantes proches des usines",
+            "note": "Teneurs maximales mesurées dans la fraction aérienne de certaines espèces (Erodium glaucophyllum, Rhanterium suaveolens, etc.).",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425",
+                "https://pubmed.ncbi.nlm.nih.gov/30324375/"
+            ]
+        },
+        {
+            "id": "bioaccumulation_factor",
+            "label": "Facteur de bioaccumulation du fluor",
+            "value": "jusqu'à 1,3",
+            "unit": "",
+            "period": "certaines espèces natives",
+            "note": "Rapport fluor plante/sol pouvant dépasser 1 pour des espèces tolérantes, indiquant un transfert efficace vers la biomasse.",
+            "sources": [
+                "https://pubmed.ncbi.nlm.nih.gov/30324375/"
+            ]
+        },
+        {
+            "id": "vegetation_richness_drop",
+            "label": "Chute de la richesse végétale",
+            "value": "forte",
+            "unit": "",
+            "period": "zone industrielle",
+            "note": "Les études signalent une réduction nette du nombre d'espèces présentes près du complexe, avec domination de quelques espèces résistantes au fluor.",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ]
+        }
+    ],
+    "charts": [
+        {
+            "id": "soil_fluoride_comparison",
+            "type": "bar",
+            "title": "Fluor dans les sols : zone industrielle vs site témoin",
+            "xLabel": "Site",
+            "yLabel": "Fluor (mg/kg)",
+            "color": "#f97316",
+            "data": [
+                {
+                    "site": "Gabès industriel",
+                    "fluor_mgkg": 1430
+                },
+                {
+                    "site": "Semara (témoin)",
+                    "fluor_mgkg": 35
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ],
+            "note": "Teneurs moyennes en fluor dans les sols proches du complexe comparées au site témoin de Semara."
+        },
+        {
+            "id": "soil_metals_presence",
+            "type": "donut",
+            "title": "Métaux lourds dans les sols (ordre de grandeur)",
+            "xLabel": "Métal",
+            "yLabel": "Présence relative (Gabès vs fond géochimique)",
+            "data": [
+                {
+                    "metal": "Zn",
+                    "presence_relative": 4,
+                    "color": "#f97316"
+                },
+                {
+                    "metal": "Cu",
+                    "presence_relative": 3,
+                    "color": "#e11d48"
+                },
+                {
+                    "metal": "Ni",
+                    "presence_relative": 3,
+                    "color": "#22c55e"
+                },
+                {
+                    "metal": "Cd",
+                    "presence_relative": 5,
+                    "color": "#92400e"
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425",
+                "https://www.sciencedirect.com/topics/engineering/phosphogypsum"
+            ],
+            "note": "Profil qualitatif des principaux métaux lourds dans les sols proches des usines : Zn (orange), Cu (rose), Ni (vert), Cd (brun). Les valeurs indiquent l’élévation relative par rapport au fond géochimique."
+        },
+        {
+            "id": "vegetation_richness_index",
+            "type": "bar",
+            "title": "Richesse végétale relative",
+            "xLabel": "Site",
+            "yLabel": "Indice de richesse (0–1)",
+            "color": "#16a34a",
+            "data": [
+                {
+                    "site": "Gabès industriel",
+                    "richesse": 0.3
+                },
+                {
+                    "site": "Semara (témoin)",
+                    "richesse": 1.0
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ],
+            "note": "Baisse de la diversité végétale près du complexe, avec une flore dominée par quelques espèces tolérantes au fluor."
+        },
+        {
+            "id": "plant_fluoride_range",
+            "type": "bar",
+            "title": "Fluor dans les plantes locales (zone industrielle)",
+            "xLabel": "Plante (exemples)",
+            "yLabel": "Fluor (mg/kg MS)",
+            "color": "#a16207",
+            "data": [
+                {
+                    "plante": "Erodium glaucophyllum",
+                    "fluor_mgkg": 300
+                },
+                {
+                    "plante": "Rhanterium suaveolens",
+                    "fluor_mgkg": 250
+                },
+                {
+                    "plante": "Autres espèces",
+                    "fluor_mgkg": 150
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425",
+                "https://pubmed.ncbi.nlm.nih.gov/30324375/"
+            ],
+            "note": "Exemples de teneurs en fluor mesurées dans les parties aériennes des plantes proches du complexe."
+        }
+    ],
+    "text_blocks": [
+        {
+            "id": "contexte_sols",
+            "title": "Ce que montrent les sols",
+            "body": "Autour des usines de phosphates du Golfe de Gabès, les sols présentent des teneurs en fluor plus de quarante fois supérieures à celles d’un site de référence, et les plantes locales accumulent à leur tour ce fluor. La contamination se propage donc du phosphogypse vers le sol puis la végétation, ouvrant un deuxième chemin d’exposition pour les humains et le bétail, via les cultures et les fourrages."
+        }
+    ]
+}

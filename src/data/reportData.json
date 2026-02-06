@@ -186,5 +186,166 @@
         "autofinancement": 2900
       }
     }
+  ],
+  "charts": [
+    {
+      "id": "gct_results_2016_2023",
+      "type": "line",
+      "title": "Évolution des résultats nets du GCT (2016–2023)",
+      "xLabel": "Année",
+      "yLabel": "Résultat net (millions MD)",
+      "color": "#0ea5e9",
+      "data": [
+        {
+          "annee": 2016,
+          "resultat_net": 16
+        },
+        {
+          "annee": 2017,
+          "resultat_net": -122
+        },
+        {
+          "annee": 2018,
+          "resultat_net": -100
+        },
+        {
+          "annee": 2019,
+          "resultat_net": -95
+        },
+        {
+          "annee": 2020,
+          "resultat_net": -88
+        },
+        {
+          "annee": 2021,
+          "resultat_net": -75
+        },
+        {
+          "annee": 2022,
+          "resultat_net": 296
+        },
+        {
+          "annee": 2023,
+          "resultat_net": -50
+        }
+      ],
+      "note": "Période 2017–2021 : pertes nettes annuelles > 100 MD. 2022 : redressement exceptionnel lié aux conditions internationales favorables (prix des engrais élevés)."
+    },
+    {
+      "id": "gct_debt_composition",
+      "type": "donut",
+      "title": "Structure de l'endettement du GCT",
+      "xLabel": "Type de dette",
+      "yLabel": "Montant (MD)",
+      "data": [
+        {
+          "name": "Crédits bancaires",
+          "value": 750,
+          "color": "#3b82f6"
+        },
+        {
+          "name": "Dettes envers EEP",
+          "value": 615,
+          "color": "#f59e0b"
+        },
+        {
+          "name": "Dettes envers l'État",
+          "value": 325,
+          "color": "#ef4444"
+        }
+      ],
+      "note": "Endettement total > 1,5 Md DT. Décomposition : banques (50%), EEP (41%), État (20%)"
+    },
+    {
+      "id": "gct_production_vs_capacity",
+      "type": "bar",
+      "title": "Production et utilisation de capacité du GCT (2016–2018)",
+      "xLabel": "Année",
+      "yLabel": "Production (Mt) / Capacité (%)",
+      "color": "#10b981",
+      "data": [
+        {
+          "annee": 2016,
+          "production": 1.6,
+          "capacite": 80
+        },
+        {
+          "annee": 2017,
+          "production": 1.7,
+          "capacite": 85
+        },
+        {
+          "annee": 2018,
+          "production": 1.3,
+          "capacite": 39
+        }
+      ],
+      "note": "2018 : restriction à 39% de la capacité en raison de problèmes de transport (ligne 15 SNCFT défaillante)"
+    },
+    {
+      "id": "gct_debt_breakdown_2017_2019",
+      "type": "bar",
+      "title": "Évolution de la structure d'endettement du GCT (2017–2019)",
+      "xLabel": "annee",
+      "yLabel": "Montant (millions DT)",
+      "color": "#3b82f6",
+      "data": [
+        {
+          "annee": 2017,
+          "total": 1217.5,
+          "dettes_etat": 264,
+          "dettes_banques": 345,
+          "dettes_eep": 434,
+          "dettes_fournisseurs": 244,
+          "dettes_caisses_sociales": 23.1
+        },
+        {
+          "annee": 2018,
+          "total": 1495.6,
+          "dettes_etat": 264,
+          "dettes_banques": 499.3,
+          "dettes_eep": 535.8,
+          "dettes_fournisseurs": 264,
+          "dettes_caisses_sociales": 24
+        },
+        {
+          "annee": 2019,
+          "total": 1565.9,
+          "dettes_etat": 173.7,
+          "dettes_banques": 435.5,
+          "dettes_eep": 406,
+          "dettes_fournisseurs": 295.8,
+          "dettes_caisses_sociales": 23
+        }
+      ],
+      "stacks": [
+        {
+          "key": "dettes_etat",
+          "name": "Dettes État",
+          "color": "#ef4444"
+        },
+        {
+          "key": "dettes_banques",
+          "name": "Dettes Banques",
+          "color": "#3b82f6"
+        },
+        {
+          "key": "dettes_eep",
+          "name": "Dettes EEP (CPG)",
+          "color": "#f59e0b"
+        },
+        {
+          "key": "dettes_fournisseurs",
+          "name": "Fournisseurs privés",
+          "color": "#8b5cf6"
+        },
+        {
+          "key": "dettes_caisses_sociales",
+          "name": "Caisses sociales",
+          "color": "#ec4899"
+        }
+      ],
+      "note": "Structure détaillée de l'endettement du GCT par créancier (2017–2019). Source : Rapport Entreprises Publiques, Annexe 9 LF 2020."
+    }
   ]
 }

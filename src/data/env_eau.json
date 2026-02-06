@@ -1,0 +1,202 @@
+{
+    "id": "env_eau",
+    "title": "Eau souterraine – Agareb (Sfax) et El Hamma (Gabès)",
+    "description": "Pollution et surexploitation des nappes phréatiques liées au phosphogypse et aux prélèvements industriels.",
+    "indicators": [
+        {
+            "id": "agareb_leachate_ph",
+            "label": "pH du lixiviat de phosphogypse (Agareb)",
+            "value": "≈1,3",
+            "unit": "",
+            "period": "2013–2014",
+            "note": "Lixiviat très acide issu de la décharge de phosphogypse d’Agareb.",
+            "sources": [
+                "https://onlinelibrary.wiley.com/doi/10.1155/2018/2721752"
+            ]
+        },
+        {
+            "id": "agareb_leachate_fluoride",
+            "label": "Fluor dans le lixiviat (Agareb)",
+            "value": "≈3500",
+            "unit": "mg/L",
+            "period": "2013–2014",
+            "note": "Concentration dans le lixiviat, à comparer aux valeurs maximales de 3 mg/L pour une eau potable.",
+            "sources": [
+                "https://onlinelibrary.wiley.com/doi/10.1155/2018/2721752"
+            ]
+        },
+        {
+            "id": "agareb_leachate_sulfate",
+            "label": "Sulfates dans le lixiviat (Agareb)",
+            "value": "≈3240",
+            "unit": "mg/L",
+            "period": "2013–2014",
+            "note": "Très au‑dessus des recommandations habituelles pour l’eau de boisson (< 500–1000 mg/L).",
+            "sources": [
+                "https://onlinelibrary.wiley.com/doi/10.1155/2018/2721752"
+            ]
+        },
+        {
+            "id": "agareb_groundwater_fluoride",
+            "label": "Fluor dans la nappe (puits sous la décharge)",
+            "value": "jusqu'à 29",
+            "unit": "mg/L",
+            "period": "2013–2014",
+            "note": "Concentrations maximales dans les puits en aval de la décharge, très au‑delà des 1,5 mg/L recommandés par l’OMS.",
+            "sources": [
+                "https://onlinelibrary.wiley.com/doi/10.1155/2018/2721752",
+                "https://www.who.int/docs/default-source/wash-documents/wash-chemicals/fluoride-background-document.pdf"
+            ]
+        },
+        {
+            "id": "agareb_groundwater_cond",
+            "label": "Conductivité électrique de la nappe (sous décharge)",
+            "value": "≈34 900",
+            "unit": "µS/cm",
+            "period": "2013–2014",
+            "note": "Signale une eau fortement chargée en sels, loin des valeurs usuelles pour l’eau de boisson (2 500–3 000 µS/cm).",
+            "sources": [
+                "https://pdfs.semanticscholar.org/84a5/e5e71d04d7b7547f0701fd647e417e830d09.pdf"
+            ]
+        },
+        {
+            "id": "hamma_drawdown_rate",
+            "label": "Taux de baisse du niveau de la nappe (El Hamma)",
+            "value": "≈0,3",
+            "unit": "m/an",
+            "period": "1986–2016 (projection jusqu’en 2030)",
+            "note": "Baisse moyenne du niveau piézométrique estimée par modélisation.",
+            "sources": [
+                "https://link.springer.com/article/10.1007/s12517-019-4490-1"
+            ]
+        },
+        {
+            "id": "hamma_pumping_volume",
+            "label": "Volume annuel prélevé (El Hamma)",
+            "value": "≈0,46",
+            "unit": "millions m³/an",
+            "period": "moyenne récente",
+            "note": "Volume de prélèvement global estimé dans la nappe d’El Hamma.",
+            "sources": [
+                "https://link.springer.com/article/10.1007/s12517-019-4490-1"
+            ]
+        }
+    ],
+    "charts": [
+        {
+            "id": "agareb_fluoride_vs_standard",
+            "type": "bar",
+            "title": "Fluor dans l’eau : Agareb vs normes",
+            "xLabel": "Type d’eau",
+            "yLabel": "Fluor (mg/L)",
+            "color": "#0ea5e9",
+            "data": [
+                {
+                    "type": "Norme OMS eau potable",
+                    "fluor_mgL": 1.5
+                },
+                {
+                    "type": "Puits sous la décharge",
+                    "fluor_mgL": 29
+                },
+                {
+                    "type": "Lixiviat phosphogypse",
+                    "fluor_mgL": 3500
+                }
+            ],
+            "sources": [
+                "https://onlinelibrary.wiley.com/doi/10.1155/2018/2721752",
+                "https://www.who.int/docs/default-source/wash-documents/wash-chemicals/fluoride-background-document.pdf"
+            ],
+            "note": "Comparaison entre la recommandation OMS pour l’eau de boisson, les puits affectés et le lixiviat brut de phosphogypse à Agareb."
+        },
+        {
+            "id": "agareb_sulfate_vs_standard",
+            "type": "bar",
+            "title": "Sulfates dans l’eau : Agareb vs seuils usuels",
+            "xLabel": "Type d’eau",
+            "yLabel": "Sulfates (mg/L)",
+            "color": "#22c55e",
+            "data": [
+                {
+                    "type": "Seuil usuel eau potable",
+                    "sulfates_mgL": 500
+                },
+                {
+                    "type": "Puits sous la décharge",
+                    "sulfates_mgL": 4950
+                },
+                {
+                    "type": "Lixiviat phosphogypse",
+                    "sulfates_mgL": 3240
+                }
+            ],
+            "sources": [
+                "https://onlinelibrary.wiley.com/doi/10.1155/2018/2721752"
+            ],
+            "note": "Les sulfates atteignent plusieurs milliers de mg/L dans les eaux souterraines affectées et dans le lixiviat, bien au‑delà des valeurs usuelles pour l’eau potable."
+        },
+        {
+            "id": "agareb_cond_vs_drinking",
+            "type": "bar",
+            "title": "Salinité de la nappe sous la décharge (conductivité)",
+            "xLabel": "Type d’eau",
+            "yLabel": "Conductivité (µS/cm)",
+            "color": "#eab308",
+            "data": [
+                {
+                    "type": "Eau potable typique",
+                    "cond_uS_cm": 2500
+                },
+                {
+                    "type": "Nappe sous la décharge",
+                    "cond_uS_cm": 34900
+                }
+            ],
+            "sources": [
+                "https://pdfs.semanticscholar.org/84a5/e5e71d04d7b7547f0701fd647e417e830d09.pdf"
+            ],
+            "note": "Illustration de la salinité extrême de la nappe sous la décharge de phosphogypse par rapport à une eau potable typique."
+        },
+        {
+            "id": "hamma_drawdown_curve",
+            "type": "line",
+            "title": "Baisse du niveau de la nappe à El Hamma",
+            "xLabel": "Année",
+            "yLabel": "Profondeur de la nappe (valeur relative)",
+            "data": [
+                {
+                    "annee": 1986,
+                    "profondeur_relative": 0
+                },
+                {
+                    "annee": 1996,
+                    "profondeur_relative": 3
+                },
+                {
+                    "annee": 2006,
+                    "profondeur_relative": 6
+                },
+                {
+                    "annee": 2016,
+                    "profondeur_relative": 9
+                },
+                {
+                    "annee": 2030,
+                    "profondeur_relative": 13
+                }
+            ],
+            "sources": [
+                "https://link.springer.com/article/10.1007/s12517-019-4490-1"
+            ],
+            "note": "Illustration schématique d’un drawdown moyen de ~0,3 m/an sur plusieurs décennies sous l’effet des prélèvements intensifs."
+        }
+    ],
+    "text_blocks": [
+        {
+            "id": "contexte_eau",
+            "title": "De la surexploitation à la contamination",
+            "body": "À Agareb, les mesures montrent que les lixiviats acides issus du dépôt de phosphogypse se mélangent à la nappe, y faisant exploser les concentrations de fluor, de sulfates et de métaux lourds bien au‑delà des normes de potabilité. À El Hamma, c’est le volume même de la ressource qui est en jeu, avec une nappe qui baisse d’environ 30 cm par an sous l’effet des prélèvements intensifs. Dans les deux cas, la même conclusion s’impose : les nappes du Sud‑Est tunisien subissent à la fois un stress quantitatif et qualitatif."
+        }
+    ]
+}

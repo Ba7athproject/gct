@@ -1,0 +1,77 @@
+{
+    "id": "meta_methodologie",
+    "title": "Méthodologie & lexique",
+    "description": "Comment les données ont été collectées, sélectionnées et simplifiées, et définitions des principaux termes scientifiques utilisés dans le tableau de bord.",
+    "sections": [
+        {
+            "id": "methodologie",
+            "title": "Comment nous avons travaillé",
+            "body": [
+                "Depuis le début des années 1970, des centaines de millions de tonnes de phosphogypse et des effluents acides ont été rejetés en mer, stockés à ciel ouvert ou infiltrés dans le sol autour de Gabès et Sfax, en laissant derrière eux une trace mesurable dans l’eau, l’air, les sols et la vie marine. Ce site rassemble une partie de ce que disent les données scientifiques sur cette histoire de pollution industrielle.",
+                "Pour construire les indicateurs présentés dans les différentes vues (Mer, Sols, Air, Eau souterraine), nous avons d’abord rassemblé un corpus de plusieurs centaines de documents : articles scientifiques publiés dans des revues internationales, audits environnementaux officiels, rapports techniques, rapports financiers et travaux universitaires. Nous avons ensuite extrait, pour chaque milieu (mer, sols, air, nappes), quelques chiffres clés qui permettent de comprendre les ordres de grandeur : concentrations maximales, comparaisons avec des sites témoins, dépassements de normes, tendances sur plusieurs décennies.",
+                "Les valeurs affichées sur les graphiques sont volontairement simplifiées pour rester lisibles : arrondis au chiffre significatif, regroupement dans des intervalles, indices qualitatifs sur une échelle 0–10 quand les études travaillent avec des méthodes différentes. Elles ne remplacent pas la lecture des articles originaux, mais offrent une porte d’entrée rapide pour visualiser l’ampleur des dépassements par rapport aux repères internationaux (OMS, normes nationales) et aux sites de référence moins impactés.",
+                "Chaque carte ou graphique est accompagné de ses sources principales, accessibles en un clic, afin que journalistes, chercheurs, citoyens et autorités puissent vérifier, creuser ou contester les chiffres. Là où les données manquent – par exemple en l’absence de monitoring continu ou de mesures récentes – nous l’indiquons clairement : ce silence statistique est lui‑même un indicateur d’un problème de transparence ou de gouvernance environnementale.",
+                "Enfin, ce travail n’est pas « neutre ». Il assume un parti pris clair : celui du droit des habitants de Gabès, de Sfax et des régions concernées à connaître l’état réel de leur environnement et les risques associés. Les indicateurs et le lexique qui suivent visent à rendre lisible un débat souvent confisqué par le jargon technique ou l’opacité des rapports internes."
+            ]
+        },
+        {
+            "id": "repères_internationaux",
+            "title": "Repères internationaux",
+            "body": [
+                "Pour interpréter les chiffres, il est essentiel de les comparer à quelques repères largement utilisés au niveau international :",
+                "- Fluor dans l’eau potable : l’Organisation mondiale de la santé recommande une valeur guide de 1,5 mg/L comme limite supérieure pour l’eau de boisson. Au‑delà, le risque de fluorose dentaire puis osseuse augmente avec le temps d’exposition.",
+                "- Sulfates dans l’eau : des concentrations supérieures à 500–1000 mg/L sont associées à des troubles digestifs et rendent l’eau peu acceptable au goût. Des valeurs de plusieurs milliers de mg/L rendent l’eau impropre à la consommation.",
+                "- pH des eaux : pour l’eau potable et les milieux aquatiques, les plages 6,5–8,5 (voire 5,5–9,5 selon les référentiels) sont généralement considérées comme acceptables. Des pH proches de 1–2, observés dans certains lixiviats, correspondent à des solutions extrêmement acides, capables de dissoudre et mobiliser de nombreux métaux toxiques.",
+                "- Métaux lourds (Cd, Pb, Cr, Ni, etc.) : la plupart des réglementations fixent des limites dans l’eau potable à des niveaux de l’ordre du microgramme par litre (µg/L). Des dépassements répétés de ces valeurs dans les eaux souterraines ou superficielles signifient une exposition chronique potentiellement nocive.",
+                "- Fond géochimique : pour juger de la contamination d’un sol ou d’un sédiment, on compare souvent les concentrations mesurées à un « fond » naturel de la région. Des enrichissements de plusieurs fois ce fond (×3, ×5, ×10) signalent une pollution d’origine anthropique.",
+                "Dans les graphiques du site, les mentions « ×26 », « ×36 » ou « ×10 » indiquent que la valeur mesurée est respectivement 26, 36 ou 10 fois plus élevée que le seuil de référence considéré (norme réglementaire ou fond géochimique)."
+            ]
+        },
+        {
+            "id": "lexique",
+            "title": "Lexique des principaux termes",
+            "items": [
+                {
+                    "term": "Fond géochimique",
+                    "definition": "Niveau naturel d’un élément chimique (métal, fluor, etc.) dans un sol, une roche ou une eau, avant toute pollution d’origine humaine. Il sert de référence pour identifier un enrichissement lié aux activités industrielles ou agricoles."
+                },
+                {
+                    "term": "Phosphogypse",
+                    "definition": "Résidu solide de la production d’acide phosphorique à partir de roches phosphatées. Composé principalement de gypse, il contient aussi du fluor, des métaux lourds et des radionucléides, en quantités suffisantes pour poser des problèmes environnementaux quand il est stocké ou déversé sans confinement."
+                },
+                {
+                    "term": "Lixiviat",
+                    "definition": "Liquide qui s’est chargé en polluants en percolant à travers un déchet ou un dépôt (par exemple un tas de phosphogypse). Il concentre souvent ions fluorure, sulfates, phosphates et métaux lourds, susceptibles de migrer vers les nappes phréatiques."
+                },
+                {
+                    "term": "Bioaccumulation",
+                    "definition": "Processus par lequel un organisme (plante, mollusque, poisson) accumule un contaminant dans ses tissus à un niveau plus élevé que celui de son environnement. Un facteur supérieur à 1 indique que l’espèce concentre le polluant au lieu de le diluer."
+                },
+                {
+                    "term": "Fluorose",
+                    "definition": "Atteinte des dents et des os liée à un excès chronique de fluor. Sous forme dentaire, elle provoque taches, décolorations et fragilité de l’émail; sous forme squelettique, elle se traduit par des douleurs, une rigidité et des déformations osseuses."
+                },
+                {
+                    "term": "Conductivité électrique (µS/cm)",
+                    "definition": "Mesure indirecte de la quantité totale de sels dissous dans l’eau. Des valeurs autour de 2500–3000 µS/cm sont typiques d’eaux potables minéralisées; des valeurs de plusieurs dizaines de milliers de µS/cm signalent une eau très salée, généralement impropre à la consommation humaine."
+                },
+                {
+                    "term": "Sédiments",
+                    "definition": "Matériaux (sables, vases, boues) déposés au fond des rivières, lagunes ou mers. Ils jouent un rôle de mémoire des pollutions, en stockant au fil du temps métaux, fluor, composés organiques et radionucléides issus des rejets."
+                },
+                {
+                    "term": "Herbiers de Posidonia oceanica",
+                    "definition": "Prairies sous‑marines d’une plante endémique de Méditerranée, surnommée « poumon de la mer ». Elles stabilisent les sédiments, produisent de l’oxygène, abritent une biodiversité riche et soutiennent la productivité de la pêche côtière."
+                },
+                {
+                    "term": "Particules industrielles",
+                    "definition": "Ensemble de particules solides ou liquides en suspension dans l’air, issues des cheminées, de la manutention des minerais et des tas de phosphogypse. Elles peuvent transporter des métaux lourds et se déposer ensuite sur les sols, les cultures et la mer."
+                },
+                {
+                    "term": "Indice de risque (0–10)",
+                    "definition": "Échelle qualitative utilisée dans certains graphiques du site pour comparer l’intensité relative d’un risque ou d’une contamination entre plusieurs milieux. Ce n’est pas une valeur réglementaire, mais un outil de visualisation."
+                }
+            ]
+        }
+    ]
+}

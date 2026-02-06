@@ -115,3 +115,38 @@ body {
   @apply bg-blue-500/10 text-blue-400 border-l-2 border-blue-500;
   text-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
 }
+
+/* Charts pour rapports - hauteur à l'écran ET à l'impression */
+.print-chart {
+  height: 400px;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+@media print {
+  .break-inside-avoid-page {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  .avoid-page-break {
+    page-break-before: auto;
+    page-break-after: auto;
+    page-break-inside: avoid;
+  }
+
+  body {
+    background: #ffffff !important;
+  }
+
+  header,
+  nav {
+    display: none !important;
+  }
+
+  /* Hauteur fixe pour les graphiques en impression */
+  .print-chart {
+    height: 220px !important;
+  }
+}

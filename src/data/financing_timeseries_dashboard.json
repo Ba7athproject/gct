@@ -1,0 +1,86 @@
+[
+    {
+        "year": 2020,
+        "amount": 1729.0,
+        "type": "multilateral",
+        "lender_category": "BIRD/BAD",
+        "instrument": "loan",
+        "use_category": "restructuring",
+        "is_ep_guaranteed": true,
+        "share_of_ep_budget_pct": 12.4,
+        "share_of_state_budget_pct": 1.1,
+        "phase": "Stabilité"
+    },
+    {
+        "year": 2021,
+        "amount": 4030.0,
+        "type": "bilateral",
+        "lender_category": "Fonds Souverains",
+        "instrument": "credit_line",
+        "use_category": "operations",
+        "is_ep_guaranteed": true,
+        "share_of_ep_budget_pct": 22.8,
+        "share_of_state_budget_pct": 2.5,
+        "phase": "Boom"
+    },
+    {
+        "year": 2022,
+        "amount": 13348.0,
+        "type": "market",
+        "lender_category": "Banques Locales",
+        "instrument": "short_term",
+        "use_category": "emergency_liquidity",
+        "is_ep_guaranteed": true,
+        "share_of_ep_budget_pct": 58.5,
+        "share_of_state_budget_pct": 8.2,
+        "phase": "Pic Historique"
+    },
+    {
+        "year": 2023,
+        "amount": 6378.0,
+        "type": "multilateral",
+        "lender_category": "ITFC",
+        "instrument": "trade_finance",
+        "use_category": "imports",
+        "is_ep_guaranteed": true,
+        "share_of_ep_budget_pct": 34.2,
+        "share_of_state_budget_pct": 4.1,
+        "phase": "Correction"
+    },
+    {
+        "year": 2024,
+        "amount": 6608.0,
+        "type": "mix",
+        "lender_category": "Secteur Public",
+        "instrument": "budget_support",
+        "use_category": "debt_service",
+        "is_ep_guaranteed": true,
+        "share_of_ep_budget_pct": 33.5,
+        "share_of_state_budget_pct": 3.9,
+        "note": "Estimé"
+    },
+    {
+        "year": 2025,
+        "amount": 6780.0,
+        "type": "mix",
+        "lender_category": "Divers",
+        "instrument": "renegotiation",
+        "use_category": "restructuring",
+        "is_ep_guaranteed": true,
+        "share_of_ep_budget_pct": 32.1,
+        "share_of_state_budget_pct": 3.8,
+        "note": "Estimé"
+    },
+    {
+        "year": 2026,
+        "amount": 6946.0,
+        "type": "mix",
+        "lender_category": "Secteur Public",
+        "instrument": "stabilization",
+        "use_category": "long_term_inv",
+        "is_ep_guaranteed": true,
+        "share_of_ep_budget_pct": 30.5,
+        "share_of_state_budget_pct": 3.6,
+        "note": "Estimé"
+    }
+]

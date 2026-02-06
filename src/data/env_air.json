@@ -1,0 +1,155 @@
+{
+    "id": "env_air",
+    "title": "Air et poussières – Zone industrielle de Gabès",
+    "description": "Retombées de particules et pollution de l’air autour du complexe chimique de Gabès.",
+    "indicators": [
+        {
+            "id": "dust_deposition_rate",
+            "label": "Retombées de poussières industrielles",
+            "value": "7–14",
+            "unit": "g/m²/mois",
+            "period": "zone Gabès industrielle",
+            "note": "Ordre de grandeur des flux de dépôt particulaire mesurés autour du complexe (poussières minérales enrichies en métaux).",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0025326X1731038X",
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/"
+            ]
+        },
+        {
+            "id": "dust_metals",
+            "label": "Métaux lourds dans les poussières",
+            "value": "Zn, Pb, Cu, Ni, Cd",
+            "unit": "",
+            "period": "mesures 2010–2020",
+            "note": "Les particules déposées contiennent les mêmes métaux lourds que ceux observés dans le phosphogypse et les sédiments marins.",
+            "sources": [
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/",
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653521019858"
+            ]
+        },
+        {
+            "id": "so2_exceedance",
+            "label": "Dépassement des normes en SO₂",
+            "value": "×26",
+            "unit": "par rapport au seuil",
+            "period": "campagne 2010",
+            "note": "Une campagne de mesure a relevé un SO₂ d’environ 7805 μg/m³ pour un seuil réglementaire de 300 μg/m³.",
+            "sources": [
+                "Rapport IHE audit environnemental GCT Gabès 2025 (extraits)",
+                "https://fr.scribd.com/document/940356535/Rapport-Audit-E-S-GCT-Gab"
+            ]
+        },
+        {
+            "id": "hf_exceedance",
+            "label": "Dépassement des normes en HF",
+            "value": "×36",
+            "unit": "par rapport au seuil",
+            "period": "campagne 2010",
+            "note": "Fluorure d’hydrogène mesuré à ~184 μg/m³ pour une limite de 5 μg/m³.",
+            "sources": [
+                "Rapport IHE audit environnemental GCT Gabès 2025 (extraits)"
+            ]
+        }
+    ],
+    "charts": [
+        {
+            "id": "dust_deposition_bar",
+            "type": "bar",
+            "title": "Retombées de poussières industrielles (ordre de grandeur)",
+            "xLabel": "Type de site",
+            "yLabel": "Dépôt (g/m²/mois)",
+            "color": "#6366f1",
+            "data": [
+                {
+                    "site": "Zone industrielle Gabès",
+                    "depot_g_m2_mois": 12
+                },
+                {
+                    "site": "Site de fond régional",
+                    "depot_g_m2_mois": 2
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0025326X1731038X",
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/"
+            ],
+            "note": "Illustration de l’ordre de grandeur : retombées plusieurs fois supérieures près du complexe qu’aux sites de fond."
+        },
+        {
+            "id": "dust_metals_composition",
+            "type": "donut",
+            "title": "Métaux lourds dans les poussières (profil qualitatif)",
+            "xLabel": "Métal",
+            "yLabel": "Importance relative",
+            "data": [
+                {
+                    "metal": "Zn",
+                    "importance": 5,
+                    "color": "#f97316"
+                },
+                {
+                    "metal": "Pb",
+                    "importance": 4,
+                    "color": "#e11d48"
+                },
+                {
+                    "metal": "Cu",
+                    "importance": 3,
+                    "color": "#eab308"
+                },
+                {
+                    "metal": "Ni",
+                    "importance": 3,
+                    "color": "#22c55e"
+                },
+                {
+                    "metal": "Cd",
+                    "importance": 2,
+                    "color": "#0ea5e9"
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653521019858",
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/"
+            ],
+            "note": "Profil qualitatif des principaux métaux lourds associés aux poussières issues du phosphogypse et des rejets industriels."
+        },
+        {
+            "id": "gas_exceedance",
+            "type": "bar",
+            "title": "Dépassements des normes pour quelques gaz",
+            "xLabel": "Polluant",
+            "yLabel": "Rapport à la norme (×)",
+            "color": "#a855f7",
+            "data": [
+                {
+                    "polluant": "SO₂",
+                    "x_norme": 26
+                },
+                {
+                    "polluant": "HF",
+                    "x_norme": 36
+                },
+                {
+                    "polluant": "NO₂",
+                    "x_norme": 1.8
+                },
+                {
+                    "polluant": "Poussières",
+                    "x_norme": 1.7
+                }
+            ],
+            "sources": [
+                "Rapport IHE audit environnemental GCT Gabès 2025 (extraits)"
+            ],
+            "note": "Basé sur la campagne de mesures 2010 : dépassements massifs pour le soufre, les fluorures et des dépassements plus modérés pour les NOx et les poussières."
+        }
+    ],
+    "text_blocks": [
+        {
+            "id": "contexte_air",
+            "title": "Ce que disent les poussières",
+            "body": "Autour du complexe de Gabès, l’air n’est pas seulement chargé de fumées visibles : les mesures montrent des retombées importantes de poussières minérales enrichies en métaux lourds, ainsi que des pics historiques de SO₂ et de fluorure d’hydrogène dépassant largement les limites réglementaires. Ces particules retombent ensuite sur les sols, les cultures et la mer, bouclant un cycle de contamination qui relie le ciel, la terre et l’eau."
+        }
+    ]
+}

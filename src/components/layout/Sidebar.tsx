@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, TrendingUp, Network, PieChart, FileText, History, BookOpen, Leaf, ShieldCheck, Info } from 'lucide-react';
+import { LayoutDashboard, TrendingUp, Network, PieChart, FileText, History, BookOpen, Leaf, ShieldCheck, Info, Waves, TreePine, Wind, Droplets } from 'lucide-react';
 
 type ViewKey = 'finance' | 'ecology' | 'governance';
 
@@ -37,7 +37,10 @@ const VIEWS_CONFIG: Record<ViewKey, ViewConfig> = {
         icon: Leaf,
         basePath: '/ecology',
         items: [
-            { label: 'Module Écologie', path: '/ecology', icon: LayoutDashboard },
+            { label: 'Mer & Pêche', path: '/ecology?tab=mer', icon: Waves, code: 'ME' },
+            { label: 'Sols & Végétation', path: '/ecology?tab=sols', icon: TreePine, code: 'SO' },
+            { label: 'Air & Poussières', path: '/ecology?tab=air', icon: Wind, code: 'AI' },
+            { label: 'Eaux Souterraines', path: '/ecology?tab=eau', icon: Droplets, code: 'EA' },
         ]
     },
     governance: {

@@ -8,7 +8,7 @@ import AnalyticalGates from '../components/layout/right-panel/AnalyticalGates';
 import AuditGlossary from '../components/layout/right-panel/AuditGlossary';
 import QuickNotes from '../components/layout/right-panel/QuickNotes';
 import AnalyticalLinks from '../components/layout/right-panel/AnalyticalLinks';
-import financingData from '../data/financing_timeseries.json';
+import financingData from '../data/financing_timeseries_dashboard.json';
 import kpis from '../data/kpis.json';
 
 export default function Dashboard() {
@@ -123,7 +123,6 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="card bg-slate-800/80 text-white p-5 rounded-none shadow-md border border-slate-700 leading-normal">
                             <h3 className="text-base font-semibold mb-6 flex items-center gap-2 uppercase tracking-widest text-blue-400 px-1">
@@ -207,59 +206,59 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Right Analytical Panel (25%) */}
-            <div className="lg:col-span-3">
-                <AnalyticalPanel>
-                    <AnalyticalGates>
-                        <div>
-                            <label className="text-xs font-black text-slate-600 uppercase tracking-widest">Portée Temporelle</label>
-                            <select
-                                value={period}
-                                onChange={(e) => setPeriod(e.target.value)}
-                                className="mt-2 block w-full text-xs font-black uppercase tracking-wider border border-slate-700 rounded-none bg-slate-800 p-2 text-slate-300 outline-none focus:border-blue-500 transition-all cursor-pointer"
-                            >
-                                <option value="all">Suite Complète (2020-2026)</option>
-                                <option value="2020-2023">Audit Historique (20-23)</option>
-                                <option value="2024-2026">Flux Projeté (24-26)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label className="text-[9px] font-black text-slate-600 uppercase tracking-widest">Paramètres d'Affichage</label>
-                            <div className="mt-3 space-y-2">
-                                <div className="flex items-center gap-2 px-3 py-2 bg-blue-500/5 border border-blue-500/20">
-                                    <input type="checkbox" checked readOnly className="rounded-none bg-slate-900 border-slate-800 text-blue-600" />
-                                    <span className="text-xs font-black text-blue-400 uppercase tracking-widest">Montants (MDT)</span>
-                                </div>
-                                <div className="flex items-center gap-2 px-3 py-2 opacity-30 grayscale cursor-not-allowed">
-                                    <input type="checkbox" disabled className="rounded-none bg-slate-900 border-slate-800" />
-                                    <span className="text-xs font-black text-slate-600 uppercase tracking-widest">Devise (%)</span>
+                {/* Right Analytical Panel (25%) */}
+                <div className="lg:col-span-3">
+                    <AnalyticalPanel>
+                        <AnalyticalGates>
+                            <div>
+                                <label className="text-xs font-black text-slate-600 uppercase tracking-widest">Portée Temporelle</label>
+                                <select
+                                    value={period}
+                                    onChange={(e) => setPeriod(e.target.value)}
+                                    className="mt-2 block w-full text-xs font-black uppercase tracking-wider border border-slate-700 rounded-none bg-slate-800 p-2 text-slate-300 outline-none focus:border-blue-500 transition-all cursor-pointer"
+                                >
+                                    <option value="all">Suite Complète (2020-2026)</option>
+                                    <option value="2020-2023">Audit Historique (20-23)</option>
+                                    <option value="2024-2026">Flux Projeté (24-26)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label className="text-[9px] font-black text-slate-600 uppercase tracking-widest">Paramètres d'Affichage</label>
+                                <div className="mt-3 space-y-2">
+                                    <div className="flex items-center gap-2 px-3 py-2 bg-blue-500/5 border border-blue-500/20">
+                                        <input type="checkbox" checked readOnly className="rounded-none bg-slate-900 border-slate-800 text-blue-600" />
+                                        <span className="text-xs font-black text-blue-400 uppercase tracking-widest">Montants (MDT)</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 px-3 py-2 opacity-30 grayscale cursor-not-allowed">
+                                        <input type="checkbox" disabled className="rounded-none bg-slate-900 border-slate-800" />
+                                        <span className="text-xs font-black text-slate-600 uppercase tracking-widest">Devise (%)</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </AnalyticalGates>
+                        </AnalyticalGates>
 
-                    <AuditGlossary
-                        items={[
-                            { term: 'Dette_Garantie', definition: 'Prêts contractés par le GCT où l\'État agit comme garant principal en cas de défaut.' },
-                            { term: 'Effet_d\'Éviction', definition: 'Absorption de la liquidité commerciale par l\'État réduisant l\'accès au crédit du secteur privé.' },
-                            { term: 'Seuil_Rentabilité', definition: 'Le niveau de production précis requis pour neutraliser tous les coûts d\'audit fixes et financiers.' }
-                        ]}
-                    />
+                        <AuditGlossary
+                            items={[
+                                { term: 'Dette_Garantie', definition: 'Prêts contractés par le GCT où l\'État agit comme garant principal en cas de défaut.' },
+                                { term: 'Effet_d\'Éviction', definition: 'Absorption de la liquidité commerciale par l\'État réduisant l\'accès au crédit du secteur privé.' },
+                                { term: 'Seuil_Rentabilité', definition: 'Le niveau de production précis requis pour neutraliser tous les coûts d\'audit fixes et financiers.' }
+                            ]}
+                        />
 
-                    <QuickNotes />
+                        <QuickNotes />
 
-                    <AnalyticalLinks
-                        title="Suite d'Investigation"
-                        links={[
-                            { label: "Cartographie Bailleurs", path: "/finance/sources" },
-                            { label: "Documents Sources", path: "/finance/report" },
-                            { label: "Protocole d'Audit", path: "/finance/methodology" }
-                        ]}
-                    />
-                </AnalyticalPanel>
+                        <AnalyticalLinks
+                            title="Suite d'Investigation"
+                            links={[
+                                { label: "Cartographie Bailleurs", path: "/finance/sources" },
+                                { label: "Documents Sources", path: "/finance/report" },
+                                { label: "Protocole d'Audit", path: "/finance/methodology" }
+                            ]}
+                        />
+                    </AnalyticalPanel>
+                </div>
             </div>
-        </div >
+        </div>
     );
 }

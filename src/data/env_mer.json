@@ -1,0 +1,195 @@
+{
+    "id": "env_mer",
+    "title": "Mer et pêche – Golfe de Gabès",
+    "description": "Impact des rejets du complexe chimique sur le Golfe de Gabès : herbiers de Posidonia, pêche côtière, contamination des sédiments.",
+    "indicators": [
+        {
+            "id": "posidonia_loss",
+            "label": "Perte des herbiers de Posidonia",
+            "value": "-90%",
+            "unit": "surface",
+            "period": "1970–2014",
+            "note": "Régression estimée de ~1 300 km² à ~150 km² d’herbiers dans le Golfe de Gabès.",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0025326X20302423"
+            ]
+        },
+        {
+            "id": "phosphogypsum_dumped",
+            "label": "Phosphogypse déversé en mer",
+            "value": ">200",
+            "unit": "millions de tonnes",
+            "period": "depuis les années 1970",
+            "note": "Estimations des travaux sur les rejets de phosphogypse dans le Golfe de Gabès.",
+            "sources": [
+                "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0197731",
+                "https://ui.adsabs.harvard.edu/abs/2019ECSS..224..281E/abstract"
+            ]
+        },
+        {
+            "id": "fisheries_losses_annual",
+            "label": "Pertes annuelles de pêche côtière liées à la disparition des herbiers",
+            "value": "≈60",
+            "unit": "millions d’euros/an",
+            "period": "2014",
+            "note": "Perte de valeur de la pêche côtière imputée à la régression des herbiers de Posidonia.",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0025326X20302423"
+            ]
+        },
+        {
+            "id": "fisheries_losses_cumulative",
+            "label": "Pertes cumulées de pêche côtière",
+            "value": "≈750–780",
+            "unit": "millions d’euros",
+            "period": "1990–2014",
+            "note": "Pertes cumulées estimées pour la pêche côtière liée aux herbiers.",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0025326X20302423"
+            ]
+        },
+        {
+            "id": "sediment_metals",
+            "label": "Métaux lourds dans les sédiments",
+            "value": "Zn, Cr, Ni, Cd, Pb, Cu",
+            "unit": "",
+            "period": "études 2018–2023",
+            "note": "Présence de métaux lourds et de fluor à des niveaux dépassant les seuils de qualité des sédiments près des rejets.",
+            "sources": [
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/",
+                "https://link.springer.com/article/10.1007/s11356-023-27518-9"
+            ]
+        }
+    ],
+    "charts": [
+        {
+            "id": "posidonia_area_trend",
+            "type": "line",
+            "title": "Régression des herbiers de Posidonia dans le Golfe de Gabès",
+            "xLabel": "Année",
+            "yLabel": "Surface estimée (km²)",
+            "data": [
+                {
+                    "annee": 1970,
+                    "surface_km2": 1300
+                },
+                {
+                    "annee": 1990,
+                    "surface_km2": 800
+                },
+                {
+                    "annee": 2000,
+                    "surface_km2": 400
+                },
+                {
+                    "annee": 2014,
+                    "surface_km2": 150
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0025326X20302423",
+                "https://pubmed.ncbi.nlm.nih.gov/32469763/"
+            ],
+            "note": "Ordres de grandeur basés sur les estimations d’El Zrelli et al. (2020) sur la régression des herbiers."
+        },
+        {
+            "id": "fisheries_losses_trend",
+            "type": "bar",
+            "title": "Pertes économiques liées à la régression des herbiers (ordre de grandeur)",
+            "xLabel": "Année",
+            "yLabel": "Pertes estimées (millions d’euros/an)",
+            "color": "#0ea5e9",
+            "data": [
+                {
+                    "annee": 1990,
+                    "perte_MEUR": 10
+                },
+                {
+                    "annee": 2000,
+                    "perte_MEUR": 30
+                },
+                {
+                    "annee": 2010,
+                    "perte_MEUR": 50
+                },
+                {
+                    "annee": 2014,
+                    "perte_MEUR": 60
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0025326X20302423"
+            ],
+            "note": "Illustration de l’augmentation des pertes de pêche jusqu’aux ~60 M€/an et ~750–780 M€ cumulés."
+        },
+        {
+            "id": "contamination_pathway",
+            "type": "bar",
+            "title": "Chaîne de contamination liée au phosphogypse",
+            "xLabel": "Élément de la chaîne",
+            "yLabel": "Intensité relative du risque (0–10)",
+            "color": "#22c55e",
+            "data": [
+                {
+                    "etape": "Sédiments",
+                    "risque": 9
+                },
+                {
+                    "etape": "Phytoplancton",
+                    "risque": 7
+                },
+                {
+                    "etape": "Poissons & fruits de mer",
+                    "risque": 6
+                },
+                {
+                    "etape": "Consommateurs humains",
+                    "risque": 5
+                }
+            ],
+            "sources": [
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/",
+                "https://www.semanticscholar.org/paper/Assessment-of-trace-elements-and-fluoride-from-in-Amri-Trabelsi/e9596defafd44e31adb28685cb6543c2a5b420cd"
+            ],
+            "note": "Indice qualitatif basé sur la présence de métaux lourds et de fluor dans les sédiments, le phytoplancton et la faune marine du Golfe de Gabès."
+        },
+        {
+            "id": "marine_media_profile",
+            "type": "bar",
+            "title": "Profil de pollution des milieux marins",
+            "xLabel": "Milieu",
+            "yLabel": "Intensité relative (0–10)",
+            "color": "#1d4ed8",
+            "data": [
+                {
+                    "milieu": "Eau de surface",
+                    "intensite": 7
+                },
+                {
+                    "milieu": "Eau de fond",
+                    "intensite": 8
+                },
+                {
+                    "milieu": "Sédiments",
+                    "intensite": 9
+                },
+                {
+                    "milieu": "Herbiers (Posidonia)",
+                    "intensite": 8
+                }
+            ],
+            "sources": [
+                "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0197731",
+                "https://www.semanticscholar.org/paper/Decadal-effects-of-solid-industrial-wastes-on-the-Zrelli-Rabaoui/6877fdc9c2993f6411f1ce1485b39b7c030e7383"
+            ],
+            "note": "Profil qualitatif reflétant la forte contamination des sédiments et des herbiers par le phosphogypse et les rejets industriels."
+        }
+    ],
+    "text_blocks": [
+        {
+            "id": "contexte_court",
+            "title": "Ce que montrent les données",
+            "body": "Les études sur le Golfe de Gabès montrent une régression spectaculaire des herbiers de Posidonia oceanica depuis les années 1970, parallèlement à des rejets massifs de phosphogypse et d’effluents industriels. Cette disparition des herbiers se traduit par une perte importante de biodiversité benthique, une baisse des stocks halieutiques côtiers et des pertes économiques chiffrées à plusieurs dizaines de millions d’euros par an pour la pêche artisanale."
+        }
+    ]
+}

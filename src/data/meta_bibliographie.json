@@ -1,0 +1,97 @@
+{
+    "id": "meta_bibliographie",
+    "title": "Bibliographie",
+    "description": "Principales études scientifiques, rapports officiels et documents de référence mobilisés dans le projet.",
+    "groups": [
+        {
+            "id": "mer_peche",
+            "title": "Mer et pêche – Golfe de Gabès",
+            "entries": [
+                {
+                    "label": "Régression des herbiers de Posidonia et pertes de pêche côtière",
+                    "citation": "El Zrelli R. et al., \"Economic impact of human-induced shrinkage of Posidonia oceanica meadows on coastal fisheries in the Gabes Gulf\", Marine Pollution Bulletin, 2020.",
+                    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0025326X20302423"
+                },
+                {
+                    "label": "Rejets de phosphogypse et transformation du littoral",
+                    "citation": "El Zrelli R. et al., \"Decadal effects of solid industrial wastes on the coastal environment: Gulf of Gabes\", Estuarine, Coastal and Shelf Science, 2019.",
+                    "url": "https://www.semanticscholar.org/paper/Decadal-effects-of-solid-industrial-wastes-on-the-Zrelli-Rabaoui/6877fdc9c2993f6411f1ce1485b39b7c030e7383"
+                },
+                {
+                    "label": "Impact des rejets de phosphates sur la qualité de l’eau de mer",
+                    "citation": "El Zrelli R. et al., \"Impact of industrial phosphate waste discharge on the marine environment in the Gulf of Gabes\", PLOS ONE, 2018.",
+                    "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0197731"
+                },
+                {
+                    "label": "Métaux lourds, fluor et radioactivité dans les sédiments",
+                    "citation": "Amri O. et al., \"Assessment of trace elements and fluoride originating from phosphogypsum in the sediment of Gulf of Gabes\", Environmental Science and Pollution Research, 2023.",
+                    "url": "https://pubmed.ncbi.nlm.nih.gov/37188936/"
+                }
+            ]
+        },
+        {
+            "id": "sols_vegetation",
+            "title": "Sols et végétation",
+            "entries": [
+                {
+                    "label": "Fluor et plantes natives autour des usines de superphosphate",
+                    "citation": "Boukhris M. et al., \"Screening biological traits and fluoride contents of native vegetations in arid environments\", Chemosphere, 2015.",
+                    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+                },
+                {
+                    "label": "Stratégies de tolérance au fluor chez deux espèces méditerranéennes",
+                    "citation": "Boukhris M. et al., \"Tolerance strategies of two Mediterranean native xerophytes under fluoride pollution in Tunisia\", 2018.",
+                    "url": "https://pubmed.ncbi.nlm.nih.gov/30324375/"
+                }
+            ]
+        },
+        {
+            "id": "air_poussieres",
+            "title": "Air et poussières",
+            "entries": [
+                {
+                    "label": "Qualité des eaux marines et sources de pollution le long du littoral industriel",
+                    "citation": "El Zrelli R. et al., \"Seawater quality assessment and identification of pollution sources along the central coastal area of Gabes Gulf\", Marine Pollution Bulletin, 2018.",
+                    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0025326X1731038X"
+                },
+                {
+                    "label": "Métaux lourds et fluor dans les retombées et les sédiments",
+                    "citation": "Amri O. et al., \"Assessment of trace elements and fluoride originating from phosphogypsum in the sediment of Gulf of Gabes\", Environmental Science and Pollution Research, 2023.",
+                    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0045653521019858"
+                }
+            ]
+        },
+        {
+            "id": "eaux_souterraines",
+            "title": "Eaux souterraines – Agareb et El Hamma",
+            "entries": [
+                {
+                    "label": "Impact du lixiviat de phosphogypse sur la nappe de Sfax–Agareb",
+                    "citation": "Malki M. & Gdara I., \"Impact Assessment of Phosphogypsum Leachate on Groundwater of Sfax-Agareb\", Journal of Chemistry, 2018.",
+                    "url": "https://onlinelibrary.wiley.com/doi/10.1155/2018/2721752"
+                },
+                {
+                    "label": "Suivi du niveau d’eau et modélisation à El Hamma",
+                    "citation": "Agoubi B. & Kharroubi A., \"Groundwater depth monitoring and short-term prediction applied to El Hamma aquifer system\", Arabian Journal of Geosciences, 2019.",
+                    "url": "https://link.springer.com/article/10.1007/s12517-019-4490-1"
+                }
+            ]
+        },
+        {
+            "id": "references_internationales",
+            "title": "Références internationales et revues de synthèse",
+            "entries": [
+                {
+                    "label": "Fluor dans l’eau de boisson",
+                    "citation": "OMS, \"Fluoride in Drinking-water: Background document for development of WHO Guidelines for Drinking-water Quality\".",
+                    "url": "https://www.who.int/docs/default-source/wash-documents/wash-chemicals/fluoride-background-document.pdf"
+                },
+                {
+                    "label": "Impact environnemental du phosphogypse",
+                    "citation": "Yang et al., \"A review on the environmental impact of phosphogypsum and potential health impacts through the release of nanoparticles\".",
+                    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0045653521019858"
+                }
+            ]
+        }
+    ]
+}

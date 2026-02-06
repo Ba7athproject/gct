@@ -52,6 +52,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                                 Protocoles d&apos;analyse avancés sur le Groupe Chimique Tunisien.
                             </p>
                         </div>
+
                         <div>
                             <h4 className="text-slate-200 font-black text-xs uppercase tracking-[0.2em] mb-6">
                                 Dossiers d&apos;audit
@@ -70,11 +71,20 @@ export default function AppLayout({ children }: AppLayoutProps) {
                                         href="#/finance/report"
                                         className="text-slate-500 hover:text-blue-400 transition-colors"
                                     >
-                                        Corpus de preuves PDF
+                                        Rapport d'AnalyseFinancière (Audit des Prêts)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#/ecology/report"
+                                        className="text-slate-500 hover:text-emerald-400 transition-colors"
+                                    >
+                                        Rapport environnemental (écologie)
                                     </a>
                                 </li>
                             </ul>
                         </div>
+
                         <div>
                             <h4 className="text-slate-200 font-black text-xs uppercase tracking-[0.2em] mb-6">
                                 Expertise &amp; Contact
@@ -91,6 +101,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                             </p>
                         </div>
                     </div>
+
                     <div className="border-t border-slate-900 mt-12 pt-8 text-[11px] text-center font-black uppercase tracking-[0.25em] text-white">
                         &copy; 2026 Ba7ath Lab. Investigation de données souveraines.
                     </div>

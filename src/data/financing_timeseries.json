@@ -1,86 +1,213 @@
-[
-    {
-        "year": 2020,
-        "amount": 1729.0,
-        "type": "multilateral",
-        "lender_category": "BIRD/BAD",
-        "instrument": "loan",
-        "use_category": "restructuring",
-        "is_ep_guaranteed": true,
-        "share_of_ep_budget_pct": 12.4,
-        "share_of_state_budget_pct": 1.1,
-        "phase": "Stabilité"
-    },
-    {
-        "year": 2021,
-        "amount": 4030.0,
-        "type": "bilateral",
-        "lender_category": "Fonds Souverains",
-        "instrument": "credit_line",
-        "use_category": "operations",
-        "is_ep_guaranteed": true,
-        "share_of_ep_budget_pct": 22.8,
-        "share_of_state_budget_pct": 2.5,
-        "phase": "Boom"
-    },
-    {
-        "year": 2022,
-        "amount": 13348.0,
-        "type": "market",
-        "lender_category": "Banques Locales",
-        "instrument": "short_term",
-        "use_category": "emergency_liquidity",
-        "is_ep_guaranteed": true,
-        "share_of_ep_budget_pct": 58.5,
-        "share_of_state_budget_pct": 8.2,
-        "phase": "Pic Historique"
-    },
-    {
-        "year": 2023,
-        "amount": 6378.0,
-        "type": "multilateral",
-        "lender_category": "ITFC",
-        "instrument": "trade_finance",
-        "use_category": "imports",
-        "is_ep_guaranteed": true,
-        "share_of_ep_budget_pct": 34.2,
-        "share_of_state_budget_pct": 4.1,
-        "phase": "Correction"
-    },
-    {
-        "year": 2024,
-        "amount": 6608.0,
-        "type": "mix",
-        "lender_category": "Secteur Public",
-        "instrument": "budget_support",
-        "use_category": "debt_service",
-        "is_ep_guaranteed": true,
-        "share_of_ep_budget_pct": 33.5,
-        "share_of_state_budget_pct": 3.9,
-        "note": "Estimé"
-    },
-    {
-        "year": 2025,
-        "amount": 6780.0,
-        "type": "mix",
-        "lender_category": "Divers",
-        "instrument": "renegotiation",
-        "use_category": "restructuring",
-        "is_ep_guaranteed": true,
-        "share_of_ep_budget_pct": 32.1,
-        "share_of_state_budget_pct": 3.8,
-        "note": "Estimé"
-    },
-    {
-        "year": 2026,
-        "amount": 6946.0,
-        "type": "mix",
-        "lender_category": "Secteur Public",
-        "instrument": "stabilization",
-        "use_category": "long_term_inv",
-        "is_ep_guaranteed": true,
-        "share_of_ep_budget_pct": 30.5,
-        "share_of_state_budget_pct": 3.6,
-        "note": "Estimé"
-    }
-]
+{
+    "id": "financing_timeseries",
+    "title": "Évolution des financements externes du GCT",
+    "charts": [
+        {
+            "id": "total_financing_timeline",
+            "type": "line",
+            "title": "Évolution des financements externes du GCT (2016–2026)",
+            "xLabel": "Année",
+            "yLabel": "Montant cumulé (millions €)",
+            "color": "#0ea5e9",
+            "data": [
+                {
+                    "annee": 2020,
+                    "total_ME": 1.7
+                },
+                {
+                    "annee": 2021,
+                    "total_ME": 4.0
+                },
+                {
+                    "annee": 2022,
+                    "total_ME": 13.3
+                },
+                {
+                    "annee": 2023,
+                    "total_ME": 6.4
+                },
+                {
+                    "annee": 2024,
+                    "total_ME": 6.6
+                },
+                {
+                    "annee": 2025,
+                    "total_ME": 6.8
+                },
+                {
+                    "annee": 2026,
+                    "total_ME": 6.9
+                }
+            ],
+            "note": "Évolution des montants de financement annuels du GCT (données en millions €, converties de MDT)"
+        },
+        {
+            "id": "financing_by_bailleur",
+            "type": "bar",
+            "title": "Financements par bailleur (2020–2026)",
+            "xLabel": "Année",
+            "yLabel": "Montant (millions €)",
+            "color": "#8b5cf6",
+            "data": [
+                {
+                    "annee": 2020,
+                    "montant_ME": 1.7,
+                    "type_bailleur": "BIRD/BAD",
+                    "color": "#3b82f6"
+                },
+                {
+                    "annee": 2021,
+                    "montant_ME": 4.0,
+                    "type_bailleur": "Fonds Souverains",
+                    "color": "#06b6d4"
+                },
+                {
+                    "annee": 2022,
+                    "montant_ME": 13.3,
+                    "type_bailleur": "Banques Locales",
+                    "color": "#f59e0b"
+                },
+                {
+                    "annee": 2023,
+                    "montant_ME": 6.4,
+                    "type_bailleur": "ITFC",
+                    "color": "#10b981"
+                },
+                {
+                    "annee": 2024,
+                    "montant_ME": 6.6,
+                    "type_bailleur": "Secteur Public",
+                    "color": "#8b5cf6"
+                },
+                {
+                    "annee": 2025,
+                    "montant_ME": 6.8,
+                    "type_bailleur": "Divers",
+                    "color": "#ec4899"
+                },
+                {
+                    "annee": 2026,
+                    "montant_ME": 6.9,
+                    "type_bailleur": "Secteur Public",
+                    "color": "#a855f7"
+                }
+            ],
+            "note": "Répartition des financements par bailleur et catégorie (2020–2026)"
+        },
+        {
+            "id": "financing_by_phase",
+            "type": "donut",
+            "title": "Financements par phase de cycle",
+            "xLabel": "Phase",
+            "yLabel": "Montant (millions €)",
+            "data": [
+                {
+                    "name": "Stabilité (2020-2021)",
+                    "value": 5.7,
+                    "color": "#3b82f6"
+                },
+                {
+                    "name": "Pic Historique (2022)",
+                    "value": 13.3,
+                    "color": "#10b981"
+                },
+                {
+                    "name": "Correction (2023)",
+                    "value": 6.4,
+                    "color": "#f59e0b"
+                },
+                {
+                    "name": "Stabilisation (2024-2026)",
+                    "value": 20.3,
+                    "color": "#8b5cf6"
+                }
+            ],
+            "note": "Répartition des montants totaux par phase du cycle de financement"
+        },
+        {
+            "id": "financing_by_instrument",
+            "type": "bar",
+            "title": "Financements par instrument (2020–2026)",
+            "xLabel": "Instrument",
+            "yLabel": "Nombre d'opérations",
+            "color": "#10b981",
+            "data": [
+                {
+                    "instrument": "Loan",
+                    "count": 2,
+                    "color": "#3b82f6"
+                },
+                {
+                    "instrument": "Credit Line",
+                    "count": 1,
+                    "color": "#06b6d4"
+                },
+                {
+                    "instrument": "Short Term",
+                    "count": 1,
+                    "color": "#f59e0b"
+                },
+                {
+                    "instrument": "Trade Finance",
+                    "count": 1,
+                    "color": "#10b981"
+                },
+                {
+                    "instrument": "Budget Support",
+                    "count": 1,
+                    "color": "#8b5cf6"
+                },
+                {
+                    "instrument": "Renegotiation",
+                    "count": 1,
+                    "color": "#ec4899"
+                },
+                {
+                    "instrument": "Stabilization",
+                    "count": 1,
+                    "color": "#a855f7"
+                }
+            ],
+            "note": "Nombre d'opérations de financement par type d'instrument"
+        },
+        {
+            "id": "financing_share_ep_budget",
+            "type": "line",
+            "title": "Part du GCT dans le budget des entreprises publiques (2020–2026)",
+            "xLabel": "Année",
+            "yLabel": "Part du budget EP (%)",
+            "color": "#ef4444",
+            "data": [
+                {
+                    "annee": 2020,
+                    "share_pct": 12.4
+                },
+                {
+                    "annee": 2021,
+                    "share_pct": 22.8
+                },
+                {
+                    "annee": 2022,
+                    "share_pct": 58.5
+                },
+                {
+                    "annee": 2023,
+                    "share_pct": 34.2
+                },
+                {
+                    "annee": 2024,
+                    "share_pct": 33.5
+                },
+                {
+                    "annee": 2025,
+                    "share_pct": 32.1
+                },
+                {
+                    "annee": 2026,
+                    "share_pct": 30.5
+                }
+            ],
+            "note": "Poids croissant du GCT dans les allocations budgétaires des entreprises publiques, pic en 2022"
+        }
+    ]
+}

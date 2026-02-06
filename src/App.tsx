@@ -7,8 +7,10 @@ import Sources from './pages/Sources';
 import FullReport from './pages/FullReport';
 import HistoricalApproach from './pages/HistoricalApproach';
 import Methodology from './pages/Methodology';
-import EcologyPlaceholder from './pages/EcologyPlaceholder';
+import EcologyDashboard from './pages/EcologyDashboard';
 import GovernancePlaceholder from './pages/GovernancePlaceholder';
+import EcologyReport from './pages/EcologyReport';
+import FinanceReport from './pages/FinanceReport';
 
 function App() {
   return (
@@ -22,11 +24,13 @@ function App() {
           <Route path="/finance/sources" element={<Sources />} />
           <Route path="/finance/historical" element={<HistoricalApproach />} />
           <Route path="/finance/report" element={<FullReport />} />
+          <Route path="/finance/report-md" element={<FinanceReport />} />
           <Route path="/finance/methodology" element={<Methodology />} />
 
           {/* Ecology View Routes */}
-          <Route path="/ecology" element={<EcologyPlaceholder />} />
-          <Route path="/ecology/*" element={<EcologyPlaceholder />} />
+          <Route path="/ecology" element={<EcologyDashboard />} />
+          <Route path="/ecology/report" element={<EcologyReport />} />
+          <Route path="/ecology/*" element={<EcologyDashboard />} />
 
           {/* Governance View Routes */}
           <Route path="/governance" element={<GovernancePlaceholder />} />
