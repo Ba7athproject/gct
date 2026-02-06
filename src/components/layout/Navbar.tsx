@@ -1,7 +1,21 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, TrendingUp, Network, PieChart, FileText, History, BookOpen, Leaf, ShieldCheck, ChevronDown } from 'lucide-react';
+import {
+    LayoutDashboard,
+    TrendingUp,
+    Network,
+    PieChart,
+    FileText,
+    History,
+    BookOpen,
+    Leaf,
+    ShieldCheck,
+    ChevronDown,
+} from 'lucide-react';
 import { useState } from 'react';
 
+/**
+ * TYPES ET CONFIGURATIONS (Conservés à l'identique)
+ */
 type ViewKey = 'finance' | 'ecology' | 'governance';
 
 interface NavItem {
@@ -30,7 +44,7 @@ const VIEWS_CONFIG: Record<ViewKey, ViewConfig> = {
             { label: 'Historique', path: '/finance/historical', icon: History },
             { label: 'Rapport', path: '/finance/report', icon: FileText },
             { label: 'Métho', path: '/finance/methodology', icon: BookOpen },
-        ]
+        ],
     },
     ecology: {
         label: 'Écologie',
@@ -41,7 +55,7 @@ const VIEWS_CONFIG: Record<ViewKey, ViewConfig> = {
             { label: 'Pollution', path: '/ecology/pollution', icon: TrendingUp },
             { label: 'Sources', path: '/ecology/sources', icon: PieChart },
             { label: 'Métho', path: '/ecology/methodology', icon: BookOpen },
-        ]
+        ],
     },
     governance: {
         label: 'Gouvernance',
@@ -52,44 +66,60 @@ const VIEWS_CONFIG: Record<ViewKey, ViewConfig> = {
             { label: 'Décisions', path: '/governance/decisions', icon: TrendingUp },
             { label: 'Sources', path: '/governance/sources', icon: PieChart },
             { label: 'Métho', path: '/governance/methodology', icon: BookOpen },
-        ]
-    }
+        ],
+    },
 };
 
 export default function Navbar() {
     const location = useLocation();
     const [isViewOpen, setIsViewOpen] = useState(false);
 
-    // Identify current view from path
-    const activeViewKey = (Object.keys(VIEWS_CONFIG).find(key =>
-        location.pathname.startsWith(VIEWS_CONFIG[key as ViewKey].basePath)
-    ) as ViewKey) || 'finance';
+    /**
+     * LOGIQUE DE NAVIGATION (Conservée)
+     */
+    const activeViewKey =
+        (Object.keys(VIEWS_CONFIG).find((key) =>
+            location.pathname.startsWith(VIEWS_CONFIG[key as ViewKey].basePath),
+        ) as ViewKey) || 'finance';
 
     const currentView = VIEWS_CONFIG[activeViewKey];
 
     return (
         <nav className="bg-slate-900/90 backdrop-blur-xl border-b border-slate-800 sticky top-0 z-50">
-            <div className="max-w-full mx-auto px-4 h-16 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                    <Link to="/finance" className="flex items-center gap-3 group">
-                        <img
-                            src={`${import.meta.env.BASE_URL}logo_gct.png`}
-                            alt="Ba7ath – GCT Data Reports"
-                            className="w-8 h-8 md:w-10 md:h-10 rounded-none border border-slate-800 transition-all group-hover:border-blue-500 grayscale brightness-125 contrast-125 object-contain"
-                            loading="lazy"
-                        />
+            {/* CONTENEUR PRINCIPAL
+                h-20 maintenu pour laisser de l'espace au logo et aux titres 
+            */}
+            <div className="max-w-full mx-auto px-4 h-20 flex items-center justify-between">
 
-                        <div className="flex flex-col">
-                            <span className="font-black text-base text-white border-b-2 border-blue-500 leading-none pb-1 tracking-tighter uppercase whitespace-nowrap">
+                <div className="flex items-center gap-4 h-full">
+                    <Link to="/finance" className="flex items-center gap-3 group h-full">
+
+                        {/* ZONE LOGO CORRIGÉE
+                            - flex-shrink-0 : empêche le logo de s'écraser si la barre est pleine
+                            - h-12 w-12 : fixe une zone carrée stricte
+                        */}
+                        <div className="flex-shrink-0 h-12 w-12 flex items-center justify-center border border-slate-800 bg-slate-950 transition-all group-hover:border-blue-500/50 overflow-hidden relative">
+                            <img
+                                src={`${import.meta.env.BASE_URL}logo_gct.png`}
+                                alt="Ba7ath Logo"
+                                // object-contain assure que l'image tient dans les 12 unités sans déborder
+                                className="max-h-full max-w-full object-contain p-1"
+                                loading="eager"
+                            />
+                        </div>
+
+                        {/* TITRES DU LOGO (Conservés et ajustés pour éviter le chevauchement) */}
+                        <div className="flex flex-col justify-center min-w-0">
+                            <span className="font-black text-base md:text-lg text-white border-b-2 border-blue-500 leading-none pb-1 tracking-tighter uppercase whitespace-nowrap">
                                 Lab d'Investigation
                             </span>
-                            <span className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mt-1 shadow-black text-shadow-sm">
+                            <span className="text-[0.65rem] md:text-xs font-black text-slate-500 uppercase tracking-[0.2em] mt-1 shadow-black text-shadow-sm truncate">
                                 Explorateur de Données GCT
                             </span>
                         </div>
                     </Link>
 
-                    {/* View Name (Mobile/Small screens) */}
+                    {/* VIEW NAME MOBILE (Conservé) */}
                     <div className="lg:hidden ml-4 border-l border-slate-800 pl-4">
                         <span className="text-[10px] font-black text-slate-400 uppercase flex items-center gap-2">
                             <currentView.icon size={14} className="text-blue-500" />
@@ -99,13 +129,16 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                    {/* Simplified mobile view switcher */}
+                    {/* VIEW SWITCHER MOBILE (Conservé) */}
                     <div className="lg:hidden relative">
                         <button
                             onClick={() => setIsViewOpen(!isViewOpen)}
                             className="p-2 rounded-none bg-slate-900 hover:bg-slate-800 border border-slate-800 transition-colors"
                         >
-                            <ChevronDown size={18} className={`text-slate-400 transition-transform ${isViewOpen ? 'rotate-180' : ''}`} />
+                            <ChevronDown
+                                size={18}
+                                className={`text-slate-400 transition-transform ${isViewOpen ? 'rotate-180' : ''}`}
+                            />
                         </button>
 
                         {isViewOpen && (
@@ -115,9 +148,15 @@ export default function Navbar() {
                                         key={key}
                                         to={config.basePath}
                                         onClick={() => setIsViewOpen(false)}
-                                        className={`flex items-center gap-3 px-4 py-2 text-xs font-black uppercase tracking-widest transition-colors ${activeViewKey === key ? 'text-blue-400 bg-blue-500/10' : 'text-slate-500 hover:bg-slate-900'}`}
+                                        className={`flex items-center gap-3 px-4 py-2 text-xs font-black uppercase tracking-widest transition-colors ${activeViewKey === key
+                                                ? 'text-blue-400 bg-blue-500/10'
+                                                : 'text-slate-500 hover:bg-slate-900'
+                                            }`}
                                     >
-                                        <config.icon size={14} className={activeViewKey === key ? 'text-blue-400' : 'text-slate-600'} />
+                                        <config.icon
+                                            size={14}
+                                            className={activeViewKey === key ? 'text-blue-400' : 'text-slate-600'}
+                                        />
                                         {config.label}
                                     </Link>
                                 ))}
@@ -125,8 +164,11 @@ export default function Navbar() {
                         )}
                     </div>
 
+                    {/* TAG ET DATE DESKTOP (Conservés) */}
                     <div className="hidden md:flex items-center gap-4">
-                        <span className="expert-tag">Projet Ba7ath</span>
+                        <span className="bg-slate-800 text-slate-300 text-[10px] font-black px-2 py-1 uppercase tracking-widest">
+                            Projet Ba7ath
+                        </span>
                         <div className="h-4 w-px bg-slate-800 mx-1" />
                         <span className="text-xs font-black text-slate-500 uppercase tracking-[0.2em]">
                             {new Date().toLocaleDateString('fr-TN')}
@@ -135,8 +177,8 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Sub-items (Swipeable or stacked) */}
-            <div className="lg:hidden overflow-x-auto border-t border-slate-900 bg-slate-800/50">
+            {/* BARRE SECONDAIRE MOBILE (Conservée) */}
+            <div className="lg:hidden overflow-x-auto border-t border-slate-900 bg-slate-800/50 scrollbar-hide">
                 <div className="flex px-4 py-2 space-x-4">
                     {currentView.items.map((item) => {
                         const Icon = item.icon;
@@ -145,9 +187,7 @@ export default function Navbar() {
                             <Link
                                 key={item.path}
                                 to={item.path}
-                                className={`flex-shrink-0 flex items-center gap-2 py-1.5 text-xs font-black uppercase tracking-[0.1em] transition-colors ${isActive
-                                    ? 'text-blue-400'
-                                    : 'text-slate-500 hover:text-slate-300'
+                                className={`flex-shrink-0 flex items-center gap-2 py-1.5 text-xs font-black uppercase tracking-[0.1em] transition-colors ${isActive ? 'text-blue-400' : 'text-slate-500 hover:text-slate-300'
                                     }`}
                             >
                                 <Icon size={14} />
