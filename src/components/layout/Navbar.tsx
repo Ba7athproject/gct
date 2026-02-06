@@ -73,7 +73,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-4">
                     <Link to="/finance" className="flex items-center gap-3 group">
                         <img
-                            src={`${import.meta.env.BASE_URL}logo_ba7ath.jpg`}
+                            src={`${import.meta.env.BASE_URL}logo_gct.png`}
                             alt="Ba7ath – GCT Data Reports"
                             className="w-9 h-9 rounded-none border border-slate-800 transition-all group-hover:border-blue-500 grayscale brightness-125 contrast-125"
                         />
