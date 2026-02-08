@@ -29,8 +29,8 @@
         {
             "id": "fisheries_losses_annual",
             "label": "Pertes annuelles de pêche côtière liées à la disparition des herbiers",
-            "value": "≈60",
-            "unit": "millions d’euros/an",
+            "value": "≈60 (200)",
+            "unit": "millions d’euros (Dinars tunisiens)/an",
             "period": "2014",
             "note": "Perte de valeur de la pêche côtière imputée à la régression des herbiers de Posidonia.",
             "sources": [
