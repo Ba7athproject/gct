@@ -1,6 +1,7 @@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, Area, AreaChart } from 'recharts';
 import { Link as LinkIcon, ExternalLink, ShieldCheck, Euro, DollarSign, Coins } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import historicalLoans from '../data/historical_loans_2016_2028.json';
 import historicalGuarantees from '../data/historical_guarantees.json';
 import historicalSummary from '../data/historical_summary.json';
@@ -12,6 +13,7 @@ import AuditGlossary from '../components/layout/right-panel/AuditGlossary';
 import QuickNotes from '../components/layout/right-panel/QuickNotes';
 
 const TimelineItem = ({ loan }: any) => {
+    const { t } = useTranslation();
     const deviseColors: any = {
         'M€': 'border-blue-500 bg-blue-500/10',
         'M$': 'border-emerald-500 bg-emerald-500/10',
@@ -19,24 +21,28 @@ const TimelineItem = ({ loan }: any) => {
     };
 
     return (
-        <div className="relative pl-8 pb-10 border-l-2 border-slate-900 last:border-0">
-            <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-none border-2 ${deviseColors[loan.devise] || 'border-slate-800 bg-slate-800/80'}`}></div>
+        <div className="relative ps-8 pb-10 border-s-2 border-slate-900 last:border-0">
+            <div className={`absolute -start-[9px] top-0 w-4 h-4 rounded-none border-2 ${deviseColors[loan.devise] || 'border-slate-800 bg-slate-800/80'}`}></div>
             <div className="card hover:shadow-2xl transition-all p-5 bg-slate-1000/40 backdrop-blur-md border border-slate-900 rounded-none group hover:border-blue-500/50">
-                <div className="flex items-start justify-between mb-4 border-b border-slate-900 pb-3">
+                <div className="flex items-start justify-between mb-4 border-b border-slate-900 pb-3 gap-4">
                     <div>
-                        <h4 className="text-sm font-black text-white uppercase tracking-wider">{loan.bailleur_full}</h4>
+                        <h4 className="text-sm font-black text-white uppercase tracking-wider">
+                            {t(`data.loan_bailleur_full_${loan.bailleur.toLowerCase()}`)}
+                        </h4>
                         <p className="text-[10px] uppercase font-black text-slate-600 tracking-[0.2em]">{loan.date}</p>
                     </div>
-                    <div className="text-right">
+                    <div className="text-end">
                         <p className="text-base font-black text-white">{loan.montant} {loan.devise}</p>
                         {loan.montant_dt && <p className="text-[10px] text-blue-500 font-black tracking-widest mt-1">≈ {loan.montant_dt} MDT</p>}
                     </div>
                 </div>
-                <p className="text-xs text-slate-500 mb-5 leading-relaxed uppercase tracking-tight font-medium underline decoration-slate-900/50">{loan.objectif}</p>
+                <p className="text-xs text-slate-500 mb-5 leading-relaxed uppercase tracking-tight font-medium underline decoration-slate-900/50">
+                    {t(`data.loan_obj_${loan.bailleur.toLowerCase()}_${loan.year}`)}
+                </p>
                 <div className="flex flex-wrap gap-2">
-                    {loan.taux && <span className="px-2 py-1 bg-slate-800/80 text-[10px] font-black text-slate-400 border border-slate-900 tracking-tighter uppercase">T_RATE: {loan.taux}</span>}
-                    {loan.duree && <span className="px-2 py-1 bg-slate-800/80 text-[10px] font-black text-slate-400 border border-slate-900 tracking-tighter uppercase">TERM: {loan.duree}</span>}
-                    {loan.grace && <span className="px-2 py-1 bg-slate-800/80 text-[10px] font-black text-slate-400 border border-slate-900 tracking-tighter uppercase">GRACE: {loan.grace}</span>}
+                    {loan.taux && <span className="px-2 py-1 bg-slate-800/80 text-[10px] font-black text-slate-400 border border-slate-900 tracking-tighter uppercase">{t('historical.rate')}: {loan.taux}</span>}
+                    {loan.duree && <span className="px-2 py-1 bg-slate-800/80 text-[10px] font-black text-slate-400 border border-slate-900 tracking-tighter uppercase">{t('historical.term')}: {loan.duree}</span>}
+                    {loan.grace && <span className="px-2 py-1 bg-slate-800/80 text-[10px] font-black text-slate-400 border border-slate-900 tracking-tighter uppercase">{t('historical.grace')}: {loan.grace}</span>}
                 </div>
             </div>
         </div>
@@ -44,6 +50,9 @@ const TimelineItem = ({ loan }: any) => {
 };
 
 export default function HistoricalApproach() {
+    const { t, i18n } = useTranslation();
+    const isRtl = i18n.dir() === 'rtl';
+
     const loansChartData = historicalLoans.map(loan => ({
         name: loan.bailleur,
         year: loan.year,
@@ -53,9 +62,9 @@ export default function HistoricalApproach() {
     }));
 
     const currencyData = [
-        { name: 'Euros', value: historicalSummary.totaux.euros.montant, color: '#3b82f6' },
-        { name: 'Dollars', value: historicalSummary.totaux.dollars.montant, color: '#10b981' },
-        { name: 'Dinars', value: historicalSummary.totaux.dinars.montant, color: '#f59e0b' }
+        { name: t('historical.volume_euros'), value: historicalSummary.totaux.euros.montant, color: '#3b82f6' },
+        { name: t('historical.volume_dollars'), value: historicalSummary.totaux.dollars.montant, color: '#10b981' },
+        { name: t('historical.volume_dinars'), value: historicalSummary.totaux.dinars.montant, color: '#f59e0b' }
     ];
 
     const timelineData = historicalLoans.map(loan => ({
@@ -68,41 +77,42 @@ export default function HistoricalApproach() {
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-900 pb-4">
                 <div>
-                    <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Perspective Historique</h2>
-                    <p className="text-slate-500 text-sm font-semibold uppercase tracking-widest mt-1">Rétrospective décennale des engagements et garanties (2016-2028)</p>
+                    <h2 className="text-3xl font-black text-white uppercase tracking-tighter">{t('historical.title')}</h2>
+                    <p className="text-slate-500 text-sm font-semibold uppercase tracking-widest mt-1">{t('historical.subtitle')}</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
                 {/* Main Content */}
                 <div className="lg:col-span-9 space-y-6">
-                    <ContextBlock type="info" title="Note sur la Période d'Analyse">
+                    <ContextBlock type="info" title={t('historical.analysis_title')}>
                         <p className="text-sm uppercase tracking-tighter font-bold">
-                            Cette vue couvre 12 ans de données consolidées, incluant les décrets de garantie souveraine et les accords de prêts bilatéraux/multilatéraux.
-                            <strong> MDT = Million Dinars Tunisiens</strong>
+                            {t('historical.analysis_desc')}
+                            <br />
+                            <strong> {t('historical.unit_desc')}</strong>
                         </p>
                     </ContextBlock>
 
                     {/* KPIs - Currency Totals */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <KpiCard
-                            title="Volume Euros"
-                            value={`${historicalSummary.totaux.euros.montant} M€`}
-                            subtext={historicalSummary.totaux.euros.detail}
+                            title={t('historical.volume_euros')}
+                            value={`${historicalSummary.totaux.euros.montant.toLocaleString(i18n.language === 'ar' ? 'ar-TN' : 'fr-TN')} M€`}
+                            subtext={t('data.summary_detail_euros')}
                             icon={Euro}
                             className="p-4"
                         />
                         <KpiCard
-                            title="Volume Dollars"
-                            value={`${historicalSummary.totaux.dollars.montant} M$`}
-                            subtext={historicalSummary.totaux.dollars.detail}
+                            title={t('historical.volume_dollars')}
+                            value={`${historicalSummary.totaux.dollars.montant.toLocaleString(i18n.language === 'ar' ? 'ar-TN' : 'fr-TN')} M$`}
+                            subtext={t('data.summary_detail_dollars')}
                             icon={DollarSign}
                             className="p-4"
                         />
                         <KpiCard
-                            title="Volume Dinars"
-                            value={`${historicalSummary.totaux.dinars.montant} MD`}
-                            subtext={historicalSummary.totaux.dinars.detail}
+                            title={t('historical.volume_dinars')}
+                            value={`${historicalSummary.totaux.dinars.montant.toLocaleString(i18n.language === 'ar' ? 'ar-TN' : 'fr-TN')} MD`}
+                            subtext={t('data.summary_detail_dinars')}
                             icon={Coins}
                             className="p-4"
                         />
@@ -112,18 +122,18 @@ export default function HistoricalApproach() {
                         <div className="card bg-slate-800/80 backdrop-blur-xl p-4 rounded-none border border-slate-700 shadow-md leading-normal">
                             <h3 className="text-sm font-semibold text-slate-200 mb-6 px-2 pt-2 flex items-center gap-3 uppercase tracking-widest">
                                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500/60" />
-                                Prêts par Bailleur (Normalisé MDT)
+                                {t('historical.donors_chart')}
                             </h3>
                             <div className="h-[300px] w-full min-w-0 overflow-hidden">
                                 <ResponsiveContainer width="100%" height="100%" minWidth={0}>
-                                    <BarChart data={loansChartData} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
+                                    <BarChart data={loansChartData} margin={{ top: 10, right: 30, left: 10, bottom: 20 }}>
                                         <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#ffffff08" />
                                         <XAxis dataKey="name" hide />
                                         <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 13, fontWeight: 500 }} />
                                         <Tooltip
-                                            contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', fontSize: '13px' }}
+                                            contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', fontSize: '13px', textAlign: isRtl ? 'right' : 'left' }}
                                             itemStyle={{ color: '#fff', fontWeight: '600' }}
-                                            formatter={(_v: any, _n: any, props: any) => [`${props.payload.montantOriginal} ${props.payload.devise} (≈ ${props.payload.montant_dt} MDT)`, 'Engagement']}
+                                            formatter={(_v: any, _n: any, props: any) => [`${props.payload.montantOriginal} ${props.payload.devise} (≈ ${props.payload.montant_dt} MDT)`, t('sources.engagement')]}
                                         />
                                         <Bar dataKey="montant_dt" fill="#3b82f6" radius={[2, 2, 0, 0]} barSize={28} />
                                     </BarChart>
@@ -134,7 +144,7 @@ export default function HistoricalApproach() {
                         <div className="card bg-slate-800/80 backdrop-blur-xl p-4 rounded-none border border-slate-700 shadow-md leading-normal">
                             <h3 className="text-sm font-semibold text-slate-200 mb-6 px-2 pt-2 flex items-center gap-3 uppercase tracking-widest">
                                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60" />
-                                Exposition par Devise
+                                {t('historical.currency_exposure')}
                             </h3>
                             <div className="h-[250px] w-full min-w-0 overflow-hidden">
                                 <ResponsiveContainer width="100%" height="100%" minWidth={0}>
@@ -155,7 +165,7 @@ export default function HistoricalApproach() {
                                             ))}
                                         </Pie>
                                         <Tooltip
-                                            contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', fontSize: '13px' }}
+                                            contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', fontSize: '13px', textAlign: isRtl ? 'right' : 'left' }}
                                             itemStyle={{ color: '#fff', fontWeight: '600' }}
                                         />
                                         <Legend
@@ -174,7 +184,7 @@ export default function HistoricalApproach() {
                     <div className="card bg-slate-800/80 backdrop-blur-xl p-4 rounded-none border border-slate-700 shadow-md leading-normal">
                         <h3 className="text-sm font-semibold text-slate-200 mb-6 px-2 pt-2 flex items-center gap-3 uppercase tracking-widest">
                             <div className="w-1.5 h-1.5 rounded-full bg-purple-500/60" />
-                            Évolution Temporelle des Flux (MDT)
+                            {t('historical.temporal_evolution')}
                         </h3>
                         <div className="h-[300px] w-full min-w-0 overflow-hidden">
                             <ResponsiveContainer width="100%" height="100%" minWidth={0}>
@@ -195,7 +205,7 @@ export default function HistoricalApproach() {
                                     />
                                     <YAxis hide />
                                     <Tooltip
-                                        contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', fontSize: '13px' }}
+                                        contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', fontSize: '13px', textAlign: isRtl ? 'right' : 'left' }}
                                         itemStyle={{ color: '#fff', fontWeight: '600' }}
                                     />
                                     <Area type="monotone" dataKey="montant_dt" stroke="#8b5cf6" fillOpacity={1} fill="url(#colorMontant)" strokeWidth={2} />
@@ -208,7 +218,7 @@ export default function HistoricalApproach() {
                     <div className="card bg-slate-1000/40 backdrop-blur-md p-6 rounded-none border border-slate-900 shadow-2xl">
                         <h3 className="text-xs font-black text-slate-400 mb-10 flex items-center gap-3 uppercase tracking-[0.2em]">
                             <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
-                            Timeline Détaillée des Engagements
+                            {t('historical.timeline_title')}
                         </h3>
                         <div className="space-y-0">
                             {historicalLoans.map((loan) => (
@@ -223,19 +233,19 @@ export default function HistoricalApproach() {
                     <AnalyticalPanel>
                         <AnalyticalGates>
                             <div>
-                                <label className="text-xs font-black text-slate-600 uppercase tracking-widest">Nature du fond</label>
+                                <label className="text-xs font-black text-slate-600 uppercase tracking-widest">{t('historical.fund_nature')}</label>
                                 <select className="mt-1 block w-full text-xs font-black border-slate-700 rounded-none bg-slate-800 text-slate-300 p-2" disabled>
-                                    <option>Tous les types</option>
-                                    <option>Prêts Projets</option>
-                                    <option>Crédits Commerciaux</option>
+                                    <option>{t('historical.all_types')}</option>
+                                    <option>{t('historical.project_loans')}</option>
+                                    <option>{t('historical.commercial_credits')}</option>
                                 </select>
                             </div>
                         </AnalyticalGates>
 
                         <AuditGlossary
                             items={[
-                                { term: 'Dette Souveraine', definition: 'Dette dont le remboursement est garanti par l\'État Tunisien.' },
-                                { term: 'Effet de Change', definition: 'Risque lié à la dévaluation du Dinar face à l\'Euro/Dollar sur la dette extérieure.' }
+                                { term: t('historical.glossary_sov_debt'), definition: t('historical.glossary_sov_debt_def') },
+                                { term: t('historical.glossary_exchange'), definition: t('historical.glossary_exchange_def') }
                             ]}
                         />
 
@@ -244,12 +254,12 @@ export default function HistoricalApproach() {
                         <div className="card bg-slate-900/80 backdrop-blur-xl p-5 rounded-none border border-blue-500/30 shadow-lg transition-all duration-300">
                             <h3 className="text-xs font-black text-white mb-4 flex items-center gap-2 uppercase tracking-wider">
                                 <ShieldCheck size={14} className="text-emerald-400" />
-                                Garanties État
+                                {t('historical.state_guarantees')}
                             </h3>
                             <div className="space-y-4">
                                 {historicalGuarantees.slice(0, 3).map((g, i) => (
                                     <div key={i} className="border-b border-white/5 pb-3 last:border-0">
-                                        <div className="flex justify-between items-center mb-1">
+                                        <div className="flex justify-between items-center mb-1 gap-2">
                                             <span className="text-[10px] font-black text-slate-500 uppercase">{g.year}</span>
                                             <span className="text-[10px] font-black text-emerald-400">{g.montant} {g.devise}</span>
                                         </div>
@@ -262,16 +272,16 @@ export default function HistoricalApproach() {
                         <div className="card bg-slate-800/80 p-5 rounded-none border border-slate-700/50 shadow-sm transition-all duration-300">
                             <h3 className="text-xs font-black text-slate-400 mb-4 flex items-center gap-2 uppercase tracking-wider">
                                 <LinkIcon size={14} className="text-slate-600" />
-                                Liens_Contexte
+                                {t('historical.context_links')}
                             </h3>
                             <div className="space-y-2">
                                 <Link to="/finance" className="flex items-center justify-between p-2 rounded-none hover:bg-slate-900 transition-colors group">
-                                    <span className="text-xs text-slate-500 font-bold uppercase">Dashboard Principal</span>
-                                    <ExternalLink size={12} className="text-slate-700 group-hover:text-blue-500" />
+                                    <span className="text-xs text-slate-500 font-bold uppercase">{t('historical.main_dashboard')}</span>
+                                    <ExternalLink size={12} className={`text-slate-700 group-hover:text-blue-500 ${isRtl ? 'rotate-180' : ''}`} />
                                 </Link>
                                 <Link to="/finance/report" className="flex items-center justify-between p-2 rounded-none hover:bg-slate-900 transition-colors group">
-                                    <span className="text-xs text-slate-500 font-bold uppercase">Rapport Full</span>
-                                    <ExternalLink size={12} className="text-slate-700 group-hover:text-blue-500" />
+                                    <span className="text-xs text-slate-500 font-bold uppercase">{t('historical.full_report')}</span>
+                                    <ExternalLink size={12} className={`text-slate-700 group-hover:text-blue-500 ${isRtl ? 'rotate-180' : ''}`} />
                                 </Link>
                             </div>
                         </div>

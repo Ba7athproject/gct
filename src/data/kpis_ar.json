@@ -1,0 +1,23 @@
+{
+    "total_creances_7ans": {
+        "value": 99362,
+        "trend": "up",
+        "description": "إجمالي المستحقات المقدرة على مدى 7 سنوات"
+    },
+    "pic_annuel": {
+        "value": 17079,
+        "year": 2022,
+        "trend": "down",
+        "description": "ذروة التمويلات الخارجية المسجلة"
+    },
+    "moyenne_annuelle": {
+        "value": 14194,
+        "trend": "stable",
+        "description": "المتوسط السنوي للالتزامات"
+    },
+    "part_budget_ep_2026": {
+        "value": 30.5,
+        "trend": "up",
+        "description": "حصة المجمع الكيميائي من ميزانية المؤسسات العامة في 2026"
+    }
+}

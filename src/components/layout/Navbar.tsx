@@ -12,20 +12,22 @@ import {
     ChevronDown,
 } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 /**
- * TYPES ET CONFIGURATIONS (Conservés à l'identique)
+ * TYPES ET CONFIGURATIONS
  */
 type ViewKey = 'finance' | 'ecology' | 'governance';
 
 interface NavItem {
-    label: string;
+    labelKey: string;
     path: string;
     icon: any;
 }
 
 interface ViewConfig {
-    label: string;
+    labelKey: string;
     icon: any;
     basePath: string;
     items: NavItem[];
@@ -33,49 +35,50 @@ interface ViewConfig {
 
 const VIEWS_CONFIG: Record<ViewKey, ViewConfig> = {
     finance: {
-        label: 'Finances',
+        labelKey: 'nav.finance',
         icon: TrendingUp,
         basePath: '/finance',
         items: [
-            { label: 'Dashboard', path: '/finance', icon: LayoutDashboard },
-            { label: 'Évolution', path: '/finance/evolution', icon: TrendingUp },
-            { label: 'Structure', path: '/finance/structure', icon: Network },
-            { label: 'Sources', path: '/finance/sources', icon: PieChart },
-            { label: 'Historique', path: '/finance/historical', icon: History },
-            { label: 'Rapport', path: '/finance/report', icon: FileText },
-            { label: 'Métho', path: '/finance/methodology', icon: BookOpen },
+            { labelKey: 'nav.dashboard', path: '/finance', icon: LayoutDashboard },
+            { labelKey: 'nav.evolution', path: '/finance/evolution', icon: TrendingUp },
+            { labelKey: 'nav.structure', path: '/finance/structure', icon: Network },
+            { labelKey: 'nav.sources', path: '/finance/sources', icon: PieChart },
+            { labelKey: 'nav.historical', path: '/finance/historical', icon: History },
+            { labelKey: 'nav.report', path: '/finance/report', icon: FileText },
+            { labelKey: 'nav.methodology', path: '/finance/methodology', icon: BookOpen },
         ],
     },
     ecology: {
-        label: 'Écologie',
+        labelKey: 'nav.ecology',
         icon: Leaf,
         basePath: '/ecology',
         items: [
-            { label: 'Indicateurs', path: '/ecology', icon: LayoutDashboard },
-            { label: 'Pollution', path: '/ecology/pollution', icon: TrendingUp },
-            { label: 'Sources', path: '/ecology/sources', icon: PieChart },
-            { label: 'Métho', path: '/ecology/methodology', icon: BookOpen },
+            { labelKey: 'nav.indicators', path: '/ecology', icon: LayoutDashboard },
+            { labelKey: 'nav.pollution', path: '/ecology/pollution', icon: TrendingUp },
+            { labelKey: 'nav.sources', path: '/ecology/sources', icon: PieChart },
+            { labelKey: 'nav.methodology', path: '/ecology/methodology', icon: BookOpen },
         ],
     },
     governance: {
-        label: 'Gouvernance',
+        labelKey: 'nav.governance',
         icon: ShieldCheck,
         basePath: '/governance',
         items: [
-            { label: 'Structure', path: '/governance', icon: LayoutDashboard },
-            { label: 'Décisions', path: '/governance/decisions', icon: TrendingUp },
-            { label: 'Sources', path: '/governance/sources', icon: PieChart },
-            { label: 'Métho', path: '/governance/methodology', icon: BookOpen },
+            { labelKey: 'nav.structure', path: '/governance', icon: LayoutDashboard },
+            { labelKey: 'nav.decisions', path: '/governance/decisions', icon: TrendingUp },
+            { labelKey: 'nav.sources', path: '/governance/sources', icon: PieChart },
+            { labelKey: 'nav.methodology', path: '/governance/methodology', icon: BookOpen },
         ],
     },
 };
 
 export default function Navbar() {
+    const { t, i18n } = useTranslation();
     const location = useLocation();
     const [isViewOpen, setIsViewOpen] = useState(false);
 
     /**
-     * LOGIQUE DE NAVIGATION (Conservée)
+     * LOGIQUE DE NAVIGATION
      */
     const activeViewKey =
         (Object.keys(VIEWS_CONFIG).find((key) =>
@@ -86,50 +89,40 @@ export default function Navbar() {
 
     return (
         <nav className="bg-slate-900/90 backdrop-blur-xl border-b border-slate-800 sticky top-0 z-50">
-            {/* CONTENEUR PRINCIPAL
-                h-20 maintenu pour laisser de l'espace au logo et aux titres 
-            */}
             <div className="max-w-full mx-auto px-4 h-20 flex items-center justify-between">
 
                 <div className="flex items-center gap-4 h-full">
                     <Link to="/finance" className="flex items-center gap-3 group h-full">
-
-                        {/* ZONE LOGO CORRIGÉE
-                            - flex-shrink-0 : empêche le logo de s'écraser si la barre est pleine
-                            - h-12 w-12 : fixe une zone carrée stricte
-                        */}
-                        <div className="flex-shrink-0 h-12 w-12 flex items-center justify-center border border-slate-800 bg-slate-950 transition-all group-hover:border-blue-500/50 overflow-hidden relative">
+                        <div className="flex-shrink-0 h-11 w-11 flex items-center justify-center border border-slate-800 bg-slate-950 transition-all group-hover:border-blue-500/50 overflow-hidden relative">
                             <img
                                 src={`${import.meta.env.BASE_URL}logo_gct.png`}
-                                alt="Ba7ath Logo"
-                                // object-contain assure que l'image tient dans les 12 unités sans déborder
+                                alt="Logo"
                                 className="max-h-full max-w-full object-contain p-1"
                                 loading="eager"
                             />
                         </div>
 
-                        {/* TITRES DU LOGO (Conservés et ajustés pour éviter le chevauchement) */}
                         <div className="flex flex-col justify-center min-w-0">
-                            <span className="font-black text-base md:text-lg text-white border-b-2 border-blue-500 leading-none pb-1 tracking-tighter uppercase whitespace-nowrap">
-                                Lab d'Investigation
+                            <span className="font-black text-sm md:text-base text-white border-b-2 border-blue-500 leading-none pb-1 tracking-tighter uppercase whitespace-nowrap">
+                                {t('brand.lab_name')}
                             </span>
-                            <span className="text-[0.65rem] md:text-xs font-black text-slate-500 uppercase tracking-[0.2em] mt-1 shadow-black text-shadow-sm truncate">
-                                Explorateur de Données GCT
+                            <span className="text-[0.6rem] md:text-[0.7rem] font-black text-slate-500 uppercase tracking-[0.1em] mt-1 shadow-black text-shadow-sm truncate">
+                                {t('brand.sub_name')}
                             </span>
                         </div>
                     </Link>
 
-                    {/* VIEW NAME MOBILE (Conservé) */}
-                    <div className="lg:hidden ml-4 border-l border-slate-800 pl-4">
+                    <div className="lg:hidden ml-4 border-l border-slate-800 pl-4 rtl:ml-0 rtl:mr-4 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-4">
                         <span className="text-[10px] font-black text-slate-400 uppercase flex items-center gap-2">
                             <currentView.icon size={14} className="text-blue-500" />
-                            {currentView.label}
+                            {t(currentView.labelKey)}
                         </span>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                    {/* VIEW SWITCHER MOBILE (Conservé) */}
+                    <LanguageSwitcher />
+
                     <div className="lg:hidden relative">
                         <button
                             onClick={() => setIsViewOpen(!isViewOpen)}
@@ -142,44 +135,42 @@ export default function Navbar() {
                         </button>
 
                         {isViewOpen && (
-                            <div className="absolute top-full right-0 mt-1 w-48 bg-slate-800 border border-slate-800 rounded-none shadow-2xl py-2 z-50">
+                            <div className="absolute top-full right-0 rtl:right-auto rtl:left-0 mt-1 w-48 bg-slate-800 border border-slate-800 rounded-none shadow-2xl py-2 z-50">
                                 {Object.entries(VIEWS_CONFIG).map(([key, config]) => (
                                     <Link
                                         key={key}
                                         to={config.basePath}
                                         onClick={() => setIsViewOpen(false)}
                                         className={`flex items-center gap-3 px-4 py-2 text-xs font-black uppercase tracking-widest transition-colors ${activeViewKey === key
-                                                ? 'text-blue-400 bg-blue-500/10'
-                                                : 'text-slate-500 hover:bg-slate-900'
+                                            ? 'text-blue-400 bg-blue-500/10'
+                                            : 'text-slate-500 hover:bg-slate-900'
                                             }`}
                                     >
                                         <config.icon
                                             size={14}
                                             className={activeViewKey === key ? 'text-blue-400' : 'text-slate-600'}
                                         />
-                                        {config.label}
+                                        {t(config.labelKey)}
                                     </Link>
                                 ))}
                             </div>
                         )}
                     </div>
 
-                    {/* TAG ET DATE DESKTOP (Conservés) */}
                     <div className="hidden md:flex items-center gap-4">
                         <span className="bg-slate-800 text-slate-300 text-[10px] font-black px-2 py-1 uppercase tracking-widest">
-                            Projet Ba7ath
+                            {t('brand.project')}
                         </span>
                         <div className="h-4 w-px bg-slate-800 mx-1" />
                         <span className="text-xs font-black text-slate-500 uppercase tracking-[0.2em]">
-                            {new Date().toLocaleDateString('fr-TN')}
+                            {new Date().toLocaleDateString(i18n.language === 'ar' ? 'ar-TN' : 'fr-TN')}
                         </span>
                     </div>
                 </div>
             </div>
 
-            {/* BARRE SECONDAIRE MOBILE (Conservée) */}
             <div className="lg:hidden overflow-x-auto border-t border-slate-900 bg-slate-800/50 scrollbar-hide">
-                <div className="flex px-4 py-2 space-x-4">
+                <div className="flex px-4 py-2 space-x-4 rtl:space-x-reverse">
                     {currentView.items.map((item) => {
                         const Icon = item.icon;
                         const isActive = location.pathname === item.path;
@@ -191,7 +182,7 @@ export default function Navbar() {
                                     }`}
                             >
                                 <Icon size={14} />
-                                {item.label}
+                                {t(item.labelKey)}
                             </Link>
                         );
                     })}

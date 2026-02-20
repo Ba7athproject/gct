@@ -1,4 +1,5 @@
 import { BookOpen } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface GlossaryItem {
     term: string;
@@ -10,12 +11,13 @@ interface AuditGlossaryProps {
 }
 
 export default function AuditGlossary({ items }: AuditGlossaryProps) {
+    const { t } = useTranslation();
     return (
         <div className="card bg-slate-800/85 p-6 rounded-none border border-slate-700 relative overflow-hidden transition-all duration-300">
             <div className="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 blur-[30px]" />
             <h3 className="text-base font-black text-blue-300 mb-5 flex items-center gap-2 uppercase tracking-[0.25em]">
                 <BookOpen size={18} />
-                Audit Glossary
+                {t('dashboard.audit_glossary')}
             </h3>
             <div className="space-y-4">
                 {items.map((item, idx) => (

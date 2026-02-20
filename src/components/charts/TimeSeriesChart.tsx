@@ -1,4 +1,5 @@
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { useTranslation } from 'react-i18next';
 
 interface TimeSeriesChartProps {
     data: any[];
@@ -11,34 +12,37 @@ interface TimeSeriesChartProps {
 }
 
 const CustomTooltip = ({ active, payload, label, unit }: any) => {
+    const { t, i18n } = useTranslation();
+    const isRtl = i18n.dir() === 'rtl';
+
     if (active && payload && payload.length) {
         const item = payload[0].payload;
         return (
-            <div className="bg-slate-800/95 backdrop-blur-xl text-slate-100 p-4 border border-slate-700/50 shadow-lg rounded-none text-[10px] min-w-[200px] leading-normal">
+            <div className={`bg-slate-800/95 backdrop-blur-xl text-slate-100 p-4 border border-slate-700/50 shadow-lg rounded-none text-[10px] min-w-[200px] leading-normal ${isRtl ? 'text-right' : 'text-left'}`}>
                 <p className="font-bold text-white mb-3 pb-2 border-b border-slate-700/50 flex justify-between items-center tracking-wider uppercase">
-                    <span>Audit {label}</span>
+                    <span>{t('chart.audit')} {label}</span>
                     <span className="expert-tag bg-blue-500/10 text-blue-400 border-blue-500/20">RECAPT_STREAM</span>
                 </p>
                 <div className="space-y-3">
                     <div className="flex justify-between items-center bg-slate-900/50 p-1.5 border border-slate-700/30">
-                        <span className="text-slate-500 font-semibold uppercase tracking-wider">Montant:</span>
-                        <span className="data-value text-blue-400 text-[11px]">{payload[0].value?.toLocaleString('fr-TN')} {unit}</span>
+                        <span className="text-slate-500 font-semibold uppercase tracking-wider">{t('chart.amount')}:</span>
+                        <span className="data-value text-blue-400 text-[11px]">{payload[0].value?.toLocaleString(i18n.language === 'ar' ? 'ar-TN' : 'fr-TN')} {unit}</span>
                     </div>
                     {item.lender_category && (
                         <div className="flex justify-between items-center px-1">
-                            <span className="text-slate-500 font-semibold uppercase tracking-wider">Bailleur Principal:</span>
+                            <span className="text-slate-500 font-semibold uppercase tracking-wider">{t('chart.bailleur')}:</span>
                             <span className="font-bold text-white text-[9px] uppercase tracking-tighter">{item.lender_category}</span>
                         </div>
                     )}
                     {item.instrument && (
                         <div className="flex justify-between items-center px-1">
-                            <span className="text-slate-500 font-semibold uppercase tracking-wider">Instrument:</span>
+                            <span className="text-slate-500 font-semibold uppercase tracking-wider">{t('chart.instrument')}:</span>
                             <span className="font-bold text-slate-400 uppercase tracking-tighter text-[9px]">{item.instrument.replace('_', ' ')}</span>
                         </div>
                     )}
                     {item.share_of_ep_budget_pct && (
                         <div className="flex justify-between items-center pt-2 mt-2 border-t border-slate-700/40 px-1">
-                            <span className="text-slate-500 font-semibold uppercase tracking-wider">Poids Budget EP:</span>
+                            <span className="text-slate-500 font-semibold uppercase tracking-wider">{t('chart.poids')}:</span>
                             <span className="data-value text-lime-400">{item.share_of_ep_budget_pct}%</span>
                         </div>
                     )}

@@ -1,0 +1,351 @@
+{
+    "meta": {
+        "title": "التقرير المالي للمجمع الكيميائي التونسي 2020-2026",
+        "unit": "م.د.ت (مليون دينار تونسي)",
+        "lastUpdated": "2026-01-31"
+    },
+    "summary": {
+        "totalAmount7Years": 99362,
+        "averageAnnual": 14194,
+        "peakYear": 2022,
+        "peakAmount": 17079,
+        "growthTotal": 59.6
+    },
+    "phases": [
+        {
+            "id": "phase1",
+            "years": "2020-2021",
+            "name": "استقرار",
+            "description": "نمو معتدل (+8.9%) مع تمويل متنوع ومستقر.",
+            "trend": "stable",
+            "color": "blue"
+        },
+        {
+            "id": "phase2",
+            "years": "2022",
+            "name": "توسع (طفرة)",
+            "description": "انفجار في التمويل (+58.5%) بسبب زيادة هائلة في الضمانات ودخول البنوك المحلية.",
+            "trend": "up",
+            "color": "green"
+        },
+        {
+            "id": "phase3",
+            "years": "2023",
+            "name": "انكماش (أزمة)",
+            "description": "تصحيح حاد (-15.0%) عقب تخفيض الضمانات، والعودة إلى مستويات ما قبل الذروة.",
+            "trend": "down",
+            "color": "red"
+        },
+        {
+            "id": "phase4",
+            "years": "2024-2026",
+            "name": "تثبيت",
+            "description": "مسار أكثر هدوءاً (+2.6% تراكمي) مع ميزانية آمنة وقابلة للتوقع.",
+            "trend": "flat",
+            "color": "orange"
+        }
+    ],
+    "yearlyData": [
+        {
+            "year": 2020,
+            "total": 9896,
+            "growth": 0,
+            "type": "حقيقي",
+            "categories": {
+                "transferts": 2931,
+                "garanties": 5739,
+                "autres": 1226
+            },
+            "funding": {
+                "bh_bank": 2873,
+                "itfc": 393,
+                "be_eib": 0,
+                "berd": 146,
+                "autres_locales": 500,
+                "autres_intl": 782,
+                "autofinancement": 5202
+            }
+        },
+        {
+            "year": 2021,
+            "total": 10773,
+            "growth": 8.9,
+            "type": "حقيقي",
+            "categories": {
+                "transferts": 2273,
+                "garanties": 7325,
+                "autres": 1175
+            },
+            "funding": {
+                "bh_bank": 2488,
+                "itfc": 429,
+                "be_eib": 79,
+                "berd": 1114,
+                "autres_locales": 500,
+                "autres_intl": 163,
+                "autofinancement": 6000
+            }
+        },
+        {
+            "year": 2022,
+            "total": 17079,
+            "growth": 58.5,
+            "type": "حقيقي",
+            "categories": {
+                "transferts": 2522,
+                "garanties": 13398,
+                "autres": 1159
+            },
+            "funding": {
+                "bh_bank": 2559,
+                "itfc": 0,
+                "be_eib": 0,
+                "berd": 1045,
+                "autres_locales": 800,
+                "autres_intl": 94,
+                "autofinancement": 12581
+            }
+        },
+        {
+            "year": 2023,
+            "total": 14514,
+            "growth": -15.0,
+            "type": "حقيقي",
+            "categories": {
+                "transferts": 2890,
+                "garanties": 10330,
+                "autres": 1295
+            },
+            "funding": {
+                "bh_bank": 4153,
+                "itfc": 1820,
+                "be_eib": 611,
+                "berd": 0,
+                "autres_locales": 1000,
+                "autres_intl": 1130,
+                "autofinancement": 5800
+            }
+        },
+        {
+            "year": 2024,
+            "total": 15400,
+            "growth": 6.1,
+            "type": "مقدّر",
+            "categories": {
+                "transferts": 3100,
+                "garanties": 11300,
+                "autres": 1000
+            },
+            "funding": {
+                "bh_bank": 4800,
+                "itfc": 2200,
+                "be_eib": 1200,
+                "berd": 800,
+                "autres_locales": 1400,
+                "autres_intl": 1000,
+                "autofinancement": 4000
+            }
+        },
+        {
+            "year": 2025,
+            "total": 15900,
+            "growth": 3.3,
+            "type": "توقعات",
+            "categories": {
+                "transferts": 3200,
+                "garanties": 11500,
+                "autres": 1300
+            },
+            "funding": {
+                "bh_bank": 4500,
+                "itfc": 2500,
+                "be_eib": 1500,
+                "berd": 1000,
+                "autres_locales": 1800,
+                "autres_intl": 1400,
+                "autofinancement": 3200
+            }
+        },
+        {
+            "year": 2026,
+            "total": 15800,
+            "growth": -0.6,
+            "type": "توقعات",
+            "categories": {
+                "transferts": 3000,
+                "garanties": 11500,
+                "autres": 1300
+            },
+            "funding": {
+                "bh_bank": 4200,
+                "itfc": 2300,
+                "be_eib": 1400,
+                "berd": 900,
+                "autres_locales": 1600,
+                "autres_intl": 1100,
+                "autofinancement": 2900
+            }
+        }
+    ],
+    "charts": [
+        {
+            "id": "gct_results_2016_2023",
+            "type": "line",
+            "title": "تطور النتائج الصافية للمجمع الكيميائي (2016–2023)",
+            "xLabel": "السنة",
+            "yLabel": "النتيجة الصافية (مليون م.د)",
+            "color": "#0ea5e9",
+            "data": [
+                {
+                    "annee": 2016,
+                    "resultat_net": 16
+                },
+                {
+                    "annee": 2017,
+                    "resultat_net": -122
+                },
+                {
+                    "annee": 2018,
+                    "resultat_net": -100
+                },
+                {
+                    "annee": 2019,
+                    "resultat_net": -95
+                },
+                {
+                    "annee": 2020,
+                    "resultat_net": -88
+                },
+                {
+                    "annee": 2021,
+                    "resultat_net": -75
+                },
+                {
+                    "annee": 2022,
+                    "resultat_net": 296
+                },
+                {
+                    "annee": 2023,
+                    "resultat_net": -50
+                }
+            ],
+            "note": "فترة 2017–2021: خسائر صافية سنوية > 100 مليون دينار. 2022: تعافٍ استثنائي مرتبط بظروف دولية مواتية (ارتفاع أسعار الأسمدة)."
+        },
+        {
+            "id": "gct_debt_composition",
+            "type": "donut",
+            "title": "هيكلة ديون المجمع الكيميائي التونسي",
+            "xLabel": "نوع الدين",
+            "yLabel": "المبلغ (م.د)",
+            "data": [
+                {
+                    "name": "قروض بنكية",
+                    "value": 750,
+                    "color": "#3b82f6"
+                },
+                {
+                    "name": "ديون تجاه المؤسسات العمومية",
+                    "value": 615,
+                    "color": "#f59e0b"
+                },
+                {
+                    "name": "ديون تجاه الدولة",
+                    "value": 325,
+                    "color": "#ef4444"
+                }
+            ],
+            "note": "إجمالي المديونية > 1.5 مليار دينار تونسي. التقسيم: بنوك (50%)، مؤسسات عمومية (41%)، دولة (20%)"
+        },
+        {
+            "id": "gct_production_vs_capacity",
+            "type": "bar",
+            "title": "الإنتاج واستخدام الطاقة للمجمع الكيميائي (2016–2018)",
+            "xLabel": "السنة",
+            "yLabel": "الإنتاج (مليون طن) / الطاقة (%)",
+            "color": "#10b981",
+            "data": [
+                {
+                    "annee": 2016,
+                    "production": 1.6,
+                    "capacite": 80
+                },
+                {
+                    "annee": 2017,
+                    "production": 1.7,
+                    "capacite": 85
+                },
+                {
+                    "annee": 2018,
+                    "production": 1.3,
+                    "capacite": 39
+                }
+            ],
+            "note": "2018: تقليص الاستغلال إلى 39% من الطاقة بسبب مشاكل النقل (تعطل الخط 15 للسكك الحديدية)"
+        },
+        {
+            "id": "gct_debt_breakdown_2017_2019",
+            "type": "bar",
+            "title": "تطور هيكلة ديون المجمع الكيميائي (2017–2019)",
+            "xLabel": "السنة",
+            "yLabel": "المبلغ (مليون دينار)",
+            "color": "#3b82f6",
+            "data": [
+                {
+                    "annee": 2017,
+                    "total": 1217.5,
+                    "dettes_etat": 264,
+                    "dettes_banques": 345,
+                    "dettes_eep": 434,
+                    "dettes_fournisseurs": 244,
+                    "dettes_caisses_sociales": 23.1
+                },
+                {
+                    "annee": 2018,
+                    "total": 1495.6,
+                    "dettes_etat": 264,
+                    "dettes_banques": 499.3,
+                    "dettes_eep": 535.8,
+                    "dettes_fournisseurs": 264,
+                    "dettes_caisses_sociales": 24
+                },
+                {
+                    "annee": 2019,
+                    "total": 1565.9,
+                    "dettes_etat": 173.7,
+                    "dettes_banques": 435.5,
+                    "dettes_eep": 406,
+                    "dettes_fournisseurs": 295.8,
+                    "dettes_caisses_sociales": 23
+                }
+            ],
+            "stacks": [
+                {
+                    "key": "dettes_etat",
+                    "name": "ديون الدولة",
+                    "color": "#ef4444"
+                },
+                {
+                    "key": "dettes_banques",
+                    "name": "قروض بنكية",
+                    "color": "#3b82f6"
+                },
+                {
+                    "key": "dettes_eep",
+                    "name": "ديون تجاه المؤسسات العمومية (CPG)",
+                    "color": "#f59e0b"
+                },
+                {
+                    "key": "dettes_fournisseurs",
+                    "name": "مزودون خواص",
+                    "color": "#8b5cf6"
+                },
+                {
+                    "key": "dettes_caisses_sociales",
+                    "name": "الصناديق الاجتماعية",
+                    "color": "#ec4899"
+                }
+            ],
+            "note": "هيكل ديون المجمع الكيميائي المفصل حسب الدائنين (2017–2019). المصدر: تقارير المؤسسات العمومية، ملحق 9 لقانون المالية 2020."
+        }
+    ]
+}

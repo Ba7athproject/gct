@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { useTranslation } from 'react-i18next';
 import {
     ResponsiveContainer,
     LineChart,
@@ -18,9 +19,11 @@ import {
     Cell
 } from 'recharts';
 
-import reportData from '../data/reportData.json';
-import financingTimeseries from '../data/financing_timeseries.json';
-import reportMarkdown from '../content/finance_report.md?raw';
+// Data will be loaded dynamically based on language
+// import reportData from '../data/reportData.json';
+// import financingTimeseries from '../data/financing_timeseries.json';
+import reportMarkdownFr from '../content/finance_report.md?raw';
+import reportMarkdownAr from '../content/finance_report_ar.md?raw';
 
 const handlePrint = () => {
     setTimeout(() => {
@@ -29,7 +32,8 @@ const handlePrint = () => {
 };
 
 // Composant figure avec styles inline pour forcer les dimensions
-function FigureBlock({ id }: { id: string }) {
+function FigureBlock({ id, reportData, financingTimeseries }: { id: string, reportData: any, financingTimeseries: any }) {
+    const { t } = useTranslation();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -50,7 +54,7 @@ function FigureBlock({ id }: { id: string }) {
         const chart = financingTimeseries.charts[0];
         return (
             <div className="mt-6 mb-4 card bg-slate-800/80 p-4">
-                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase">Figure 1 – Évolution des financements</h3>
+                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase text-start">{t('report.fig1_title')}</h3>
                 <div style={{ height: '400px', width: '100%', minWidth: 0 }}>
                     <ResponsiveContainer width="100%" height={400} minWidth={0}>
                         <LineChart data={chart.data} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
@@ -71,7 +75,7 @@ function FigureBlock({ id }: { id: string }) {
         const chart = financingTimeseries.charts[1];
         return (
             <div className="mt-6 mb-4 card bg-slate-800/80 p-4">
-                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase">Figure 2 – Financements par bailleur</h3>
+                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase text-start">{t('report.fig2_title')}</h3>
                 <div style={{ height: '400px', width: '100%', minWidth: 0 }}>
                     <ResponsiveContainer width="100%" height={400} minWidth={0}>
                         <BarChart data={chart.data} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
@@ -90,21 +94,25 @@ function FigureBlock({ id }: { id: string }) {
     // Figure 7 - Transfers (AUCUN transfert direct)
     if (id === 'transfers_timeline') {
         return (
-            <div className="mt-6 mb-4 card bg-slate-800/80 p-6 border-l-4 border-amber-500">
-                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase">Figure 7 – Transferts État → GCT</h3>
+            <div className="mt-6 mb-4 card bg-slate-800/80 p-6 border-s-4 border-amber-500">
+                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase text-start">{t('report.fig7_title')}</h3>
                 <div className="bg-amber-500/10 border border-amber-500/20 p-6 rounded-none">
                     <div className="flex items-start gap-4">
                         <div className="text-6xl font-black text-amber-500/30">0</div>
-                        <div className="flex-1">
+                        <div className="flex-1 text-start">
                             <h4 className="text-base font-black text-amber-400 uppercase tracking-wider mb-2">
-                                Aucun transfert budgétaire direct identifié
+                                {t('report.fig7_no_transfer')}
                             </h4>
-                            <p className="text-sm text-slate-300 leading-relaxed">
-                                Selon les annexes 8 des lois de finances 2017–2025, <strong>aucun transfert budgétaire direct de l'État vers le GCT n'est enregistré</strong> sur la période 2016–2026.
-                            </p>
-                            <p className="text-sm text-slate-400 mt-3 leading-relaxed">
-                                Les seuls engagements de l'État identifiés sont des <strong className="text-white">garanties de dette externe</strong> (à première demande), des <strong className="text-white">subventions techniques ciblées</strong> (ex. appui RSE via AFD), et des <strong className="text-white">arriérés de cotisations sociales</strong>.
-                            </p>
+                            <div className="text-sm text-slate-300 leading-relaxed">
+                                <ReactMarkdown allowedElements={['strong', 'p']} unwrapDisallowed={true}>
+                                    {t('report.fig7_desc')}
+                                </ReactMarkdown>
+                            </div>
+                            <div className="text-sm text-slate-400 mt-3 leading-relaxed">
+                                <ReactMarkdown allowedElements={['strong', 'p']} unwrapDisallowed={true}>
+                                    {t('report.fig7_impact')}
+                                </ReactMarkdown>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,7 +125,7 @@ function FigureBlock({ id }: { id: string }) {
         const chart = reportData.charts[0];
         return (
             <div className="mt-6 mb-4 card bg-slate-800/80 p-4">
-                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase">Figure 8 – Résultats nets GCT</h3>
+                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase text-start">{t('report.fig8_title')}</h3>
                 <div style={{ height: '400px', width: '100%', minWidth: 0 }}>
                     <ResponsiveContainer width="100%" height={400} minWidth={0}>
                         <LineChart data={chart.data} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
@@ -138,7 +146,7 @@ function FigureBlock({ id }: { id: string }) {
         const chart = reportData.charts[1];
         return (
             <div className="mt-6 mb-4 card bg-slate-800/80 p-4">
-                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase">Figure 9 – Structure endettement</h3>
+                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase text-start">{t('report.fig9_title')}</h3>
                 <div style={{ height: '400px', width: '100%', minWidth: 0 }}>
                     <ResponsiveContainer width="100%" height={400} minWidth={0}>
                         <PieChart>
@@ -149,7 +157,13 @@ function FigureBlock({ id }: { id: string }) {
                                 outerRadius={100}
                                 fill="#8884d8"
                                 dataKey="value"
-                                label={({ name, value }: any) => `${name}: ${value} MD`}
+                                label={({ name, value }: any) => {
+                                    // Localize the name if it's a known debt type
+                                    const localizedName = name.toLowerCase().includes('banques') ? t('report.banks') :
+                                        name.toLowerCase().includes('étatiques') ? t('report.eep_cpg') :
+                                            name.toLowerCase().includes('état') ? t('report.state') : name;
+                                    return `${localizedName}: ${value} MD`;
+                                }}
                             >
                                 {chart.data.map((entry: any, index: number) => (
                                     <Cell key={`cell-${index}`} fill={entry.color} />
@@ -168,7 +182,7 @@ function FigureBlock({ id }: { id: string }) {
         const chart = reportData.charts[2];
         return (
             <div className="mt-6 mb-4 card bg-slate-800/80 p-4">
-                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase">Figure 10 – Production vs capacité</h3>
+                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase text-start">{t('report.fig10_title')}</h3>
                 <div style={{ height: '400px', width: '100%', minWidth: 0 }}>
                     <ResponsiveContainer width="100%" height={400} minWidth={0}>
                         <BarChart data={chart.data} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
@@ -189,8 +203,8 @@ function FigureBlock({ id }: { id: string }) {
         const chart = reportData.charts[3];
         return (
             <div className="mt-6 mb-4 card bg-slate-800/80 p-4">
-                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase">
-                    Figure 11 – Structure détaillée de l'endettement (2017–2019)
+                <h3 className="text-sm font-semibold text-slate-200 mb-4 uppercase text-start">
+                    {t('report.fig11_title')}
                 </h3>
                 <div style={{ height: '400px', width: '100%', minWidth: 0 }}>
                     <ResponsiveContainer width="100%" height={400} minWidth={0}>
@@ -220,37 +234,39 @@ function FigureBlock({ id }: { id: string }) {
                                 iconType="square"
                                 iconSize={10}
                             />
-                            <Bar dataKey="dettes_etat" stackId="a" fill="#ef4444" name="Dettes État" />
-                            <Bar dataKey="dettes_banques" stackId="a" fill="#3b82f6" name="Dettes Banques" />
-                            <Bar dataKey="dettes_eep" stackId="a" fill="#f59e0b" name="Dettes EEP (CPG)" />
-                            <Bar dataKey="dettes_fournisseurs" stackId="a" fill="#8b5cf6" name="Fournisseurs privés" />
-                            <Bar dataKey="dettes_caisses_sociales" stackId="a" fill="#ec4899" name="Caisses sociales" />
+                            <Bar dataKey="dettes_etat" stackId="a" fill="#ef4444" name={t('report.debt_state')} />
+                            <Bar dataKey="dettes_banques" stackId="a" fill="#3b82f6" name={t('report.debt_banks')} />
+                            <Bar dataKey="dettes_eep" stackId="a" fill="#f59e0b" name={t('report.debt_eep')} />
+                            <Bar dataKey="dettes_fournisseurs" stackId="a" fill="#8b5cf6" name={t('report.suppliers')} />
+                            <Bar dataKey="dettes_caisses_sociales" stackId="a" fill="#ec4899" name={t('report.social_funds')} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
-                <p className="text-xs text-slate-500 mt-4 italic">{chart.note}</p>
+                <p className="text-xs text-slate-500 mt-4 italic text-start">
+                    {t(`data.chart_${chart.id}_note`)}
+                </p>
 
                 {/* Légende explicative des couleurs */}
                 <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-3 pt-4 border-t border-slate-700">
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-none" style={{ backgroundColor: '#ef4444' }}></div>
-                        <span className="text-xs text-slate-400 font-semibold uppercase">État</span>
+                        <span className="text-xs text-slate-400 font-semibold uppercase">{t('report.state')}</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-none" style={{ backgroundColor: '#3b82f6' }}></div>
-                        <span className="text-xs text-slate-400 font-semibold uppercase">Banques</span>
+                        <span className="text-xs text-slate-400 font-semibold uppercase">{t('report.banks')}</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-none" style={{ backgroundColor: '#f59e0b' }}></div>
-                        <span className="text-xs text-slate-400 font-semibold uppercase">EEP (CPG)</span>
+                        <span className="text-xs text-slate-400 font-semibold uppercase">{t('report.eep_cpg')}</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-none" style={{ backgroundColor: '#8b5cf6' }}></div>
-                        <span className="text-xs text-slate-400 font-semibold uppercase">Fournisseurs</span>
+                        <span className="text-xs text-slate-400 font-semibold uppercase">{t('report.suppliers_short')}</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-none" style={{ backgroundColor: '#ec4899' }}></div>
-                        <span className="text-xs text-slate-400 font-semibold uppercase">Caisses sociales</span>
+                        <span className="text-xs text-slate-400 font-semibold uppercase">{t('report.social_funds_short')}</span>
                     </div>
                 </div>
             </div>
@@ -261,6 +277,42 @@ function FigureBlock({ id }: { id: string }) {
 }
 
 export default function FinanceReport() {
+    const { t, i18n } = useTranslation();
+    const currentLang = i18n.language;
+    const isAr = currentLang === 'ar';
+
+    const [data, setData] = useState<any>(null);
+    const [timeseries, setTimeseries] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const loadData = async () => {
+            setLoading(true);
+            try {
+                const suffix = isAr ? '_ar' : '';
+                const dataModule = await import(`../data/reportData${suffix}.json`);
+                const tsModule = await import(`../data/financing_timeseries${suffix}.json`);
+                setData(dataModule.default);
+                setTimeseries(tsModule.default);
+            } catch (error) {
+                console.error("Error loading finance report data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadData();
+    }, [isAr]);
+
+    if (loading || !data || !timeseries) {
+        return (
+            <div className="flex items-center justify-center min-h-[400px]">
+                <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+            </div>
+        );
+    }
+
+    const reportMarkdown = isAr ? reportMarkdownAr : reportMarkdownFr;
+
     const lines = reportMarkdown.split('\n');
     const blocks: { type: 'md' | 'fig'; content: string }[] = [];
     let buffer: string[] = [];
@@ -289,15 +341,15 @@ export default function FinanceReport() {
         <div className="max-w-5xl mx-auto py-10 px-4 print:px-0 print:py-0">
             <section className="mb-8 flex flex-col gap-4 print:gap-2 print:mb-4">
                 <div className="flex items-start justify-between gap-4">
-                    <div>
+                    <div className="text-start">
                         <h1 className="text-3xl font-black tracking-tight uppercase">
-                            GROUPE CHIMIQUE TUNISIEN (GCT)
+                            {t('report.title')}
                         </h1>
                         <h2 className="text-lg font-black tracking-tight uppercase text-slate-400 mt-2">
-                            Audit financier consolidé : transferts, garanties et endettement (2008–2026)
+                            {t('report.subtitle')}
                         </h2>
                         <p className="mt-2 text-sm text-slate-300 uppercase tracking-widest">
-                            Synthèse des données du module financier
+                            {t('report.summary')}
                         </p>
                     </div>
 
@@ -306,29 +358,29 @@ export default function FinanceReport() {
                         onClick={handlePrint}
                         className="hidden print:hidden md:inline-flex px-4 py-2 text-xs font-black uppercase tracking-widest border border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 transition-colors"
                     >
-                        Exporter en PDF
+                        {t('report.export_pdf')}
                     </button>
                 </div>
 
-                <div className="text-xs text-slate-400 uppercase tracking-widest print:text-[10px]">
+                <div className="text-xs text-slate-400 uppercase tracking-widest print:text-[10px] text-start">
                     <p className="font-semibold">
-                        Auteurs&nbsp;: Moez Elbey &amp; Hajer Ghammagui – Équipe Ba7ath
+                        {t('report.authors')}
                     </p>
-                    <p>Version : 1.0 – Date : 06/02/2026</p>
+                    <p>{t('report.version')}</p>
                 </div>
             </section>
 
             {blocks.map((block, idx) =>
                 block.type === 'md' ? (
                     <section key={idx} className="mb-6">
-                        <div className="prose prose-invert max-w-none prose-headings:uppercase prose-headings:tracking-[0.25em] prose-h1:text-3xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:text-sm prose-p:text-slate-200 prose-p:leading-relaxed prose-strong:text-slate-100 prose-em:text-slate-300 prose-li:text-sm prose-li:text-slate-200">
+                        <div className="prose prose-invert max-w-none prose-headings:uppercase prose-headings:tracking-[0.25em] prose-h1:text-3xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:text-sm prose-p:text-slate-200 prose-p:leading-relaxed prose-strong:text-slate-100 prose-em:text-slate-300 prose-li:text-sm prose-li:text-slate-200 text-start">
                             <ReactMarkdown skipHtml={true}>
                                 {block.content}
                             </ReactMarkdown>
                         </div>
                     </section>
                 ) : (
-                    <FigureBlock key={idx} id={block.content} />
+                    <FigureBlock key={idx} id={block.content} reportData={data} financingTimeseries={timeseries} />
                 )
             )}
         </div>

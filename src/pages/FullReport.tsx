@@ -6,6 +6,7 @@ import {
     ExternalLink
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import ContextBlock from '../components/ui/ContextBlock';
 import AnalyticalPanel from '../components/layout/right-panel/AnalyticalPanel';
 import AnalyticalGates from '../components/layout/right-panel/AnalyticalGates';
@@ -14,15 +15,18 @@ import QuickNotes from '../components/layout/right-panel/QuickNotes';
 
 
 export default function FullReport() {
+    const { t, i18n } = useTranslation();
+    const isRtl = i18n.dir() === 'rtl';
+
     return (
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-900 pb-4">
-                <div>
+                <div className="text-start">
                     <h2 className="text-3xl font-black text-white uppercase tracking-tighter">
-                        Ressources & Documentation
+                        {t('resources.title')}
                     </h2>
                     <p className="text-slate-500 text-sm font-semibold uppercase tracking-widest mt-1">
-                        Accès aux corpus de données, méthodologie de calcul et rapports officiels.
+                        {t('resources.subtitle')}
                     </p>
                 </div>
             </div>
@@ -38,11 +42,10 @@ export default function FullReport() {
                             <BookOpen size={48} className="group-hover:scale-110 transition-transform" />
                         </div>
                         <h3 className="text-3xl font-black text-white mb-6 uppercase tracking-tighter">
-                            Audit financier – GCT
+                            {t('resources.audit_finance_title')}
                         </h3>
                         <p className="text-slate-400 max-w-lg mx-auto mb-12 text-base font-semibold uppercase tracking-widest leading-relaxed">
-                            Analyse technique consolidée des transferts étatiques, des garanties souveraines et de l&apos;encours
-                            de la dette du Groupe Chimique Tunisien. Visualisation interactive et export PDF.
+                            {t('resources.audit_finance_desc')}
                         </p>
 
 
@@ -52,7 +55,7 @@ export default function FullReport() {
                                 className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-none hover:bg-blue-500 transition-colors font-black text-sm uppercase tracking-widest shadow-xl shadow-blue-900/40"
                             >
                                 <BookOpen size={18} />
-                                OUVRIR_LE_RAPPORT_FINANCIER
+                                {t('resources.open_finance_report')}
                             </Link>
                         </div>
                     </div>
@@ -65,11 +68,10 @@ export default function FullReport() {
                             <BookOpen size={40} className="group-hover:scale-110 transition-transform" />
                         </div>
                         <h3 className="text-2xl font-black text-white mb-4 uppercase tracking-tighter text-center">
-                            Rapport environnemental – Golfe de Gabès
+                            {t('resources.env_report_title')}
                         </h3>
                         <p className="text-slate-400 max-w-xl mx-auto mb-8 text-xs font-semibold uppercase tracking-widest leading-relaxed text-center">
-                            Synthèse des impacts écologiques du complexe chimique (mer, sols, air, nappes) à partir des données
-                            scientifiques et des audits environnementaux. Visualisation interactive et export PDF.
+                            {t('resources.env_report_desc')}
                         </p>
 
 
@@ -79,7 +81,7 @@ export default function FullReport() {
                                 className="inline-flex items-center gap-2 border border-emerald-500/60 text-emerald-400 px-8 py-3 rounded-none hover:bg-emerald-500/10 transition-colors font-black text-xs uppercase tracking-widest"
                             >
                                 <BookOpen size={16} />
-                                OUVRIR_LE_RAPPORT_ECOLOGIQUE
+                                {t('resources.open_env_report')}
                             </Link>
                         </div>
                     </div>
@@ -88,25 +90,25 @@ export default function FullReport() {
                     {/* Deux cartes info finance (inchangées) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="card bg-slate-800/80 backdrop-blur-md p-4 rounded-none border border-slate-700 shadow-md">
-                            <h3 className="text-sm font-semibold text-slate-200 mb-8 flex items-center gap-2 uppercase tracking-widest px-2 pt-2">
+                            <h3 className="text-sm font-semibold text-slate-200 mb-8 flex items-center gap-2 uppercase tracking-widest px-2 pt-2 text-start">
                                 <Database size={14} className="text-blue-500" />
-                                Data Source Matrix
+                                {t('resources.data_source_matrix')}
                             </h3>
                             <div className="space-y-6">
-                                <div className="pl-4 border-l-2 border-slate-800">
+                                <div className="ps-4 border-s-2 border-slate-800 text-start">
                                     <h4 className="text-xs font-black text-white mb-1 uppercase tracking-wider">
-                                        Audit_2020_2023
+                                        {t('resources.audit_2020_2023')}
                                     </h4>
                                     <p className="text-xs text-slate-500 leading-relaxed uppercase tracking-tighter font-medium">
-                                        Certified data extracted from annual SOE reports annexed to official Finance Laws.
+                                        {t('resources.audit_2020_2023_desc')}
                                     </p>
                                 </div>
-                                <div className="pl-4 border-l-2 border-slate-800">
+                                <div className="ps-4 border-s-2 border-slate-800 text-start">
                                     <h4 className="text-xs font-black text-white mb-1 uppercase tracking-wider">
-                                        Projection_2024_2026
+                                        {t('resources.projection_2024_2026')}
                                     </h4>
                                     <p className="text-xs text-slate-500 leading-relaxed uppercase tracking-tighter font-medium">
-                                        Forecast models based on valid industrial budgets and LF sovereign guarantee ceilings.
+                                        {t('resources.projection_2024_2026_desc')}
                                     </p>
                                 </div>
                             </div>
@@ -114,27 +116,25 @@ export default function FullReport() {
 
 
                         <div className="card bg-slate-800/80 backdrop-blur-md p-4 rounded-none border border-slate-700 shadow-md">
-                            <h3 className="text-sm font-semibold text-slate-200 mb-8 flex items-center gap-2 uppercase tracking-widest px-2 pt-2">
+                            <h3 className="text-sm font-semibold text-slate-200 mb-8 flex items-center gap-2 uppercase tracking-widest px-2 pt-2 text-start">
                                 <ShieldCheck size={14} className="text-emerald-500" />
-                                Fiabilité et Calculs
+                                {t('resources.reliability_calculations')}
                             </h3>
                             <div className="space-y-6">
-                                <div className="pl-4 border-l-2 border-slate-800">
+                                <div className="ps-4 border-s-2 border-slate-800 text-start">
                                     <h4 className="text-xs font-black text-white mb-1 uppercase tracking-wider">
-                                        Unité Monétaire
+                                        {t('resources.currency_unit')}
                                     </h4>
                                     <p className="text-xs text-slate-500 leading-relaxed uppercase tracking-tighter font-medium">
-                                        Standardisation en MDT (Millions de Dinars Tunisiens). Conversions de devises au taux
-                                        moyen de l&apos;année d&apos;émission.
+                                        {t('resources.currency_unit_desc')}
                                     </p>
                                 </div>
-                                <div className="pl-4 border-l-2 border-slate-800">
+                                <div className="ps-4 border-s-2 border-slate-800 text-start">
                                     <h4 className="text-xs font-black text-white mb-1 uppercase tracking-wider">
-                                        Indicateurs de Risque
+                                        {t('resources.risk_indicators')}
                                     </h4>
                                     <p className="text-xs text-slate-500 leading-relaxed uppercase tracking-tighter font-medium">
-                                        Ratios calculés selon la méthodologie du Ba7ath Lab pour l&apos;évaluation de la pression sur
-                                        les finances publiques.
+                                        {t('resources.risk_indicators_desc')}
                                     </p>
                                 </div>
                             </div>
@@ -142,11 +142,9 @@ export default function FullReport() {
                     </div>
 
 
-                    <ContextBlock type="warning" title="Limitation de Responsabilité">
-                        <p className="text-sm uppercase tracking-tighter font-bold">
-                            Cette plateforme est un outil de visualisation indépendant. Bien que les données proviennent
-                            de sources officielles, les analyses et interprétations fournies ici n&apos;engagent que le
-                            Ba7ath Lab.
+                    <ContextBlock type="warning" title={t('resources.disclaimer_title')}>
+                        <p className="text-sm uppercase tracking-tighter font-bold text-start">
+                            {t('resources.disclaimer_desc')}
                         </p>
                     </ContextBlock>
                 </div>
@@ -156,8 +154,8 @@ export default function FullReport() {
                 <div className="lg:col-span-3">
                     <AnalyticalPanel>
                         <AnalyticalGates>
-                            <p className="text-xs text-slate-500 font-bold uppercase tracking-tighter italic">
-                                Pas de filtres pour cette section.
+                            <p className="text-xs text-slate-500 font-bold uppercase tracking-tighter italic text-start">
+                                {t('resources.no_filter')}
                             </p>
                         </AnalyticalGates>
 
@@ -165,13 +163,12 @@ export default function FullReport() {
                         <AuditGlossary
                             items={[
                                 {
-                                    term: 'Audit financier',
-                                    definition:
-                                        'Analyse consolidée des transferts, garanties et endettement du GCT sur 2008–2026.'
+                                    term: t('resources.glossary_audit'),
+                                    definition: t('resources.glossary_audit_def')
                                 },
                                 {
-                                    term: 'Ba7ath Lab',
-                                    definition: 'Entité de recherche en transparence financière et gouvernance.'
+                                    term: t('resources.glossary_lab'),
+                                    definition: t('resources.glossary_lab_def')
                                 }
                             ]}
                         />
@@ -181,19 +178,19 @@ export default function FullReport() {
 
 
                         <div className="card bg-slate-800/80 p-5 rounded-none border border-slate-700/50 shadow-sm transition-all duration-300">
-                            <h3 className="text-xs font-black text-slate-400 mb-4 flex items-center gap-2 uppercase tracking-wider">
+                            <h3 className="text-xs font-black text-slate-400 mb-4 flex items-center gap-2 uppercase tracking-wider text-start">
                                 <LinkIcon size={14} className="text-slate-600" />
-                                Raccourcis_Audit
+                                {t('resources.shortcuts_audit')}
                             </h3>
                             <div className="space-y-2">
                                 <Link
                                     to="/finance/evolution"
                                     className="flex items-center justify-between p-2 rounded-none hover:bg-slate-900 transition-colors group"
                                 >
-                                    <span className="text-xs text-slate-500 font-bold uppercase">Séries temporelles</span>
+                                    <span className="text-xs text-slate-500 font-bold uppercase">{t('resources.time_series')}</span>
                                     <ExternalLink
                                         size={12}
-                                        className="text-slate-700 group-hover:text-blue-500"
+                                        className={`text-slate-700 group-hover:text-blue-500 ${isRtl ? 'rotate-180' : ''}`}
                                     />
                                 </Link>
                                 <Link
@@ -201,11 +198,11 @@ export default function FullReport() {
                                     className="flex items-center justify-between p-2 rounded-none hover:bg-slate-900 transition-colors group"
                                 >
                                     <span className="text-xs text-slate-500 font-bold uppercase">
-                                        Cartographie bailleurs
+                                        {t('resources.backer_mapping')}
                                     </span>
                                     <ExternalLink
                                         size={12}
-                                        className="text-slate-700 group-hover:text-blue-500"
+                                        className={`text-slate-700 group-hover:text-blue-500 ${isRtl ? 'rotate-180' : ''}`}
                                     />
                                 </Link>
                                 <Link
@@ -213,11 +210,11 @@ export default function FullReport() {
                                     className="flex items-center justify-between p-2 rounded-none hover:bg-slate-900 transition-colors group"
                                 >
                                     <span className="text-xs text-slate-500 font-bold uppercase">
-                                        Rapport complet
+                                        {t('resources.full_report')}
                                     </span>
                                     <ExternalLink
                                         size={12}
-                                        className="text-slate-700 group-hover:text-blue-500"
+                                        className={`text-slate-700 group-hover:text-blue-500 ${isRtl ? 'rotate-180' : ''}`}
                                     />
                                 </Link>
                             </div>

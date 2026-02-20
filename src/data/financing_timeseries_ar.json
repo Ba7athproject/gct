@@ -1,0 +1,213 @@
+{
+    "id": "financing_timeseries",
+    "title": "تطور التمويلات الخارجية للمجمع الكيميائي التونسي",
+    "charts": [
+        {
+            "id": "total_financing_timeline",
+            "type": "line",
+            "title": "تطور التمويلات الخارجية للمجمع الكيميائي (2016–2026)",
+            "xLabel": "السنة",
+            "yLabel": "المبلغ التراكمي (مليون أورو)",
+            "color": "#0ea5e9",
+            "data": [
+                {
+                    "annee": 2020,
+                    "total_ME": 1.7
+                },
+                {
+                    "annee": 2021,
+                    "total_ME": 4.0
+                },
+                {
+                    "annee": 2022,
+                    "total_ME": 13.3
+                },
+                {
+                    "annee": 2023,
+                    "total_ME": 6.4
+                },
+                {
+                    "annee": 2024,
+                    "total_ME": 6.6
+                },
+                {
+                    "annee": 2025,
+                    "total_ME": 6.8
+                },
+                {
+                    "annee": 2026,
+                    "total_ME": 6.9
+                }
+            ],
+            "note": "تطور مبالغ التمويل السنوية للمجمع الكيميائي (بيانات بمليون أورو، محولة من م.د.ت)"
+        },
+        {
+            "id": "financing_by_bailleur",
+            "type": "bar",
+            "title": "التمويلات حسب الممول (2020–2026)",
+            "xLabel": "السنة",
+            "yLabel": "المبلغ (مليون أورو)",
+            "color": "#8b5cf6",
+            "data": [
+                {
+                    "annee": 2020,
+                    "montant_ME": 1.7,
+                    "type_bailleur": "البنك الدولي/البنك الإفريقي للتنمية",
+                    "color": "#3b82f6"
+                },
+                {
+                    "annee": 2021,
+                    "montant_ME": 4.0,
+                    "type_bailleur": "صناديق سيادية",
+                    "color": "#06b6d4"
+                },
+                {
+                    "annee": 2022,
+                    "montant_ME": 13.3,
+                    "type_bailleur": "بنوك محلية",
+                    "color": "#f59e0b"
+                },
+                {
+                    "annee": 2023,
+                    "montant_ME": 6.4,
+                    "type_bailleur": "المؤسسة الدولية الإسلامية",
+                    "color": "#10b981"
+                },
+                {
+                    "annee": 2024,
+                    "montant_ME": 6.6,
+                    "type_bailleur": "القطاع العام",
+                    "color": "#8b5cf6"
+                },
+                {
+                    "annee": 2025,
+                    "montant_ME": 6.8,
+                    "type_bailleur": "متنوع",
+                    "color": "#ec4899"
+                },
+                {
+                    "annee": 2026,
+                    "montant_ME": 6.9,
+                    "type_bailleur": "القطاع العام",
+                    "color": "#a855f7"
+                }
+            ],
+            "note": "توزيع التمويلات حسب الممول والفئة (2020–2026)"
+        },
+        {
+            "id": "financing_by_phase",
+            "type": "donut",
+            "title": "التمويلات حسب مرحلة الدورة",
+            "xLabel": "المرحلة",
+            "yLabel": "المبلغ (مليون أورو)",
+            "data": [
+                {
+                    "name": "استقرار (2020-2021)",
+                    "value": 5.7,
+                    "color": "#3b82f6"
+                },
+                {
+                    "name": "ذروة تاريخية (2022)",
+                    "value": 13.3,
+                    "color": "#10b981"
+                },
+                {
+                    "name": "تصحيح (2023)",
+                    "value": 6.4,
+                    "color": "#f59e0b"
+                },
+                {
+                    "name": "تثبيت (2024-2026)",
+                    "value": 20.3,
+                    "color": "#8b5cf6"
+                }
+            ],
+            "note": "توزيع المبالغ الإجمالية حسب مرحلة دورة التمويل"
+        },
+        {
+            "id": "financing_by_instrument",
+            "type": "bar",
+            "title": "التمويلات حسب الأداة (2020–2026)",
+            "xLabel": "الأداة",
+            "yLabel": "عدد العمليات",
+            "color": "#10b981",
+            "data": [
+                {
+                    "instrument": "قرض",
+                    "count": 2,
+                    "color": "#3b82f6"
+                },
+                {
+                    "instrument": "خط قرض",
+                    "count": 1,
+                    "color": "#06b6d4"
+                },
+                {
+                    "instrument": "قصير المدى",
+                    "count": 1,
+                    "color": "#f59e0b"
+                },
+                {
+                    "instrument": "تمويل تجاري",
+                    "count": 1,
+                    "color": "#10b981"
+                },
+                {
+                    "instrument": "دعم ميزانية",
+                    "count": 1,
+                    "color": "#8b5cf6"
+                },
+                {
+                    "instrument": "إعادة تفاوض",
+                    "count": 1,
+                    "color": "#ec4899"
+                },
+                {
+                    "instrument": "تثبيت",
+                    "count": 1,
+                    "color": "#a855f7"
+                }
+            ],
+            "note": "عدد عمليات التمويل حسب نوع الأداة"
+        },
+        {
+            "id": "financing_share_ep_budget",
+            "type": "line",
+            "title": "حصة المجمع الكيميائي في ميزانية المؤسسات العمومية (2020–2026)",
+            "xLabel": "السنة",
+            "yLabel": "حصة ميزانية المؤسسات العمومية (%)",
+            "color": "#ef4444",
+            "data": [
+                {
+                    "annee": 2020,
+                    "share_pct": 12.4
+                },
+                {
+                    "annee": 2021,
+                    "share_pct": 22.8
+                },
+                {
+                    "annee": 2022,
+                    "share_pct": 58.5
+                },
+                {
+                    "annee": 2023,
+                    "share_pct": 34.2
+                },
+                {
+                    "annee": 2024,
+                    "share_pct": 33.5
+                },
+                {
+                    "annee": 2025,
+                    "share_pct": 32.1
+                },
+                {
+                    "annee": 2026,
+                    "share_pct": 30.5
+                }
+            ],
+            "note": "الوزن المتزايد للمجمع الكيميائي في مخصصات ميزانية المؤسسات العمومية، الذروة في 2022"
+        }
+    ]
+}

@@ -48,7 +48,7 @@
         "id": 4,
         "date": "2024-01",
         "year": 2024,
-        "bailleur": "Gouvernement Tunisien",
+        "bailleur": "GOV",
         "bailleur_full": "Ligne de trésorerie gouvernementale",
         "montant": 120,
         "devise": "MD",

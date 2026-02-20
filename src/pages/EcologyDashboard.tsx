@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
     Waves,
     TreePine,
@@ -106,47 +107,58 @@ interface ArticlesDataset {
     articles: ThematicArticle[];
 }
 
-// --- Tabs config ---
+// --- Tabs base config (labels resolved via t() inside component) ---
 
-const TABS = [
+const TABS_CONFIG = [
     {
         id: 'articles',
-        label: 'Articles thématiques',
+        labelKey: 'sidebar.sea_fishing',
         icon: BookOpenCheck,
         file: 'meta_articles',
-        type: 'meta_articles' as const
+        type: 'meta_articles' as const,
+        labelFr: 'Articles thématiques',
+        labelAr: 'مقالات موضوعاتية'
     },
-    { id: 'mer', label: 'Mer & Pêche', icon: Waves, file: 'env_mer', type: 'env' as const },
-    { id: 'sols', label: 'Sols & Végétation', icon: TreePine, file: 'env_sols', type: 'env' as const },
-    { id: 'air', label: 'Air & Poussières', icon: Wind, file: 'env_air', type: 'env' as const },
-    { id: 'eau', label: 'Eaux Souterraines', icon: Droplets, file: 'env_eau', type: 'env' as const },
+    { id: 'mer', labelFr: 'Mer & Pêche', labelAr: 'البحر والصيد', icon: Waves, file: 'env_mer', type: 'env' as const },
+    { id: 'sols', labelFr: 'Sols & Végétation', labelAr: 'التربة والنباتات', icon: TreePine, file: 'env_sols', type: 'env' as const },
+    { id: 'air', labelFr: 'Air & Poussières', labelAr: 'الهواء والغبار', icon: Wind, file: 'env_air', type: 'env' as const },
+    { id: 'eau', labelFr: 'Eaux Souterraines', labelAr: 'المياه الجوفية', icon: Droplets, file: 'env_eau', type: 'env' as const },
     {
         id: 'methodologie',
-        label: 'Méthodologie & Lexique',
+        labelFr: 'Méthodologie & Lexique',
+        labelAr: 'المنهجية والمعجم',
         icon: BookOpenCheck,
         file: 'meta_methodologie',
         type: 'meta_methodo' as const
     },
     {
         id: 'bibliographie',
-        label: 'Bibliographie',
+        labelFr: 'Bibliographie',
+        labelAr: 'المراجع والمصادر',
         icon: BookOpenCheck,
         file: 'meta_bibliographie',
         type: 'meta_biblio' as const
     }
 ];
 
-type TabType = (typeof TABS)[number]['type'];
+type TabType = (typeof TABS_CONFIG)[number]['type'];
 
 export default function EcologyDashboard() {
+    const { i18n } = useTranslation();
+    const isAr = i18n.language === 'ar';
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const tabParam = queryParams.get('tab');
 
+    const TABS = useMemo(() => TABS_CONFIG.map(tab => ({
+        ...tab,
+        label: isAr ? tab.labelAr : tab.labelFr
+    })), [isAr]);
+
     const [activeTab, setActiveTab] = useState<string>(
-        tabParam && TABS.find(t => t.id === tabParam) ? tabParam : TABS[0].id
+        tabParam && TABS_CONFIG.find(t => t.id === tabParam) ? tabParam : TABS_CONFIG[0].id
     );
-    const [tabType, setTabType] = useState<TabType>('env');
+    const [tabType, setTabType] = useState<TabType>('meta_articles');
     const [envData, setEnvData] = useState<EcologyDataset | null>(null);
     const [methodoData, setMethodoData] = useState<MethodologieDataset | null>(null);
     const [biblioData, setBiblioData] = useState<BibliographieDataset | null>(null);
@@ -155,12 +167,12 @@ export default function EcologyDashboard() {
 
     // Sync tab from URL
     useEffect(() => {
-        if (tabParam && TABS.find(t => t.id === tabParam)) {
+        if (tabParam && TABS_CONFIG.find(t => t.id === tabParam)) {
             setActiveTab(tabParam);
         }
     }, [tabParam]);
 
-    // Load data depending on tab
+    // Load data depending on tab AND language
     useEffect(() => {
         const loadData = async () => {
             setLoading(true);
@@ -170,22 +182,25 @@ export default function EcologyDashboard() {
             setArticlesData(null);
 
             try {
-                const tab = TABS.find(t => t.id === activeTab);
+                const tab = TABS_CONFIG.find(t => t.id === activeTab);
                 if (!tab) return;
 
                 setTabType(tab.type);
 
+                // For all ecology data files, load Arabic variant when language is Arabic
+                const suffix = isAr ? '_ar' : '';
+
                 if (tab.type === 'env') {
-                    const module = await import(`../data/${tab.file}.json`);
+                    const module = await import(`../data/${tab.file}${suffix}.json`);
                     setEnvData(module.default as EcologyDataset);
                 } else if (tab.type === 'meta_methodo') {
-                    const module = await import(`../data/${tab.file}.json`);
+                    const module = await import(`../data/${tab.file}${suffix}.json`);
                     setMethodoData(module.default as MethodologieDataset);
                 } else if (tab.type === 'meta_biblio') {
-                    const module = await import(`../data/${tab.file}.json`);
+                    const module = await import(`../data/${tab.file}${suffix}.json`);
                     setBiblioData(module.default as BibliographieDataset);
                 } else if (tab.type === 'meta_articles') {
-                    const module = await import(`../data/${tab.file}.json`);
+                    const module = await import(`../data/${tab.file}${suffix}.json`);
                     setArticlesData(module.default as ArticlesDataset);
                 }
             } catch (error) {
@@ -196,7 +211,7 @@ export default function EcologyDashboard() {
         };
 
         loadData();
-    }, [activeTab]);
+    }, [activeTab, isAr]);
 
     // Helper to switch env tab from articles
     const handleOpenEnvFromArticle = (envId: string | undefined) => {
@@ -209,12 +224,12 @@ export default function EcologyDashboard() {
     return (
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-900 pb-4">
-                <div>
+                <div className="text-start">
                     <h2 className="text-3xl font-black text-white uppercase tracking-tighter">
-                        Module Environnemental
+                        {isAr ? 'الوحدة البيئية' : 'Module Environnemental'}
                     </h2>
                     <p className="text-slate-500 text-sm font-semibold uppercase tracking-widest mt-1">
-                        Audit des impacts écologiques du Complexe Chimique
+                        {isAr ? 'تدقيق الآثار البيئية للمجمع الكيميائي' : 'Audit des impacts écologiques du Complexe Chimique'}
                     </p>
                 </div>
                 <div className="flex gap-2">
@@ -227,8 +242,8 @@ export default function EcologyDashboard() {
 
             {/* Tab Selector */}
             <div className="flex items-center gap-2 bg-slate-800/80 p-1.5 rounded-none border border-slate-900 shadow-xl overflow-x-auto pr-4">
-                <span className="text-xs font-black text-slate-600 uppercase ml-3 tracking-[0.2em] whitespace-nowrap">
-                    Source_Impact :
+                <span className="text-xs font-black text-slate-600 uppercase ms-3 tracking-[0.2em] whitespace-nowrap">
+                    {isAr ? 'مصدر_التأثير :' : 'Source_Impact :'}
                 </span>
                 <div className="flex gap-1 min-w-max">
                     {TABS.map(tab => {
@@ -319,8 +334,8 @@ export default function EcologyDashboard() {
                             {/* Text Blocks Section */}
                             {envData.text_blocks && envData.text_blocks.length > 0 && (
                                 <div className="space-y-6">
-                                    <h4 className="text-[11px] font-black text-slate-600 uppercase tracking-[0.3em] pl-2 border-l-2 border-emerald-500">
-                                        Contexte investigation
+                                    <h4 className="text-[11px] font-black text-slate-600 uppercase tracking-[0.3em] ps-2 border-s-2 border-emerald-500">
+                                        {isAr ? 'سياق_التحقيق' : 'Contexte investigation'}
                                     </h4>
                                     <div className="grid grid-cols-1 gap-4">
                                         {envData.text_blocks.map(block => (
@@ -344,7 +359,7 @@ export default function EcologyDashboard() {
 
                             {methodoData.sections.map(section => (
                                 <div key={section.id} className="space-y-3">
-                                    <h3 className="text-sm font-black text-slate-200 uppercase tracking-[0.25em] border-l-2 border-emerald-500 pl-3">
+                                    <h3 className="text-sm font-black text-slate-200 uppercase tracking-[0.25em] border-s-2 border-emerald-500 ps-3 text-start">
                                         {section.title}
                                     </h3>
                                     {section.body &&
@@ -384,7 +399,7 @@ export default function EcologyDashboard() {
                             <div className="space-y-6">
                                 {biblioData.groups.map(group => (
                                     <div key={group.id} className="space-y-3">
-                                        <h3 className="text-sm font-black text-slate-200 uppercase tracking-[0.25em] border-l-2 border-emerald-500 pl-3">
+                                        <h3 className="text-sm font-black text-slate-200 uppercase tracking-[0.25em] border-s-2 border-emerald-500 ps-3 text-start">
                                             {group.title}
                                         </h3>
                                         <ul className="space-y-2">
@@ -399,7 +414,7 @@ export default function EcologyDashboard() {
                                                         className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest text-blue-400 mt-1 hover:text-blue-300"
                                                     >
                                                         <ExternalLink size={10} />
-                                                        Consulter la source
+                                                        {isAr ? 'عرض المصدر' : 'Consulter la source'}
                                                     </a>
                                                 </li>
                                             ))}
@@ -423,15 +438,15 @@ export default function EcologyDashboard() {
                                         className="border border-slate-800 bg-slate-900/60 p-4 space-y-3"
                                     >
                                         <div className="flex justify-between items-start gap-4">
-                                            <h3 className="text-sm font-black text-slate-200 uppercase tracking-[0.25em]">
+                                            <h3 className="text-sm font-black text-slate-200 uppercase tracking-[0.25em] text-start">
                                                 {article.title}
                                             </h3>
                                             {article.link_env_id && (
                                                 <button
                                                     onClick={() => handleOpenEnvFromArticle(article.link_env_id!)}
-                                                    className="text-[10px] font-black uppercase tracking-widest text-emerald-400 border border-emerald-500/40 px-2 py-1 hover:bg-emerald-500/10 transition-colors"
+                                                    className="text-[10px] font-black uppercase tracking-widest text-emerald-400 border border-emerald-500/40 px-2 py-1 hover:bg-emerald-500/10 transition-colors whitespace-nowrap"
                                                 >
-                                                    Voir les données
+                                                    {isAr ? 'عرض البيانات' : 'Voir les données'}
                                                 </button>
                                             )}
                                         </div>
@@ -447,7 +462,7 @@ export default function EcologyDashboard() {
                     ) : (
                         <div className="text-center py-20">
                             <p className="text-slate-500 font-bold uppercase tracking-widest">
-                                Échec du chargement des données d&apos;audit.
+                                {isAr ? 'فشل تحميل بيانات التدقيق.' : "Échec du chargement des données d'audit."}
                             </p>
                         </div>
                     )}
@@ -459,36 +474,49 @@ export default function EcologyDashboard() {
                         <AnalyticalGates>
                             <div>
                                 <label className="text-xs font-black text-slate-600 uppercase tracking-widest">
-                                    Filtre d&apos;Affichage
+                                    {isAr ? 'فلتر العرض' : "Filtre d'Affichage"}
                                 </label>
                                 <select className="mt-2 block w-full text-xs font-black uppercase tracking-wider border border-slate-700 rounded-none bg-slate-800 p-2 text-slate-300 outline-none focus:border-emerald-500 transition-all cursor-pointer">
-                                    <option>Vue Consolidée</option>
-                                    <option>Séries Brutes</option>
+                                    <option>{isAr ? 'عرض موحّد' : 'Vue Consolidée'}</option>
+                                    <option>{isAr ? 'سلاسل خام' : 'Séries Brutes'}</option>
                                 </select>
                             </div>
                         </AnalyticalGates>
 
                         <AuditGlossary
-                            items={[
+                            items={isAr ? [
                                 {
                                     term: 'Posidonia oceanica',
-                                    definition:
-                                        'Forêt sous-marine protégeant les côtes et nourrissant la pêche, en recul massif (déserts biologiques).'
+                                    definition: 'غابة بحرية تحمي الشواطئ وتغذي الصيد، في تراجع حاد (صحاري بيولوجية).'
+                                },
+                                {
+                                    term: 'الفوسفوجبس',
+                                    definition: 'مخلّف معالجة الفوسفات، يُصرَّف بكميات هائلة منذ سبعينيات القرن الماضي.'
+                                },
+                                {
+                                    term: 'المياه الجبسية الحمضية',
+                                    definition: 'مصبّات حمضية محمّلة بالفلور والمعادن الثقيلة والنيوكليدات المشعة تُصبّ في البحر أو البيئة.'
+                                },
+                                {
+                                    term: 'الرشح الحمضي',
+                                    definition: 'سوائل سامة (pH منخفض جدًا) تتسرّب إلى طبقات المياه الجوفية من مطامر النفايات.'
+                                }
+                            ] : [
+                                {
+                                    term: 'Posidonia oceanica',
+                                    definition: 'Forêt sous-marine protégeant les côtes et nourrissant la pêche, en recul massif (déserts biologiques).'
                                 },
                                 {
                                     term: 'Phosphogypse',
-                                    definition:
-                                        'Sous-produit du traitement des phosphates, déversé massivement depuis les années 1970.'
+                                    definition: 'Sous-produit du traitement des phosphates, déversé massivement depuis les années 1970.'
                                 },
                                 {
                                     term: 'Eaux gypseuses acides',
-                                    definition:
-                                        'Rejets acides chargés en fluor, métaux lourds et radionucléides déversés en mer ou dans l’environnement.'
+                                    definition: "Rejets acides chargés en fluor, métaux lourds et radionucléides déversés en mer ou dans l'environnement."
                                 },
                                 {
                                     term: 'Lixiviation acide',
-                                    definition:
-                                        "Liquides toxiques (pH très bas) s'infiltrant dans les nappes phréatiques depuis les décharges."
+                                    definition: "Liquides toxiques (pH très bas) s'infiltrant dans les nappes phréatiques depuis les décharges."
                                 }
                             ]}
                         />
@@ -496,16 +524,8 @@ export default function EcologyDashboard() {
                         <EcologyQuickNotes />
 
                         <AnalyticalLinks
-                            title="Navigation Pivot"
-                            links={[
-                                { label: 'Mer & Pêche', path: '/ecology?tab=mer' },
-                                { label: 'Sols & Végétation', path: '/ecology?tab=sols' },
-                                { label: 'Air & Poussières', path: '/ecology?tab=air' },
-                                { label: 'Eaux Souterraines', path: '/ecology?tab=eau' },
-                                { label: 'Méthodologie & Lexique', path: '/ecology?tab=methodologie' },
-                                { label: 'Bibliographie', path: '/ecology?tab=bibliographie' },
-                                { label: 'Articles thématiques', path: '/ecology?tab=articles' }
-                            ]}
+                            title={isAr ? 'روابط محورية' : 'Navigation Pivot'}
+                            links={TABS.map(tab => ({ label: tab.label, path: `/ecology?tab=${tab.id}` }))}
                         />
                     </AnalyticalPanel>
                 </div>

@@ -1,47 +1,70 @@
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceArea } from 'recharts';
 import { Info } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import ContextBlock from '../components/ui/ContextBlock';
 import AnalyticalPanel from '../components/layout/right-panel/AnalyticalPanel';
 import AnalyticalGates from '../components/layout/right-panel/AnalyticalGates';
 import AuditGlossary from '../components/layout/right-panel/AuditGlossary';
 import QuickNotes from '../components/layout/right-panel/QuickNotes';
 import AnalyticalLinks from '../components/layout/right-panel/AnalyticalLinks';
-import financementData from '../data/financement_2020_2026.json';
-
-const phases = [
-    { x1: 2020, x2: 2021, label: "Stabilité", color: "#3b82f6", desc: "Croissance modérée (+8.9%). Période de transition post-crise." },
-    { x1: 2021, x2: 2022, label: "Expansion", color: "#10b981", desc: "Explosion du financement (+58.5%). Pic historique de mobilisation." },
-    { x1: 2022, x2: 2023, label: "Contraction", color: "#ef4444", desc: "Correction sévère (-15.0%). Durcissement des conditions de crédit." },
-    { x1: 2023, x2: 2026, label: "Plateau", color: "#f59e0b", desc: "Stabilisation relative (+2.6%). Horizon de restructuration." },
-];
+import { useState, useEffect } from 'react';
+import financementDataDefault from '../data/financement_2020_2026.json';
 
 export default function Evolution() {
+    const { t, i18n } = useTranslation();
+    const isRtl = i18n.dir() === 'rtl';
+    const isAr = i18n.language === 'ar';
+
+    const [financementData, setFinancementData] = useState<any[]>(financementDataDefault);
+
+    useEffect(() => {
+        const loadData = async () => {
+            if (isAr) {
+                try {
+                    const module = await import('../data/financement_2020_2026_ar.json');
+                    setFinancementData(module.default);
+                } catch (e) {
+                    console.error("Failed to load Arabic financing data", e);
+                }
+            } else {
+                setFinancementData(financementDataDefault);
+            }
+        };
+        loadData();
+    }, [isAr]);
+
+    const phases = [
+        { x1: 2020, x2: 2021, label: t('evolution.phases.stability.label'), color: "#3b82f6", desc: t('evolution.phases.stability.desc') },
+        { x1: 2021, x2: 2022, label: t('evolution.phases.expansion.label'), color: "#10b981", desc: t('evolution.phases.expansion.desc') },
+        { x1: 2022, x2: 2023, label: t('evolution.phases.contraction.label'), color: "#ef4444", desc: t('evolution.phases.contraction.desc') },
+        { x1: 2023, x2: 2026, label: t('evolution.phases.plateau.label'), color: "#f59e0b", desc: t('evolution.phases.plateau.desc') },
+    ];
+
     return (
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-900 pb-4">
                 <div>
-                    <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Analyse de Trajectoire</h2>
-                    <p className="text-slate-400 text-sm font-semibold uppercase tracking-widest mt-1">Segmentation temporelle et dynamique des flux (2020-2026)</p>
+                    <h2 className="text-3xl font-black text-white uppercase tracking-tighter">{t('evolution.title')}</h2>
+                    <p className="text-slate-400 text-sm font-semibold uppercase tracking-widest mt-1">{t('evolution.subtitle')}</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
                 {/* Main Content Column */}
                 <div className="lg:col-span-9 space-y-6">
-                    <ContextBlock type="info" title="Méthodologie d'Analyse Phase-à-Phase">
+                    <ContextBlock type="info" title={t('evolution.methodology_title')}>
                         <p className="text-sm uppercase tracking-tighter font-bold">
-                            L'analyse ci-dessous découpe la période 7 ans en 4 phases distinctes basées sur la vélocité des flux de financement.
-                            Chaque zone colorée sur le graphique correspond à un régime de liquidité spécifique.
+                            {t('evolution.methodology_desc')}
                         </p>
                     </ContextBlock>
 
                     <div className="card bg-slate-800/80 backdrop-blur-xl p-4 rounded-none border border-slate-700 shadow-md leading-normal">
-                        <div className="flex justify-between items-center mb-8 px-2">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 px-2 gap-4">
                             <h3 className="text-sm font-semibold text-slate-200 uppercase tracking-widest flex items-center gap-3">
                                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500/60" />
-                                Chronologie des Flux Financiers
+                                {t('evolution.chart_title')}
                             </h3>
-                            <div className="flex gap-4">
+                            <div className="flex flex-wrap gap-4">
                                 {phases.map((p, i) => (
                                     <div key={i} className="flex items-center gap-2">
                                         <div className="w-1.5 h-1.5 rounded-none" style={{ backgroundColor: p.color, opacity: 0.6 }}></div>
@@ -53,7 +76,7 @@ export default function Evolution() {
 
                         <div className="h-[400px] w-full min-w-0 overflow-hidden">
                             <ResponsiveContainer width="100%" height="100%" minWidth={0}>
-                                <LineChart data={financementData} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
+                                <LineChart data={financementData} margin={{ top: 10, right: 30, left: 10, bottom: 20 }}>
                                     <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="#ffffff08" />
                                     <XAxis
                                         dataKey="year"
@@ -69,9 +92,10 @@ export default function Evolution() {
                                         unit=" MDT"
                                     />
                                     <Tooltip
-                                        contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', padding: '10px' }}
+                                        contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563', borderRadius: '0px', padding: '10px', textAlign: isRtl ? 'right' : 'left' }}
                                         itemStyle={{ fontSize: '13px', color: '#fff', fontWeight: '600' }}
                                         labelStyle={{ fontSize: '13px', color: '#94a3b8', fontWeight: 'bold', marginBottom: '6px', borderBottom: '1px solid #374151', paddingBottom: '4px' }}
+                                        formatter={(value: any) => [`${value?.toLocaleString(i18n.language === 'ar' ? 'ar-TN' : 'fr-TN')} MDT`, t('evolution.volume_audited')]}
                                     />
 
                                     {/* Phase Backgrounds */}
@@ -89,7 +113,7 @@ export default function Evolution() {
                                     <Line
                                         type="monotone"
                                         dataKey="montant"
-                                        name="Volume Audité"
+                                        name={t('evolution.volume_audited')}
                                         stroke="#3b82f6"
                                         strokeWidth={2}
                                         dot={{ r: 2.5, fill: '#1f2937', strokeWidth: 1.5, stroke: '#3b82f6' }}
@@ -103,7 +127,7 @@ export default function Evolution() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {phases.map((phase, idx) => (
-                            <div key={idx} className="card bg-slate-900/40 backdrop-blur-md p-4 rounded-none border border-slate-900 flex gap-4 items-start group hover:border-blue-500/30 transition-all text-left">
+                            <div key={idx} className="card bg-slate-900/40 backdrop-blur-md p-4 rounded-none border border-slate-900 flex gap-4 items-start group hover:border-blue-500/30 transition-all text-start">
                                 <div className="p-2 rounded-none border border-slate-800 group-hover:border-blue-500/20" style={{ color: phase.color }}>
                                     <Info size={16} />
                                 </div>
@@ -122,32 +146,32 @@ export default function Evolution() {
                     <AnalyticalPanel>
                         <AnalyticalGates>
                             <div>
-                                <label className="text-xs font-black text-slate-600 uppercase tracking-widest">Indicateur Principal</label>
+                                <label className="text-xs font-black text-slate-600 uppercase tracking-widest">{t('evolution.main_indicator')}</label>
                                 <select className="mt-1 block w-full text-xs font-black border-slate-700 rounded-none bg-slate-800 text-slate-300 p-2" disabled>
-                                    <option>Volume de Financement</option>
-                                    <option>Service de la Dette</option>
+                                    <option>{t('evolution.finance_volume')}</option>
+                                    <option>{t('evolution.debt_service')}</option>
                                 </select>
                             </div>
                             <div className="flex items-center gap-2 pt-2">
                                 <input type="checkbox" checked readOnly className="rounded-none bg-slate-800/80 border-slate-800 text-blue-600" />
-                                <span className="text-xs font-black text-slate-500 uppercase">Superposition_Phases</span>
+                                <span className="text-xs font-black text-slate-500 uppercase">{t('evolution.phase_overlay')}</span>
                             </div>
                         </AnalyticalGates>
 
                         <AuditGlossary
                             items={[
-                                { term: 'Effet de Choc (2022)', definition: 'Augmentation brutale des besoins de fonds de roulement liée à la volatilité des prix des matières premières.' },
-                                { term: 'Garantie Souveraine', definition: 'Engagement de l\'État à rembourser en cas de défaut, pilier de la solvabilité apparente du GCT.' }
+                                { term: t('evolution.glossary_shock'), definition: t('evolution.glossary_shock_def') },
+                                { term: t('dashboard.sov_guarantee'), definition: t('evolution.glossary_shock_def') }
                             ]}
                         />
 
                         <QuickNotes />
 
                         <AnalyticalLinks
-                            title="Liens Pivot"
+                            title={t('evolution.pivot_links')}
                             links={[
-                                { label: "Tableau de bord", path: "/finance" },
-                                { label: "Structure des garanties", path: "/finance/structure" }
+                                { label: t('nav.dashboard'), path: "/finance" },
+                                { label: t('nav.structure'), path: "/finance/structure" }
                             ]}
                         />
                     </AnalyticalPanel>

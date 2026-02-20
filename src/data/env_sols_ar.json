@@ -1,0 +1,177 @@
+{
+    "id": "env_sols",
+    "title": "التربة والنباتات – ساحل قابس",
+    "description": "تلوث التربة والنباتات بالفلور والمعادن الثقيلة حول مصانع الفوسفات في خليج قابس.",
+    "indicators": [
+        {
+            "id": "soil_fluoride_industrial",
+            "label": "الفلور في التربة (المنطقة الصناعية)",
+            "value": "≈1430",
+            "unit": "ملغ/كغ",
+            "period": "موقع قابس",
+            "note": "متوسط محتوى الفلور في التربة القريبة من مصانع السوبر فوسفات في قابس، مقابل ~35 ملغ/كغ في موقع مرجعي (سمارة).",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ]
+        },
+        {
+            "id": "soil_fluoride_reference",
+            "label": "الفلور في التربة (موقع مرجعي)",
+            "value": "≈35",
+            "unit": "ملغ/كغ",
+            "period": "موقع مرجعي بسمارة",
+            "note": "متوسط محتوى الفلور في موقع بعيد يتميز بظروف جيولوجية ومناخية مماثلة.",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ]
+        },
+        {
+            "id": "plant_fluoride_max",
+            "label": "الفلور في النباتات المحلية",
+            "value": "يصل إلى 355",
+            "unit": "ملغ/كغ (مادة جافة)",
+            "period": "نباتات قريبة من المصانع",
+            "note": "أقصى المحتويات المقاسة في الأجزاء الهوائية لبعض الأنواع (الرقمة رمادية الأوراق، الرتم، إلخ).",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425",
+                "https://pubmed.ncbi.nlm.nih.gov/30324375/"
+            ]
+        },
+        {
+            "id": "bioaccumulation_factor",
+            "label": "عامل التراكم البيولوجي للفلور",
+            "value": "يصل إلى 1,3",
+            "unit": "",
+            "period": "بعض الأنواع المحلية",
+            "note": "نسبة الفلور بين النبات والتربة يمكن أن تتجاوز 1 للأنواع المتحملة، مما يشير إلى انتقال فعال نحو الكتلة الحيوية.",
+            "sources": [
+                "https://pubmed.ncbi.nlm.nih.gov/30324375/"
+            ]
+        },
+        {
+            "id": "vegetation_richness_drop",
+            "label": "تراجع الثراء النباتي",
+            "value": "قوي",
+            "unit": "",
+            "period": "المنطقة الصناعية",
+            "note": "تشير الدراسات إلى انخفاض صافٍ في عدد الأنواع الموجودة قرب المجمع، مع سيطرة قلة من الأنواع المقاومة للفلور.",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ]
+        }
+    ],
+    "charts": [
+        {
+            "id": "soil_fluoride_comparison",
+            "type": "bar",
+            "title": "الفلور في التربة: المنطقة الصناعية مقابل الموقع المرجعي",
+            "xLabel": "الموقع",
+            "yLabel": "الفلور (ملغ/كغ)",
+            "color": "#f97316",
+            "data": [
+                {
+                    "site": "قابس الصناعية",
+                    "fluor_mgkg": 1430
+                },
+                {
+                    "site": "سمارة (مرجع)",
+                    "fluor_mgkg": 35
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ],
+            "note": "متوسط مستويات الفلور في التربة القريبة من المجمع مقارنة بموقع سمارة المرجعي."
+        },
+        {
+            "id": "soil_metals_presence",
+            "type": "donut",
+            "title": "المعادن الثقيلة في التربة (أرقام تقديرية)",
+            "xLabel": "المعدن",
+            "yLabel": "الحضور النسبي (قابس مقابل الخلفية الجيوكيميائية)",
+            "data": [
+                {
+                    "metal": "Zn",
+                    "presence_relative": 4,
+                    "color": "#f97316"
+                },
+                {
+                    "metal": "Cu",
+                    "presence_relative": 3,
+                    "color": "#e11d48"
+                },
+                {
+                    "metal": "Ni",
+                    "presence_relative": 3,
+                    "color": "#22c55e"
+                },
+                {
+                    "metal": "Cd",
+                    "presence_relative": 5,
+                    "color": "#92400e"
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425",
+                "https://www.sciencedirect.com/topics/engineering/phosphogypsum"
+            ],
+            "note": "عرض تحليلي للمعادن الثقيلة الرئيسية في التربة القريبة من المصانع. تشير القيم إلى الارتفاع النسبي مقارنة بالخلفية الجيوكيميائية الطبيعية."
+        },
+        {
+            "id": "vegetation_richness_index",
+            "type": "bar",
+            "title": "الثراء النباتي النسبي",
+            "xLabel": "الموقع",
+            "yLabel": "مؤشر الثراء (0–1)",
+            "color": "#16a34a",
+            "data": [
+                {
+                    "site": "قابس الصناعية",
+                    "richesse": 0.3
+                },
+                {
+                    "site": "سمارة (مرجع)",
+                    "richesse": 1.0
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425"
+            ],
+            "note": "انخفاض التنوع النباتي قرب المجمع، مع غطاء نباتي تهيمن عليه أنواع قليلة متحملة للفلور."
+        },
+        {
+            "id": "plant_fluoride_range",
+            "type": "bar",
+            "title": "الفلور في النباتات المحلية (المنطقة الصناعية)",
+            "xLabel": "النبات (أمثلة)",
+            "yLabel": "الفلور (ملغ/كغ مادة جافة)",
+            "color": "#a16207",
+            "data": [
+                {
+                    "plante": "الرقمة رمادية الأوراق",
+                    "fluor_mgkg": 300
+                },
+                {
+                    "plante": "الرتم",
+                    "fluor_mgkg": 250
+                },
+                {
+                    "plante": "أنواع أخرى",
+                    "fluor_mgkg": 150
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653514007425",
+                "https://pubmed.ncbi.nlm.nih.gov/30324375/"
+            ],
+            "note": "أمثلة لمستويات الفلور المقاسة في الأجزاء الهوائية للنباتات القريبة من المجمع."
+        }
+    ],
+    "text_blocks": [
+        {
+            "id": "contexte_sols",
+            "title": "ماذا تظهر التربة",
+            "body": "حول مصانع الفوسفات بخليج قابس، تحتوي التربة على مستويات فلور تزيد عن أربعين مرة عما هي عليه في موقع مرجعي، وتراكم النباتات المحلية بدورها هذا الفلور. ينتشر التلوث بالتالي من الفوسفوجبس إلى التربة ثم النباتات، فاتحاً طريقاً ثانيا للتعرض للبشر والماشية، عبر المحاصيل والأعلاف."
+        }
+    ]
+}

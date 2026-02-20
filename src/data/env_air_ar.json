@@ -1,0 +1,155 @@
+{
+    "id": "env_air",
+    "title": "الهواء والغبار – المنطقة الصناعية بقابس",
+    "description": "تساقط الجزيئات وتلوث الهواء حول المجمع الكيميائي بقابس.",
+    "indicators": [
+        {
+            "id": "dust_deposition_rate",
+            "label": "تساقط الغبار الصناعي",
+            "value": "7–14",
+            "unit": "غ/م²/شهر",
+            "period": "منطقة قابس الصناعية",
+            "note": "أرقام تدفق ترسب الجزيئات المقاسة حول المجمع (غبار معدني غني بالمعادن الثقيلة).",
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0025326X1731038X",
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/"
+            ]
+        },
+        {
+            "id": "dust_metals",
+            "label": "المعادن الثقيلة في الغبار",
+            "value": "Zn, Pb, Cu, Ni, Cd",
+            "unit": "",
+            "period": "قياسات 2010–2020",
+            "note": "تحتوي الجزيئات المترسبة على نفس المعادن الثقيلة الملاحظة في الفوسفوجبس والرسوبيات البحرية.",
+            "sources": [
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/",
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653521019858"
+            ]
+        },
+        {
+            "id": "so2_exceedance",
+            "label": "تجاوز معايير ثاني أكسيد الكبريت (SO₂)",
+            "value": "×26",
+            "unit": "مقارنة بالعتبة",
+            "period": "حملة 2010",
+            "note": "سجلت حملة قياس نسبة SO₂ بلغت حوالي 7805 ميكروغرام/م³ مقابل عتبة قانونية قدرها 300 ميكروغرام/م³.",
+            "sources": [
+                "Rapport IHE audit environnemental GCT Gabès 2025 (extraits)",
+                "https://fr.scribd.com/document/940356535/Rapport-Audit-E-S-GCT-Gab"
+            ]
+        },
+        {
+            "id": "hf_exceedance",
+            "label": "تجاوز معايير فلوريد الهيدروجين (HF)",
+            "value": "×36",
+            "unit": "مقارنة بالعتبة",
+            "period": "حملة 2010",
+            "note": "قياس فلوريد الهيدروجين عند ~184 ميكروغرام/م³ لـحد أقصى قدره 5 ميكروغرام/م³.",
+            "sources": [
+                "Rapport IHE audit environnemental GCT Gabès 2025 (extraits)"
+            ]
+        }
+    ],
+    "charts": [
+        {
+            "id": "dust_deposition_bar",
+            "type": "bar",
+            "title": "تساقط الغبار الصناعي (أرقام تقديرية)",
+            "xLabel": "نوع الموقع",
+            "yLabel": "الترسب (غ/م²/شهر)",
+            "color": "#6366f1",
+            "data": [
+                {
+                    "site": "المنطقة الصناعية بقابس",
+                    "depot_g_m2_mois": 12
+                },
+                {
+                    "site": "موقع مرجعي إقليمي",
+                    "depot_g_m2_mois": 2
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0025326X1731038X",
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/"
+            ],
+            "note": "توضيح للأرقام التقريبية: تساقط غبار أكثر بعدة مرات قرب المجمع مقارنة بالمواقع المرجعية."
+        },
+        {
+            "id": "dust_metals_composition",
+            "type": "donut",
+            "title": "المعادن الثقيلة في الغبار (ملف كيفي)",
+            "xLabel": "المعدن",
+            "yLabel": "الأهمية النسبية",
+            "data": [
+                {
+                    "metal": "Zn",
+                    "importance": 5,
+                    "color": "#f97316"
+                },
+                {
+                    "metal": "Pb",
+                    "importance": 4,
+                    "color": "#e11d48"
+                },
+                {
+                    "metal": "Cu",
+                    "importance": 3,
+                    "color": "#eab308"
+                },
+                {
+                    "metal": "Ni",
+                    "importance": 3,
+                    "color": "#22c55e"
+                },
+                {
+                    "metal": "Cd",
+                    "importance": 2,
+                    "color": "#0ea5e9"
+                }
+            ],
+            "sources": [
+                "https://www.sciencedirect.com/science/article/abs/pii/S0045653521019858",
+                "https://pubmed.ncbi.nlm.nih.gov/37188936/"
+            ],
+            "note": "ملف كيفي للمعادن الثقيلة الرئيسية المرتبطة بالغبار الناتج عن الفوسفوجبس والمفرغات الصناعية."
+        },
+        {
+            "id": "gas_exceedance",
+            "type": "bar",
+            "title": "تجاوز المعايير لبعض الغازات",
+            "xLabel": "الملوث",
+            "yLabel": "مقارنة بالمعيار (×)",
+            "color": "#a855f7",
+            "data": [
+                {
+                    "polluant": "SO₂",
+                    "x_norme": 26
+                },
+                {
+                    "polluant": "HF",
+                    "x_norme": 36
+                },
+                {
+                    "polluant": "NO₂",
+                    "x_norme": 1.8
+                },
+                {
+                    "polluant": "الغبار",
+                    "x_norme": 1.7
+                }
+            ],
+            "sources": [
+                "Rapport IHE audit environnemental GCT Gabès 2025 (extraits)"
+            ],
+            "note": "مبني على حملة قياسات 2010: تجاوزات هائلة للكبريت والفلوريدات وتجاوزات أكثر اعتدالاً لأكاسيد النيتروجين والغبار."
+        }
+    ],
+    "text_blocks": [
+        {
+            "id": "contexte_air",
+            "title": "ماذا يقول الغبار",
+            "body": "حول مجمع قابس، لا يقتصر الأمر على الدخان المرئي: تظهر القياسات تساقطاً كبيراً للغبار المعدني الغني بالمعادن الثقيلة، بالإضافة إلى مستويات تاريخية لثاني أكسيد الكبريت وفلوريد الهيدروجين تتجاوز بكثير الحدود القانونية. تتساقط هذه الجزيئات لاحقاً على التربة والمحاصيل والبحر، لتكمل دورة من التلوث تربط بين السماء والأرض والماء."
+        }
+    ]
+}
