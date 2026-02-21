@@ -2,9 +2,7 @@ import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Toolti
 import { Link as LinkIcon, ExternalLink, ShieldCheck, Euro, DollarSign, Coins } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import historicalLoans from '../data/historical_loans_2016_2028.json';
-import historicalGuarantees from '../data/historical_guarantees.json';
-import historicalSummary from '../data/historical_summary.json';
+import { useState, useEffect } from 'react';
 import ContextBlock from '../components/ui/ContextBlock';
 import KpiCard from '../components/ui/KpiCard';
 import AnalyticalPanel from '../components/layout/right-panel/AnalyticalPanel';
@@ -52,6 +50,42 @@ const TimelineItem = ({ loan }: any) => {
 export default function HistoricalApproach() {
     const { t, i18n } = useTranslation();
     const isRtl = i18n.dir() === 'rtl';
+    const isAr = i18n.language === 'ar';
+
+    const [historicalLoans, setHistoricalLoans] = useState<any[]>([]);
+    const [historicalGuarantees, setHistoricalGuarantees] = useState<any[]>([]);
+    const [historicalSummary, setHistoricalSummary] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const loadData = async () => {
+            setLoading(true);
+            const suffix = isAr ? '_ar' : '';
+            try {
+                const [loansMod, guaranteesMod, summaryMod] = await Promise.all([
+                    import(`../data/historical_loans_2016_2028${suffix}.json`),
+                    import(`../data/historical_guarantees${suffix}.json`),
+                    import(`../data/historical_summary${suffix}.json`)
+                ]);
+                setHistoricalLoans(loansMod.default);
+                setHistoricalGuarantees(guaranteesMod.default);
+                setHistoricalSummary(summaryMod.default);
+            } catch (e) {
+                console.error("Failed to load historical data", e);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadData();
+    }, [isAr]);
+
+    if (loading || !historicalSummary) {
+        return (
+            <div className="h-64 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+        );
+    }
 
     const loansChartData = historicalLoans.map(loan => ({
         name: loan.bailleur,

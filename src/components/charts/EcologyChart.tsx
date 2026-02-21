@@ -193,6 +193,7 @@ export default function EcologyChart({
                                 stroke={resolvedColor}
                                 strokeWidth={2}
                                 fill={`url(#grad-${title.replace(/\s+/g, '-')})`}
+                                isAnimationActive={false}
                                 dot={{
                                     r: 2.5,
                                     fill: '#1e293b',
@@ -246,6 +247,7 @@ export default function EcologyChart({
                                 fill={resolvedColor}
                                 radius={[2, 2, 0, 0]}
                                 barSize={32}
+                                isAnimationActive={false}
                             />
                         </BarChart>
                     ) : (
@@ -261,6 +263,7 @@ export default function EcologyChart({
                                 paddingAngle={2}
                                 stroke="#020617"
                                 strokeWidth={1}
+                                isAnimationActive={false}
                             >
                                 {data.map((entry, index) => (
                                     <Cell

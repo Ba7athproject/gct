@@ -7,11 +7,6 @@ import { FileDown, ChevronLeft } from 'lucide-react';
 import ContextBlock from '../components/ui/ContextBlock';
 import EcologyChart from '../components/charts/EcologyChart';
 
-import envMer from '../data/env_mer.json';
-import envSols from '../data/env_sols.json';
-import envAir from '../data/env_air.json';
-import envEau from '../data/env_eau.json';
-
 import reportMarkdownFr from '../content/env_report.md?raw';
 import reportMarkdownAr from '../content/env_report_ar.md?raw';
 
@@ -22,67 +17,68 @@ const handlePrint = () => {
 };
 
 const findChart = (dataset: any, chartId: string) => {
+    if (!dataset || !dataset.charts) return null;
     return dataset.charts.find((c: any) => c.id === chartId);
 };
 
-function FigureBlock({ id }: { id: string }) {
+function FigureBlock({ id, datasets }: { id: string, datasets: Record<string, any> }) {
     const { t } = useTranslation();
 
     const figureConfig: Record<
         string,
-        { dataset: any; chartId: string; titleKey: string }
+        { datasetKey: string; chartId: string; titleKey: string }
     > = {
         mer_posidonia: {
-            dataset: envMer,
+            datasetKey: 'envMer',
             chartId: 'posidonia_area_trend',
             titleKey: 'report.eco_fig1_title'
         },
         mer_fisheries: {
-            dataset: envMer,
+            datasetKey: 'envMer',
             chartId: 'fisheries_losses_trend',
             titleKey: 'report.eco_fig2_title'
         },
         sols_fluor_comparison: {
-            dataset: envSols,
+            datasetKey: 'envSols',
             chartId: 'soil_fluoride_comparison',
             titleKey: 'report.eco_fig3_title'
         },
         sols_plants: {
-            dataset: envSols,
+            datasetKey: 'envSols',
             chartId: 'plant_fluoride_range',
             titleKey: 'report.eco_fig4_title'
         },
         air_dust: {
-            dataset: envAir,
+            datasetKey: 'envAir',
             chartId: 'dust_deposition_bar',
             titleKey: 'report.eco_fig5_title'
         },
         air_gas: {
-            dataset: envAir,
+            datasetKey: 'envAir',
             chartId: 'gas_exceedance',
             titleKey: 'report.eco_fig6_title'
         },
         eau_fluor: {
-            dataset: envEau,
+            datasetKey: 'envEau',
             chartId: 'agareb_fluoride_vs_standard',
             titleKey: 'report.eco_fig7_title'
         },
         eau_sulfates: {
-            dataset: envEau,
+            datasetKey: 'envEau',
             chartId: 'agareb_sulfate_vs_standard',
             titleKey: 'report.eco_fig8_title'
         },
         eau_drawdown: {
-            dataset: envEau,
+            datasetKey: 'envEau',
             chartId: 'hamma_drawdown_curve',
             titleKey: 'report.eco_fig9_title'
         }
     };
 
     const config = figureConfig[id];
-    if (!config) return null;
+    if (!config || !datasets[config.datasetKey]) return null;
 
-    const chart = findChart(config.dataset, config.chartId);
+    const chart = findChart(datasets[config.datasetKey], config.chartId);
     if (!chart) return null;
 
     return (
@@ -102,13 +98,42 @@ export default function EcologyReport() {
     const isAr = i18n.language === 'ar';
     const reportMarkdown = isAr ? reportMarkdownAr : reportMarkdownFr;
 
-    const [mounted, setMounted] = useState(false);
+    const [datasets, setDatasets] = useState<Record<string, any>>({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setMounted(true);
-    }, []);
+        const loadDatasets = async () => {
+            setLoading(true);
+            const suffix = isAr ? '_ar' : '';
+            try {
+                const [mer, sols, air, eau] = await Promise.all([
+                    import(`../data/env_mer${suffix}.json`),
+                    import(`../data/env_sols${suffix}.json`),
+                    import(`../data/env_air${suffix}.json`),
+                    import(`../data/env_eau${suffix}.json`)
+                ]);
+                setDatasets({
+                    envMer: mer.default,
+                    envSols: sols.default,
+                    envAir: air.default,
+                    envEau: eau.default
+                });
+            } catch (e) {
+                console.error("Failed to load ecology report datasets", e);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadDatasets();
+    }, [isAr]);
 
-    if (!mounted) return null;
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-[400px]">
+                <div className="animate-spin h-8 w-8 border-4 border-emerald-500 border-t-transparent rounded-full"></div>
+            </div>
+        );
+    }
 
     const lines = reportMarkdown.split('\n');
     const blocks: { type: 'md' | 'fig'; content: string }[] = [];
@@ -176,7 +201,7 @@ export default function EcologyReport() {
                         </div>
                     </section>
                 ) : (
-                    <FigureBlock key={idx} id={block.content} />
+                    <FigureBlock key={idx} id={block.content} datasets={datasets} />
                 )
             )}
         </div>

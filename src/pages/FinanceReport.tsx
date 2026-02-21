@@ -62,7 +62,7 @@ function FigureBlock({ id, reportData, financingTimeseries }: { id: string, repo
                             <XAxis dataKey="annee" axisLine={false} tickLine={false} tick={{ fill: '#64748b' }} />
                             <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b' }} />
                             <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563' }} />
-                            <Line type="monotone" dataKey="total_ME" stroke="#0ea5e9" strokeWidth={2} />
+                            <Line type="monotone" dataKey="total_ME" stroke="#0ea5e9" strokeWidth={2} isAnimationActive={false} />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
@@ -83,7 +83,7 @@ function FigureBlock({ id, reportData, financingTimeseries }: { id: string, repo
                             <XAxis dataKey="annee" axisLine={false} tickLine={false} tick={{ fill: '#64748b' }} />
                             <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b' }} />
                             <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563' }} />
-                            <Bar dataKey="montant_ME" fill="#8b5cf6" />
+                            <Bar dataKey="montant_ME" fill="#8b5cf6" isAnimationActive={false} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
@@ -133,7 +133,7 @@ function FigureBlock({ id, reportData, financingTimeseries }: { id: string, repo
                             <XAxis dataKey="annee" axisLine={false} tickLine={false} tick={{ fill: '#64748b' }} />
                             <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b' }} />
                             <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563' }} />
-                            <Line type="monotone" dataKey="resultat_net" stroke="#10b981" strokeWidth={2} />
+                            <Line type="monotone" dataKey="resultat_net" stroke="#10b981" strokeWidth={2} isAnimationActive={false} />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
@@ -164,6 +164,7 @@ function FigureBlock({ id, reportData, financingTimeseries }: { id: string, repo
                                             name.toLowerCase().includes('état') ? t('report.state') : name;
                                     return `${localizedName}: ${value} MD`;
                                 }}
+                                isAnimationActive={false}
                             >
                                 {chart.data.map((entry: any, index: number) => (
                                     <Cell key={`cell-${index}`} fill={entry.color} />
@@ -190,7 +191,7 @@ function FigureBlock({ id, reportData, financingTimeseries }: { id: string, repo
                             <XAxis dataKey="annee" axisLine={false} tickLine={false} tick={{ fill: '#64748b' }} />
                             <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b' }} />
                             <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #4b5563' }} />
-                            <Bar dataKey="production" fill="#10b981" />
+                            <Bar dataKey="production" fill="#10b981" isAnimationActive={false} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
@@ -234,11 +235,11 @@ function FigureBlock({ id, reportData, financingTimeseries }: { id: string, repo
                                 iconType="square"
                                 iconSize={10}
                             />
-                            <Bar dataKey="dettes_etat" stackId="a" fill="#ef4444" name={t('report.debt_state')} />
-                            <Bar dataKey="dettes_banques" stackId="a" fill="#3b82f6" name={t('report.debt_banks')} />
-                            <Bar dataKey="dettes_eep" stackId="a" fill="#f59e0b" name={t('report.debt_eep')} />
-                            <Bar dataKey="dettes_fournisseurs" stackId="a" fill="#8b5cf6" name={t('report.suppliers')} />
-                            <Bar dataKey="dettes_caisses_sociales" stackId="a" fill="#ec4899" name={t('report.social_funds')} />
+                            <Bar dataKey="dettes_etat" stackId="a" fill="#ef4444" name={t('report.debt_state')} isAnimationActive={false} />
+                            <Bar dataKey="dettes_banques" stackId="a" fill="#3b82f6" name={t('report.debt_banks')} isAnimationActive={false} />
+                            <Bar dataKey="dettes_eep" stackId="a" fill="#f59e0b" name={t('report.debt_eep')} isAnimationActive={false} />
+                            <Bar dataKey="dettes_fournisseurs" stackId="a" fill="#8b5cf6" name={t('report.suppliers')} isAnimationActive={false} />
+                            <Bar dataKey="dettes_caisses_sociales" stackId="a" fill="#ec4899" name={t('report.social_funds')} isAnimationActive={false} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

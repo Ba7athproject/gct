@@ -58,6 +58,7 @@ export default function FinanceChart({
                             strokeWidth={2}
                             dot={{ fill: color, r: 4 }}
                             activeDot={{ r: 6 }}
+                            isAnimationActive={false}
                         />
                     </LineChart>
                 </ResponsiveContainer>
@@ -75,7 +76,7 @@ export default function FinanceChart({
                         <YAxis stroke="#94a3b8" />
                         <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }} />
                         <Legend />
-                        <Bar dataKey={yLabel} fill={color} />
+                        <Bar dataKey={yLabel} fill={color} isAnimationActive={false} />
                     </BarChart>
                 </ResponsiveContainer>
             </div>
@@ -96,6 +97,7 @@ export default function FinanceChart({
                             outerRadius={80}
                             fill={color}
                             dataKey={yLabel}
+                            isAnimationActive={false}
                         >
                             {data.map((entry: any, index: number) => (
                                 <Cell key={`cell-${index}`} fill={entry.color || color} />
@@ -129,6 +131,7 @@ export default function FinanceChart({
                             stroke={color}
                             fillOpacity={1}
                             fill="url(#colorArea)"
+                            isAnimationActive={false}
                         />
                     </AreaChart>
                 </ResponsiveContainer>

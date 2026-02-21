@@ -9,16 +9,14 @@ import AnalyticalGates from '../components/layout/right-panel/AnalyticalGates';
 import AuditGlossary from '../components/layout/right-panel/AuditGlossary';
 import QuickNotes from '../components/layout/right-panel/QuickNotes';
 import AnalyticalLinks from '../components/layout/right-panel/AnalyticalLinks';
-import financingDataDefault from '../data/financing_timeseries_dashboard.json';
-import kpisDefault from '../data/kpis.json';
 
 export default function Dashboard() {
     const { t, i18n } = useTranslation();
     const isAr = i18n.language === 'ar';
     const [period, setPeriod] = useState('all');
 
-    const [financingData, setFinancingData] = useState<any[]>(financingDataDefault);
-    const [kpis, setKpis] = useState<any>(kpisDefault);
+    const [financingData, setFinancingData] = useState<any[]>([]);
+    const [kpis, setKpis] = useState<any>(null);
 
     useEffect(() => {
         const loadData = async () => {
@@ -53,7 +51,6 @@ export default function Dashboard() {
         const peakItem = [...filteredData].sort((a, b) => b.amount - a.amount)[0];
         const average = total / filteredData.length;
 
-        // Use 2026 for budget pressure if in scope, otherwise use the latest year in filteredData
         const latestItem = [...filteredData].sort((a, b) => b.year - a.year)[0];
 
         const guaranteedAmount = filteredData.filter(d => d.is_ep_guaranteed).reduce((acc, curr) => acc + curr.amount, 0);
@@ -114,7 +111,7 @@ export default function Dashboard() {
                             value={`${dynamicStats.total.toLocaleString()} MDT`}
                             subtext={period === 'all' ? t('dashboard.kpi_total_desc') : t('dashboard.temporal_scope') + ': ' + (period === '2020-2023' ? '2020-2023' : '2024-2026')}
                             icon={Wallet}
-                            trend={kpis.total_creances_7ans.trend as any}
+                            trend={kpis?.total_creances_7ans?.trend as any}
                             className="p-4"
                         />
                         <KpiCard
@@ -122,7 +119,7 @@ export default function Dashboard() {
                             value={`${dynamicStats.peak.toLocaleString()} MDT`}
                             subtext={t('dashboard.kpi_peak_desc', { year: dynamicStats.peakYear })}
                             icon={Activity}
-                            trend={kpis.pic_annuel.trend as any}
+                            trend={kpis?.pic_annuel?.trend as any}
                             className="p-4"
                         />
                         <KpiCard
@@ -137,7 +134,7 @@ export default function Dashboard() {
                             value={`${dynamicStats.latestBudgetEp}%`}
                             subtext={t('dashboard.kpi_budget_desc')}
                             icon={AlertTriangle}
-                            trend={kpis.part_budget_ep_2026.trend as any}
+                            trend={kpis?.part_budget_ep_2026?.trend as any}
                             isCritical={true}
                             className="p-4"
                         />

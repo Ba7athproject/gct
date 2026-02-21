@@ -138,6 +138,22 @@ body {
 
   body {
     background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .card {
+    background: #ffffff !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+  }
+
+  .card p, .card span, .card li {
+    color: #334155 !important;
+  }
+
+  h1, h2, h3, h4, .text-slate-200 {
+    color: #000000 !important;
   }
 
   header,
@@ -147,6 +163,17 @@ body {
 
   /* Hauteur fixe pour les graphiques en impression */
   .print-chart {
-    height: 220px !important;
+    height: 300px !important; /* un peu plus grand pour la lisibilité */
+    background: #ffffff !important;
+  }
+
+  /* Forcer Recharts à être visible */
+  .recharts-cartesian-grid-horizontal line,
+  .recharts-cartesian-grid-vertical line {
+    stroke: #e2e8f0 !important;
+  }
+
+  .recharts-text {
+    fill: #64748b !important;
   }
 }

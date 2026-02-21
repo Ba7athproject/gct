@@ -99,7 +99,7 @@ export default function TimeSeriesChart({
                         stroke={color}
                         strokeWidth={2}
                         fill={`url(#${gradientId})`}
-                        animationDuration={1500}
+                        isAnimationActive={false}
                         dot={{ r: 2.5, fill: '#1e293b', stroke: color, strokeWidth: 1.5 }}
                         activeDot={{ r: 4, fill: color, stroke: '#1e293b', strokeWidth: 1.5 }}
                     />

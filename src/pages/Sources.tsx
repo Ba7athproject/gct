@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { Shield, Globe, BarChart3 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import bailleursData from '../data/bailleurs_par_annee.json';
 import { formatPercentage } from '../utils/format';
 import AcronymTooltip from '../components/AcronymTooltip';
 import ContextBlock from '../components/ui/ContextBlock';
@@ -17,17 +16,46 @@ const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#6366f1'
 export default function Sources() {
     const { t, i18n } = useTranslation();
     const isRtl = i18n.dir() === 'rtl';
+    const isAr = i18n.language === 'ar';
+
+    const [bailleursData, setBailleursData] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
     const [selectedYear, setSelectedYear] = useState(2023);
+
+    useEffect(() => {
+        const loadData = async () => {
+            setLoading(true);
+            const suffix = isAr ? '_ar' : '';
+            try {
+                const module = await import(`../data/bailleurs_par_annee${suffix}.json`);
+                setBailleursData(module.default);
+            } catch (e) {
+                console.error("Failed to load sources data", e);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadData();
+    }, [isAr]);
+
+    if (loading || bailleursData.length === 0) {
+        return (
+            <div className="h-64 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+        );
+    }
+
     const yearData = bailleursData.find(d => d.year === selectedYear) || bailleursData[0];
 
     const bhBankTrend = bailleursData.map(d => ({
         year: d.year,
-        amount: d.sources.find(s => s.name === 'BH BANK')?.amount || 0
+        amount: d.sources.find((s: any) => s.name === 'BH BANK')?.amount || 0
     }));
 
     const itfcTrend = bailleursData.map(d => ({
         year: d.year,
-        amount: d.sources.find(s => s.name === 'ITFC')?.amount || 0
+        amount: d.sources.find((s: any) => s.name === 'ITFC')?.amount || 0
     }));
 
     return (
@@ -40,9 +68,8 @@ export default function Sources() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
-                {/* Main Content Column */}
-                <div className="lg:col-span-9 space-y-5">
-                    <ContextBlock type="info" title={t('sources.analysis_title')}>
+                <div className="lg:col-span-9 space-y-6">
+                    <ContextBlock type="warning" title={t('sources.analysis_title')}>
                         <p className="text-sm uppercase tracking-tighter font-bold">
                             {t('sources.analysis_desc')}
                         </p>
@@ -57,8 +84,8 @@ export default function Sources() {
                                     key={d.year}
                                     onClick={() => setSelectedYear(d.year)}
                                     className={`px-3 py-1.5 rounded-none text-xs font-black transition-all uppercase tracking-widest ${selectedYear === d.year
-                                        ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)] border border-blue-400'
-                                        : 'text-slate-600 hover:text-slate-400 hover:bg-slate-900'
+                                            ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)] border border-blue-400'
+                                            : 'text-slate-600 hover:text-slate-400 hover:bg-slate-900'
                                         }`}
                                 >
                                     {d.year}
@@ -89,7 +116,7 @@ export default function Sources() {
                                             stroke="#111827"
                                             strokeWidth={1}
                                         >
-                                            {yearData.sources.map((_, index) => (
+                                            {yearData.sources.map((_: any, index: number) => (
                                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                             ))}
                                         </Pie>
@@ -102,7 +129,7 @@ export default function Sources() {
                                 </ResponsiveContainer>
                             </div>
                             <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4 px-2 pb-2">
-                                {yearData.sources.map((source, idx) => (
+                                {yearData.sources.map((source: any, idx: number) => (
                                     <div key={idx} className="flex items-center gap-2 py-1.5 border-b border-slate-700/40">
                                         <div className="w-1.5 h-1.5 rounded-none shrink-0" style={{ backgroundColor: COLORS[idx % COLORS.length], opacity: 0.8 }}></div>
                                         <div className="text-xs font-semibold text-slate-500 truncate uppercase tracking-tight">
